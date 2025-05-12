@@ -3,7 +3,7 @@ import React from "react";
 
 const Sidebar = () => {
   return (
-    <div className="bg-slate-800 text-slate-50 space-y-6 w-52 h-screen p-4">
+    <div className="bg-slate-800 text-slate-50 space-y-6 w-52 h-screen p-4 fixed left-0 top-0">
       <Link className="mb-6" href="#">
         Logo
       </Link>

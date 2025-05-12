@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
       {/* main content */}
       <div className="w-full">
         <Navbar />
-        <main className="flex p-8 bg-slate-900 text-slate-50 justify-between">
+        <main className="flex ml-52 p-8 bg-slate-900 text-slate-50 min-h-screen mt-12">
           {children}
         </main>
       </div>
