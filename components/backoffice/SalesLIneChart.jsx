@@ -60,8 +60,8 @@ export const data = {
 
 export function SalesLineChart() {
   return (
-    <div className="p8 h-[300px]">
-      <Line options={options} data={data} />;
+    <div className="">
+      <Line options={options} data={data} />
     </div>
   );
 }

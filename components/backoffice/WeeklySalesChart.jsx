@@ -15,62 +15,18 @@ import { SalesLineChart } from "./SalesLIneChart";
 
 const WeeklySalesChart = () => {
   return (
-    <div className="p-8 rounded-lg bg-slate-700">
+    <div className="p-8 rounded-lg bg-slate-700 w-full">
       <h2 className="text-xl font-semibold">Weekly Sales Chart</h2>
-      <Tabs defaultValue="sales" className="w-[400px] my-4 bg-slate-700">
+      <Tabs defaultValue="sales" className="w-full h-full p-4 bg-slate-700">
         <TabsList className="grid w-full grid-cols-2 bg-slate-600 text-slate-50">
           <TabsTrigger value="sales">Sales</TabsTrigger>
           <TabsTrigger value="orders">orders</TabsTrigger>
         </TabsList>
         <TabsContent value="sales">
           SALES
-          {/* <Card>
-            <CardHeader>
-              <CardTitle>Account</CardTitle>
-              <CardDescription>
-                Make changes to your account here. Click save when you're done.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <div className="space-y-1">
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" defaultValue="Pedro Duarte" />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="username">Username</Label>
-                <Input id="username" defaultValue="@peduarte" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Save changes</Button>
-            </CardFooter>
-          </Card> */}
           <SalesLineChart />
         </TabsContent>
-        <TabsContent value="orders">
-          orders
-          {/* <Card>
-            <CardHeader>
-              <CardTitle>Password</CardTitle>
-              <CardDescription>
-                Change your password here. After saving, you'll be logged out.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <div className="space-y-1">
-                <Label htmlFor="current">Current password</Label>
-                <Input id="current" type="password" />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="new">New password</Label>
-                <Input id="new" type="password" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Save password</Button>
-            </CardFooter>
-          </Card> */}
-        </TabsContent>
+        <TabsContent value="orders">orders</TabsContent>
       </Tabs>
     </div>
   );
