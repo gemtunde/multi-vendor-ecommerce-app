@@ -17,8 +17,10 @@ const CustomDataTable = () => {
 
   return (
     <div className="py-8">
-      <h2 className="text-xl font-semibold">Custom Data Table</h2>
-      <div className="p-8">
+      <h2 className="text-xl text-slate-900 dark:text-slate-50 font-semibold">
+        Custom Data Table
+      </h2>
+      <div className=" py-4">
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -104,13 +106,13 @@ const CustomDataTable = () => {
             className="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4"
             aria-label="Table navigation"
           >
-            <span className="text-sm font-normal text-gray-500 dark:text-gray-400 mb-4 md:mb-0 block w-full md:inline md:w-auto">
+            <span className="text-sm font-normal text-slate-900 dark:text-slate-50 mb-4 md:mb-0 block w-full md:inline md:w-auto">
               Showing{" "}
-              <span className="font-semibold text-gray-50 dark:text-white">
+              <span className="font-semibold  text-slate-900 dark:text-slate-50">
                 {itemStartIndex}- {itemEndIndex}
               </span>{" "}
               of{" "}
-              <span className="font-semibold text-gray-50 dark:text-white">
+              <span className="font-semibold  text-slate-900 dark:text-slate-50">
                 {data.length}
               </span>
             </span>

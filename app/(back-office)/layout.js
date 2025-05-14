@@ -10,8 +10,10 @@ const Layout = ({ children }) => {
 
       {/* main content */}
       <div className="w-full">
-        <Navbar />
-        <main className="flex ml-52 p-8 bg-slate-900 text-slate-50 min-h-screen mt-12">
+        <div className="ml-52">
+          <Navbar />
+        </div>
+        <main className="flex ml-52 p-8 bg-slate-100 dark:bg-slate-900 text-slate-50 min-h-screen mt-12">
           {children}
         </main>
       </div>

@@ -29,7 +29,7 @@ export const data = {
 
 const BestSellingProductChart = () => {
   return (
-    <div className="p-8 rounded-lg bg-slate-700">
+    <div className="p-8 shadow-xl rounded-lg dark:text-slate-50 dark:bg-slate-700 bg-slate-50 text-slate-900">
       <h2 className="text-xl font-semibold">Best Selling Product Chart</h2>
       <Pie data={data} className="text-slate-50" />;
     </div>
