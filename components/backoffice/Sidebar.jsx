@@ -1,22 +1,185 @@
+"use client";
+import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import { useTheme } from "next-themes";
+import {
+  Building,
+  CarTaxiFront,
+  ChevronDown,
+  ChevronRight,
+  ExternalLink,
+  Factory,
+  LayoutGrid,
+  LogOut,
+  Settings2,
+  Slash,
+  SlashIcon,
+  Truck,
+  User,
+  User2,
+  UserSquare2,
+  Warehouse,
+} from "lucide-react";
 
-const Sidebar = () => {
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+
+import { Button } from "../ui/button";
+import { usePathname } from "next/navigation";
+
+const Sidebar = ({ showSidebar, setShowSidebar }) => {
+  const pathname = usePathname();
+  const [openMenu, setOpenMenu] = useState(false);
+  const { theme } = useTheme();
+  const sidebarLinks = [
+    {
+      title: "Customers",
+      icon: User2,
+      href: "/dashboard/customers",
+    },
+    {
+      title: "Markets",
+      icon: Warehouse,
+      href: "/dashboard/markets",
+    },
+    {
+      title: "Farmers",
+      icon: UserSquare2,
+      href: "/dashboard/farmers",
+    },
+    {
+      title: "orders",
+      icon: Truck,
+      href: "/dashboard/orders",
+    },
+    {
+      title: "Staff",
+      icon: User,
+      href: "/dashboard/staff",
+    },
+    {
+      title: "Settings",
+      icon: LayoutGrid,
+      href: "/dashboard/settings",
+    },
+    {
+      title: "online Store",
+      icon: ExternalLink,
+      href: "/dashboard/store",
+    },
+  ];
+  const catalogueLinks = [
+    {
+      title: "Products",
+      icon: User2,
+      href: "/dashboard/products",
+    },
+    {
+      title: "Categories",
+      icon: Warehouse,
+      href: "/dashboard/categories",
+    },
+    {
+      title: "Attributes",
+      icon: UserSquare2,
+      href: "/dashboard/attributes",
+    },
+    {
+      title: "Coupons",
+      icon: Truck,
+      href: "/dashboard/coupons",
+    },
+    {
+      title: " Store Sliders",
+      icon: ExternalLink,
+      href: "/dashboard/sliders",
+    },
+  ];
   return (
-    <div className="bg-slate-50 text-slate-900 dark:bg-slate-800 dark:text-slate-50 space-y-6 w-52 h-screen p-4 fixed left-0 top-0">
-      <Link className="mb-6" href="#">
-        Logo
+    <div
+      className={
+        showSidebar
+          ? "sm:block bg-slate-50 text-slate-900 dark:bg-slate-800 dark:text-slate-50 space-y-6 w-60 h-screen fixed left-0 top-0 shadow-md"
+          : "hidden sm:block bg-slate-50 text-slate-900 dark:bg-slate-800 dark:text-slate-50 space-y-6 w-60 h-screen fixed left-0 top-0 shadow-md"
+      }
+    >
+      <Link
+        className="mb-20 px-6 py-4 "
+        href="/dashboard"
+        onClick={() => setShowSidebar(false)}
+      >
+        {theme === "dark" ? (
+          <Image src="/logo-white.png" width={150} height={50} alt="logo" />
+        ) : (
+          <Image src="/logo.png" width={150} height={50} alt="logo" />
+        )}
       </Link>
       <div className=" space-y-3 flex flex-col">
-        <Link href="#">Dashboard</Link>
-        <Link href="#">Catalogue</Link>
-        <Link href="#">Customers</Link>
-        <Link href="#">Markets</Link>
-        <Link href="#">Farmers</Link>
-        <Link href="#">orders</Link>
-        <Link href="#">staff</Link>
-        <Link href="#">Settings</Link>
-        <Link href="#">online store</Link>
+        <Link
+          onClick={() => setShowSidebar(false)}
+          className={`${pathname === "/dashboard" ? "border-l-8 border-green-600 text-green-600" : ""} flex items-center space-x-3 px-6 py-2 `}
+          href="/dashboard"
+        >
+          <LayoutGrid />
+          <span>Dashboard</span>
+        </Link>
+        <Collapsible className="px-6 py-2">
+          <CollapsibleTrigger asChild onClick={() => setOpenMenu(!openMenu)}>
+            <button
+              className={`flex items-center space-x-6 px-6 py-2  ${pathname === "/dashboard/catalogue" ? "border-l-8 border-green-600" : ""}`}
+            >
+              <div className="flex items-center space-x-3">
+                <Building />
+                <span>Catalogue</span>
+              </div>
+              {openMenu ? <ChevronDown /> : <ChevronRight />}
+            </button>
+          </CollapsibleTrigger>
+          <CollapsibleContent className="px-4 pl-8 bg-slate-700 rounded-lg">
+            {catalogueLinks.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={index}
+                  onClick={() => setShowSidebar(false)}
+                  className={`${pathname === item.href ? " text-green-600" : ""} flex items-center text-sm space-x-3 px-6 py-2 font-semibold`}
+                  href={item.href}
+                >
+                  <Icon className="h-4 w-4" />
+                  <span>{item.title}</span>
+                </Link>
+              );
+            })}
+          </CollapsibleContent>
+        </Collapsible>
+
+        {sidebarLinks.map((Item, index) => {
+          const Icon = Item.icon;
+          return (
+            <Link
+              onClick={() => setShowSidebar(false)}
+              key={index}
+              className={`flex items-center space-x-3 px-6 py-2  ${Item.href === pathname ? "border-l-8 border-green-600 text-green-600" : ""}`}
+              href={Item.href}
+            >
+              <Icon />
+              <span>{Item.title}</span>
+            </Link>
+          );
+        })}
+        <div className="px-8 py-2">
+          <Button
+            variant="default"
+            className="flex items-center space-x-3 px-8 py-2  bg-green-600 w-full"
+          >
+            <LogOut />
+            <span>Logout</span>
+          </Button>
+        </div>
       </div>
     </div>
   );

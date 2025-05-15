@@ -20,17 +20,14 @@ import {
 import Image from "next/image";
 import { ThemeSwitcher } from "../ThemeSwitcherBtn";
 
-const Navbar = () => {
+const Navbar = ({ showSidebar, setShowSidebar }) => {
   return (
-    <div className="flex mr-48 items-center justify-between bg-slate-50 dark:bg-slate-700 text-green-600 h-20 px-8 pr-[16rem]  py-4 fixed top-0 w-full ">
-      <button>
+    <div className="flex mr-48 items-center justify-between bg-slate-50 dark:bg-slate-700 text-green-600 h-20 px-8 sm:pr-[16rem]  py-4 fixed top-0 w-full ">
+      <button onClick={() => setShowSidebar(!showSidebar)}>
         <AlignJustify />
       </button>
       <div className="flex space-x-3">
         <ThemeSwitcher />
-        {/* <button>
-          <Sun />
-        </button> */}
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
