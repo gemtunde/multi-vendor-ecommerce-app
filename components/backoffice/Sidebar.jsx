@@ -5,9 +5,11 @@ import React, { useState } from "react";
 import { useTheme } from "next-themes";
 import {
   Building,
+  Building2,
   CarTaxiFront,
   ChevronDown,
   ChevronRight,
+  DollarSignIcon,
   ExternalLink,
   Factory,
   LayoutGrid,
@@ -62,6 +64,16 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
       href: "/dashboard/staff",
     },
     {
+      title: "Community",
+      icon: Building2,
+      href: "/dashboard/community",
+    },
+    {
+      title: "Wallet",
+      icon: DollarSignIcon,
+      href: "/dashboard/wallet",
+    },
+    {
       title: "Settings",
       icon: LayoutGrid,
       href: "/dashboard/settings",
@@ -103,8 +115,8 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
     <div
       className={
         showSidebar
-          ? "sm:block bg-slate-50 text-slate-900 dark:bg-slate-800 dark:text-slate-50 space-y-6 w-60 h-screen fixed left-0 top-0 shadow-md"
-          : "hidden sm:block bg-slate-50 text-slate-900 dark:bg-slate-800 dark:text-slate-50 space-y-6 w-60 h-screen fixed left-0 top-0 shadow-md"
+          ? "sm:block mt-20 sm:mt-0 bg-slate-50 text-slate-900 dark:bg-slate-800 dark:text-slate-50 space-y-6 w-60 h-screen fixed left-0 top-0 shadow-md overflow-y-scroll"
+          : "mt-20 sm:mt-0 hidden sm:block bg-slate-50 text-slate-900 dark:bg-slate-800 dark:text-slate-50 space-y-6 w-60 h-screen fixed left-0 top-0 shadow-md overflow-y-scroll"
       }
     >
       <Link
@@ -130,7 +142,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
         <Collapsible className="px-6 py-2">
           <CollapsibleTrigger asChild onClick={() => setOpenMenu(!openMenu)}>
             <button
-              className={`flex items-center space-x-6 px-6 py-2  ${pathname === "/dashboard/catalogue" ? "border-l-8 border-green-600" : ""}`}
+              className={`flex items-center space-x-6  py-2  ${pathname === "/dashboard/catalogue" ? "border-l-8 border-green-600" : ""}`}
             >
               <div className="flex items-center space-x-3">
                 <Building />
@@ -139,14 +151,14 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
               {openMenu ? <ChevronDown /> : <ChevronRight />}
             </button>
           </CollapsibleTrigger>
-          <CollapsibleContent className="px-4 pl-8 bg-slate-700 rounded-lg">
+          <CollapsibleContent className="px-4 pl-8 bg-slate-50 text-slate-900  dark:bg-slate-800 dark:text-slate-50 rounded-lg">
             {catalogueLinks.map((item, index) => {
               const Icon = item.icon;
               return (
                 <Link
                   key={index}
                   onClick={() => setShowSidebar(false)}
-                  className={`${pathname === item.href ? " text-green-600" : ""} flex items-center text-sm space-x-3 px-6 py-2 font-semibold`}
+                  className={`${pathname === item.href ? " text-green-600" : ""} flex items-center text-sm space-x-3 py-2 `}
                   href={item.href}
                 >
                   <Icon className="h-4 w-4" />
