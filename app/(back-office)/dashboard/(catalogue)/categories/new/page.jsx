@@ -8,10 +8,13 @@ import SubmitButton from "@/components/FormInputs/SubmitButton";
 import TextareaInput from "@/components/FormInputs/TextAreaInput";
 import { generateSlug } from "@/lib/generateSlug";
 import ImageUpload from "@/components/FormInputs/ImageUpload";
+import { makePostRequest } from "@/lib/apiRequest";
 
 const NewCategory = () => {
   //const router = useRouter();
   const [imageUrl, setImageUrl] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   console.log("IMAGE URL========", imageUrl);
   const {
     register,
@@ -26,6 +29,9 @@ const NewCategory = () => {
     data.slug = slug;
     data.imageUrl = imageUrl;
     console.log("DATA===>", data);
+
+    makePostRequest(setIsLoading, "api/categories", data, "Categories", reset);
+    setImageUrl("");
   };
 
   return (
@@ -54,7 +60,7 @@ const NewCategory = () => {
           <ImageUpload value={imageUrl} onChange={(url) => setImageUrl(url)} />
         </div>
         <SubmitButton
-          isLoading={false}
+          isLoading={isLoading}
           buttonTitle="Create Category"
           loadingButtonTitle="Creating category, please wait..."
         />
