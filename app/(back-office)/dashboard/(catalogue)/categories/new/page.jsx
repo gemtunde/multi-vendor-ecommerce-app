@@ -1,15 +1,18 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import FormHeader from "@/components/backoffice/FormHeader";
 import TextInput from "@/components/FormInputs/TextInput";
-import { useRouter } from "next/router";
+//import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import SubmitButton from "@/components/FormInputs/SubmitButton";
 import TextareaInput from "@/components/FormInputs/TextAreaInput";
 import { generateSlug } from "@/lib/generateSlug";
+import ImageUpload from "@/components/FormInputs/ImageUpload";
 
 const NewCategory = () => {
   //const router = useRouter();
+  const [imageUrl, setImageUrl] = useState("");
+  console.log("IMAGE URL========", imageUrl);
   const {
     register,
     handleSubmit,
@@ -21,8 +24,10 @@ const NewCategory = () => {
   const onSubmit = async (data) => {
     const slug = generateSlug(data.title);
     data.slug = slug;
+    data.imageUrl = imageUrl;
     console.log("DATA===>", data);
   };
+
   return (
     <div>
       {/* header */}
@@ -45,6 +50,8 @@ const NewCategory = () => {
             register={register}
             errors={errors}
           />
+
+          <ImageUpload value={imageUrl} onChange={(url) => setImageUrl(url)} />
         </div>
         <SubmitButton
           isLoading={false}
