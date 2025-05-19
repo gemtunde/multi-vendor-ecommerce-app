@@ -7,10 +7,14 @@ import Image from "next/image";
 import { useUploadThing } from "@/lib/uploadthing";
 import toast from "react-hot-toast";
 
-export default function ImageUpload({ onChange, value }) {
+export default function ImageUpload({
+  onChange,
+  value,
+  imageUploader = "imageUploader",
+}) {
   const [preview, setPreview] = useState(value);
   const [isUploading, setIsUploading] = useState(false);
-  const { startUpload } = useUploadThing("imageUploader");
+  const { startUpload } = useUploadThing(imageUploader);
 
   const onDrop = useCallback(
     async (acceptedFiles) => {

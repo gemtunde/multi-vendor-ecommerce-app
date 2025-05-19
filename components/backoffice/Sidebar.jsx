@@ -95,20 +95,20 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
       icon: Warehouse,
       href: "/dashboard/categories",
     },
-    {
-      title: "Attributes",
-      icon: UserSquare2,
-      href: "/dashboard/attributes",
-    },
+    // {
+    //   title: "Attributes",
+    //   icon: UserSquare2,
+    //   href: "/dashboard/attributes",
+    // },
     {
       title: "Coupons",
       icon: Truck,
       href: "/dashboard/coupons",
     },
     {
-      title: " Store Sliders",
+      title: " Store Banners",
       icon: ExternalLink,
-      href: "/dashboard/sliders",
+      href: "/dashboard/banners",
     },
   ];
   return (

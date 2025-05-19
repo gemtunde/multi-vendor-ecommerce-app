@@ -10,7 +10,7 @@ import { generateSlug } from "@/lib/generateSlug";
 import ImageUpload from "@/components/FormInputs/ImageUpload";
 import { makePostRequest } from "@/lib/apiRequest";
 
-const NewCategory = () => {
+const NewBanner = () => {
   //const router = useRouter();
   const [imageUrl, setImageUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -25,12 +25,12 @@ const NewCategory = () => {
     //defaultValues: initialData,
   });
   const onSubmit = async (data) => {
-    const slug = generateSlug(data.title);
-    data.slug = slug;
+    // const slug = generateSlug(data.title);
+    // data.slug = slug;
     data.imageUrl = imageUrl;
     console.log("DATA===>", data);
 
-    makePostRequest(setIsLoading, "api/categories", data, "Categories", reset);
+    makePostRequest(setIsLoading, "api/banners", data, "Banners", reset);
     setImageUrl("");
   };
 
@@ -45,32 +45,32 @@ const NewCategory = () => {
       >
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
           <TextInput
-            label="Category Title"
+            label="Banner Title"
             name="title"
             register={register}
             errors={errors}
           />
           <TextareaInput
-            label="Category Description"
-            name="description"
+            label="Banner Link"
+            name="link"
             register={register}
             errors={errors}
           />
 
           <ImageUpload
-            imageUploader="imageUploader"
+            imageUploader="bannerImageUploader"
             value={imageUrl}
             onChange={(url) => setImageUrl(url)}
           />
         </div>
         <SubmitButton
           isLoading={isLoading}
-          buttonTitle="Create Category"
-          loadingButtonTitle="Creating category, please wait..."
+          buttonTitle="Create Banner"
+          loadingButtonTitle="Creating banner, please wait..."
         />
       </form>
     </div>
   );
 };
 
-export default NewCategory;
+export default NewBanner;
