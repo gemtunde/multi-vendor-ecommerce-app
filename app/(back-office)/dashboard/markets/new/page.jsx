@@ -9,14 +9,13 @@ import TextareaInput from "@/components/FormInputs/TextAreaInput";
 import { generateSlug } from "@/lib/generateSlug";
 import ImageUpload from "@/components/FormInputs/ImageUpload";
 import { makePostRequest } from "@/lib/apiRequest";
-// import SelectInput from "@/components/FormInputs/SelectInput";
 
-const NewCategory = () => {
+const NewMarket = () => {
   //const router = useRouter();
-  const [imageUrl, setImageUrl] = useState("");
+  const [logoUrl, setLogoUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log("IMAGE URL========", imageUrl);
+  console.log("IMAGE URL========", logoUrl);
   const {
     register,
     handleSubmit,
@@ -28,17 +27,17 @@ const NewCategory = () => {
   const onSubmit = async (data) => {
     const slug = generateSlug(data.title);
     data.slug = slug;
-    data.imageUrl = imageUrl;
+    data.logoUrl = logoUrl;
     console.log("DATA===>", data);
 
-    makePostRequest(setIsLoading, "api/categories", data, "Categories", reset);
+    makePostRequest(setIsLoading, "api/markets", data, "Markets", reset);
     setImageUrl("");
   };
 
   return (
     <div>
       {/* header */}
-      <FormHeader title="New Category" />
+      <FormHeader title="New Market" />
       {/* form */}
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -46,38 +45,32 @@ const NewCategory = () => {
       >
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
           <TextInput
-            label="Category Title"
+            label="Market Title"
             name="title"
             register={register}
             errors={errors}
           />
-          {/* <SelectInput
-            label="Select Market"
-            name="title"
-            register={register}
-            errors={errors}
-          /> */}
           <TextareaInput
-            label="Category Description"
+            label="Market Description"
             name="description"
             register={register}
             errors={errors}
           />
 
           <ImageUpload
-            imageUploader="imageUploader"
+            imageUploader="marketImageUploader"
             value={imageUrl}
-            onChange={(url) => setImageUrl(url)}
+            onChange={(url) => setLogoUrl(url)}
           />
         </div>
         <SubmitButton
           isLoading={isLoading}
-          buttonTitle="Create Category"
-          loadingButtonTitle="Creating category, please wait..."
+          buttonTitle="Create Market"
+          loadingButtonTitle="Creating market, please wait..."
         />
       </form>
     </div>
   );
 };
 
-export default NewCategory;
+export default NewMarket;
