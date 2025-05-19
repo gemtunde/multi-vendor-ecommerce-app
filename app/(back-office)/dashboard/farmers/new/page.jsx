@@ -5,7 +5,7 @@ import TextInput from "@/components/FormInputs/TextInput";
 import { useForm } from "react-hook-form";
 import SubmitButton from "@/components/FormInputs/SubmitButton";
 import { makePostRequest } from "@/lib/apiRequest";
-import { generateCouponCode } from "@/lib/generateCouponCode";
+import { generateUserCode } from "@/lib/generateCouponCode";
 import TextareaInput from "@/components/FormInputs/TextAreaInput";
 
 const NewFarmer = () => {
@@ -20,8 +20,8 @@ const NewFarmer = () => {
   });
 
   const onSubmit = async (data) => {
-    const couponCode = generateCouponCode(data.title, data.expiryDate);
-    data.couponCode = couponCode;
+    const code = generateUserCode(data.name);
+    data.code = code;
     console.log("farmer===>", data);
 
     makePostRequest(setIsLoading, "api/farmers", data, "Farmer", reset);
@@ -39,7 +39,7 @@ const NewFarmer = () => {
       >
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
           <TextInput
-            label="Farmer's Name"
+            label="Farmer's Fullname"
             name="name"
             register={register}
             errors={errors}
@@ -48,6 +48,7 @@ const NewFarmer = () => {
           <TextInput
             label="Farmer's Phone"
             name="phone"
+            type="tel"
             register={register}
             errors={errors}
             className="full"
@@ -77,6 +78,7 @@ const NewFarmer = () => {
             label="Farmer's Contact Person Phone"
             name="contactPersonPhone"
             register={register}
+            type="tel"
             errors={errors}
             className="full"
           />
