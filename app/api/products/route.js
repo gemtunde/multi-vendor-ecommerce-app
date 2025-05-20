@@ -14,6 +14,7 @@ export async function POST(request) {
       quantity,
       salePrice,
       sku,
+      tags,
     } = await request.json();
     const newProduct = {
       title,
@@ -27,6 +28,7 @@ export async function POST(request) {
       quantity,
       salePrice,
       sku,
+      tags,
     };
 
     console.log("API PRoDUCT--===----<<", newProduct);

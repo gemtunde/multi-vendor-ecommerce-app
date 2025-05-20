@@ -10,12 +10,18 @@ import { generateSlug } from "@/lib/generateSlug";
 import ImageUpload from "@/components/FormInputs/ImageUpload";
 import { makePostRequest } from "@/lib/apiRequest";
 import SelectInput from "@/components/FormInputs/SelectInput";
+import { Plus, X } from "lucide-react";
+import ArrayItemInput from "@/components/FormInputs/ArrayItemInput";
 
 const NewProduct = () => {
   //const router = useRouter();
   const [imageUrl, setImageUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  //tags
+  const [tags, setTags] = useState([]);
+
+  //end tags
   const categories = [
     {
       id: 1,
@@ -57,6 +63,7 @@ const NewProduct = () => {
   const onSubmit = async (data) => {
     const slug = generateSlug(data.title);
     data.slug = slug;
+    data.tags = tags;
     data.imageUrl = imageUrl;
     console.log("DATA===>", data);
 
@@ -135,13 +142,14 @@ const NewProduct = () => {
             errors={errors}
             options={farmers}
           />
-          {/* Tags */}
 
           <ImageUpload
             imageUploader="productImageUploader"
             value={imageUrl}
             onChange={(url) => setImageUrl(url)}
           />
+          {/* Tags */}
+          <ArrayItemInput itemTitle="Tag" setItems={setTags} items={tags} />
           <TextareaInput
             label="Product Description"
             name="description"

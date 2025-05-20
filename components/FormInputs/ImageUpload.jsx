@@ -48,7 +48,7 @@ export default function ImageUpload({
   return (
     <div
       {...getRootProps()}
-      className={`p-8 border-2 border-dashed rounded-xl cursor-pointer transition-all
+      className={`p-8 border-2 border-dashed rounded-xl cursor-pointer w-full transition-all
         ${isDragActive ? "border-primary bg-primary/10" : "border-muted-foreground/20"}
         ${preview ? "aspect-square" : "min-h-[200px]"}`}
     >
