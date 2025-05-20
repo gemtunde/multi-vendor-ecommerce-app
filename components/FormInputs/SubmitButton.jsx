@@ -5,6 +5,7 @@ export default function SubmitButton({
   isLoading = false,
   buttonTitle,
   loadingButtonTitle,
+  disabled = true,
 }) {
   return (
     <div className="sm:col-span-1">
@@ -35,6 +36,7 @@ export default function SubmitButton({
         </button>
       ) : (
         <button
+          disabled={disabled}
           type="submit"
           className="inline-flex items-center px-5 py-3 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-slate-900 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-green-500 dark:bg-green-700 dark:hover:bg-green-500"
         >

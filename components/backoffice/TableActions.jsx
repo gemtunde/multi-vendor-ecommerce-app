@@ -5,8 +5,15 @@ import { Download, Search, Trash2 } from "lucide-react";
 const TableActions = () => {
   return (
     <div>
-      <div className="flex items-center gap-8 justify-between py-6 px-8 bg-slate-700 rounded-lg">
-        <Button variant="outline" className="bg-lime-700">
+      <div
+        className="flex items-center gap-8 justify-between py-6 px-8 bg-white text-slate-800
+    dark:text-slate-50 dark:bg-slate-600 rounded-lg"
+      >
+        <Button
+          variant="outline"
+          className="bg-slate-100 text-slate-800
+    dark:text-slate-50 dark:bg-green-700"
+        >
           <Download />
           <span>Export</span>
         </Button>
