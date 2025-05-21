@@ -12,6 +12,7 @@ import { makePostRequest } from "@/lib/apiRequest";
 import SelectInput from "@/components/FormInputs/SelectInput";
 import { Plus, X } from "lucide-react";
 import ArrayItemInput from "@/components/FormInputs/ArrayItemInput";
+import ToggleInput from "@/components/FormInputs/ToggleInput";
 
 const NewProduct = () => {
   //const router = useRouter();
@@ -53,13 +54,16 @@ const NewProduct = () => {
   console.log("IMAGE URL========", imageUrl);
   const {
     register,
+    watch,
     handleSubmit,
     reset,
     formState: { errors, isValid },
   } = useForm({
     //defaultValues: initialData,
     mode: "onChange",
+    isActive: true,
   });
+  const isActive = watch("isActive");
   const onSubmit = async (data) => {
     const slug = generateSlug(data.title);
     data.slug = slug;
@@ -155,6 +159,13 @@ const NewProduct = () => {
             name="description"
             register={register}
             errors={errors}
+          />
+          <ToggleInput
+            label="Publish your Product"
+            name="isActive"
+            trueTitle="Active"
+            falseTitle="Draft"
+            register={register}
           />
         </div>
         <SubmitButton
