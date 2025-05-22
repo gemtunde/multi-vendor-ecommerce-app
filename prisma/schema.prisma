@@ -14,7 +14,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-//couponCode, title, expiryDate
+//coupon
 model Coupon{
   id    String @id @default(auto()) @map("_id") @db.ObjectId
   title String
@@ -22,4 +22,31 @@ model Coupon{
   expiryDate DateTime
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+//banner title, imageUrl, link 
+model Banner{
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  imageUrl String
+  link String 
+  isActive Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+//Farmer
+model Farmer{
+   id    String @id @default(auto()) @map("_id") @db.ObjectId
+   address String
+   code String
+   contactPerson String
+   contactPersonPhone String
+   email String
+   name String
+   notes String
+   phone String
+   terms String
+   isActive Boolean
+   createdAt DateTime @default(now())
+   updatedAt DateTime @updatedAt
 }

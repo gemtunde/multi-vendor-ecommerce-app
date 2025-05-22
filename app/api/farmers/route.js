@@ -1,3 +1,4 @@
+import db from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
@@ -12,18 +13,22 @@ export async function POST(request) {
       notes,
       phone,
       terms,
+      isActive,
     } = await request.json();
-    const newFarmer = {
-      address,
-      code,
-      contactPerson,
-      contactPersonPhone,
-      email,
-      name,
-      notes,
-      phone,
-      terms,
-    };
+    const newFarmer = await db.farmer.create({
+      data: {
+        address,
+        code,
+        contactPerson,
+        contactPersonPhone,
+        email,
+        name,
+        notes,
+        phone,
+        terms,
+        isActive,
+      },
+    });
 
     console.log("API CATEGoRIES--===----<<", newFarmer);
     return NextResponse.json(newFarmer);

@@ -7,24 +7,41 @@ import SubmitButton from "@/components/FormInputs/SubmitButton";
 import { makePostRequest } from "@/lib/apiRequest";
 import { generateUserCode } from "@/lib/generateCouponCode";
 import TextareaInput from "@/components/FormInputs/TextAreaInput";
+import { useRouter } from "next/navigation";
+import ToggleInput from "@/components/FormInputs/ToggleInput";
 
 const NewFarmer = () => {
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
+    watch,
     reset,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     //defaultValues: initialData,
+    isActive: true,
   });
+
+  const router = useRouter();
+  function redirect() {
+    router.push("/dashboard/banners");
+  }
+  const isActive = watch("isActive");
 
   const onSubmit = async (data) => {
     const code = generateUserCode(data.name);
     data.code = code;
     console.log("farmer===>", data);
 
-    makePostRequest(setIsLoading, "api/farmers", data, "Farmer", reset);
+    makePostRequest(
+      setIsLoading,
+      "api/farmers",
+      data,
+      "Farmer",
+      reset,
+      redirect
+    );
   };
 
   return (
@@ -97,8 +114,16 @@ const NewFarmer = () => {
             //className="full"
             isRequired={false}
           />
+          <ToggleInput
+            label="Publish your Farmer"
+            name="isActive"
+            trueTitle="Active"
+            falseTitle="Draft"
+            register={register}
+          />
         </div>
         <SubmitButton
+          disabled={!isValid}
           isLoading={isLoading}
           buttonTitle="Create Farmer"
           loadingButtonTitle="Creating Farmer, please wait..."

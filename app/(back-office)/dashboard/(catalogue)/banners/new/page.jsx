@@ -9,6 +9,8 @@ import TextareaInput from "@/components/FormInputs/TextAreaInput";
 import { generateSlug } from "@/lib/generateSlug";
 import ImageUpload from "@/components/FormInputs/ImageUpload";
 import { makePostRequest } from "@/lib/apiRequest";
+import { useRouter } from "next/navigation";
+import ToggleInput from "@/components/FormInputs/ToggleInput";
 
 const NewBanner = () => {
   //const router = useRouter();
@@ -19,25 +21,39 @@ const NewBanner = () => {
   const {
     register,
     handleSubmit,
+    watch,
     reset,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     //defaultValues: initialData,
+    isActive: true,
   });
+  const router = useRouter();
+  function redirect() {
+    router.push("/dashboard/banners");
+  }
+  const isActive = watch("isActive");
   const onSubmit = async (data) => {
     // const slug = generateSlug(data.title);
     // data.slug = slug;
     data.imageUrl = imageUrl;
     console.log("DATA===>", data);
 
-    makePostRequest(setIsLoading, "api/banners", data, "Banners", reset);
+    makePostRequest(
+      setIsLoading,
+      "api/banners",
+      data,
+      "Banners",
+      reset,
+      redirect
+    );
     setImageUrl("");
   };
 
   return (
     <div>
       {/* header */}
-      <FormHeader title="New Category" />
+      <FormHeader title="New Banner" />
       {/* form */}
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -62,8 +78,16 @@ const NewBanner = () => {
             value={imageUrl}
             onChange={(url) => setImageUrl(url)}
           />
+          <ToggleInput
+            label="Publish your Banner"
+            name="isActive"
+            trueTitle="Active"
+            falseTitle="Draft"
+            register={register}
+          />
         </div>
         <SubmitButton
+          disabled={!isValid}
           isLoading={isLoading}
           buttonTitle="Create Banner"
           loadingButtonTitle="Creating banner, please wait..."

@@ -1,11 +1,14 @@
+import db from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
-    const { title, imageUrl, link } = await request.json();
-    const newBanner = { title, imageUrl, link };
+    const { title, imageUrl, link, isActive } = await request.json();
+    const newBanner = await db.banner.create({
+      data: { title, imageUrl, link, isActive },
+    });
 
-    console.log("API CATEGoRIES--===----<<", newBanner);
+    console.log("API BANNER--===----<<", newBanner);
     return NextResponse.json(newBanner);
   } catch (error) {
     console.log(error);
