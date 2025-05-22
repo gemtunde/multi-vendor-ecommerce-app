@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import SubmitButton from "@/components/FormInputs/SubmitButton";
 import { makePostRequest } from "@/lib/apiRequest";
 import { generateCouponCode } from "@/lib/generateCouponCode";
+import { generateIsoFormattedDate } from "@/lib/generateIsoFormattedDate";
+import { useRouter } from "next/navigation";
 
 const NewCoupon = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -13,17 +15,29 @@ const NewCoupon = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     //defaultValues: initialData,
   });
-
+  const router = useRouter();
+  function redirect() {
+    router.push("/dashboard/coupons");
+  }
   const onSubmit = async (data) => {
     const couponCode = generateCouponCode(data.title, data.expiryDate);
+    const isoFormattedDate = generateIsoFormattedDate(data.expiryDate);
+    data.expiryDate = isoFormattedDate;
     data.couponCode = couponCode;
     console.log("Coupon===>", data);
 
-    makePostRequest(setIsLoading, "api/coupons", data, "Coupon", reset);
+    makePostRequest(
+      setIsLoading,
+      "api/coupons",
+      data,
+      "Coupon",
+      reset,
+      redirect
+    );
   };
 
   return (
@@ -53,6 +67,7 @@ const NewCoupon = () => {
           />
         </div>
         <SubmitButton
+          disabled={!isValid}
           isLoading={isLoading}
           buttonTitle="Create Coupon"
           loadingButtonTitle="Creating coupon, please wait..."
