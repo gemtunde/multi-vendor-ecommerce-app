@@ -14,6 +14,7 @@ export async function POST(request) {
       phone,
       terms,
       isActive,
+      profileImageUrl,
     } = await request.json();
     const newFarmer = await db.farmer.create({
       data: {
@@ -27,6 +28,7 @@ export async function POST(request) {
         phone,
         terms,
         isActive,
+        profileImageUrl,
       },
     });
 

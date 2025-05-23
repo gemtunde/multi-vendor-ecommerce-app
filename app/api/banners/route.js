@@ -21,3 +21,24 @@ export async function POST(request) {
     );
   }
 }
+
+export async function GET(request) {
+  try {
+    const banners = await db.banner.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    console.log("Banners", banners);
+    return NextResponse.json(banners);
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      {
+        message: "Failed to fetch banners",
+        error,
+      },
+      { status: 500 }
+    );
+  }
+}

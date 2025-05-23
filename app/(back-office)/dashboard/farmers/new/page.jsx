@@ -9,9 +9,11 @@ import { generateUserCode } from "@/lib/generateCouponCode";
 import TextareaInput from "@/components/FormInputs/TextAreaInput";
 import { useRouter } from "next/navigation";
 import ToggleInput from "@/components/FormInputs/ToggleInput";
+import ImageUpload from "@/components/FormInputs/ImageUpload";
 
 const NewFarmer = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
   const {
     register,
     handleSubmit,
@@ -32,6 +34,7 @@ const NewFarmer = () => {
   const onSubmit = async (data) => {
     const code = generateUserCode(data.name);
     data.code = code;
+    data.imageUrl = imageUrl;
     console.log("farmer===>", data);
 
     makePostRequest(
@@ -83,6 +86,7 @@ const NewFarmer = () => {
             register={register}
             errors={errors}
             className="full"
+            isRequired={false}
           />
           <TextInput
             label="Farmer's Contact Person"
@@ -90,6 +94,7 @@ const NewFarmer = () => {
             register={register}
             errors={errors}
             className="full"
+            isRequired={false}
           />
           <TextInput
             label="Farmer's Contact Person Phone"
@@ -98,6 +103,12 @@ const NewFarmer = () => {
             type="tel"
             errors={errors}
             className="full"
+            isRequired={false}
+          />
+          <ImageUpload
+            imageUploader="imageUploader"
+            value={imageUrl}
+            onChange={(url) => setImageUrl(url)}
           />
           <TextareaInput
             label="Farmer's Payment Terms"
@@ -105,6 +116,7 @@ const NewFarmer = () => {
             register={register}
             errors={errors}
             //className="full"
+            isRequired={false}
           />
           <TextareaInput
             label="Notes"

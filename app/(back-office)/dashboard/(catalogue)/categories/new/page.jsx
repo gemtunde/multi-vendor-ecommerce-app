@@ -9,52 +9,68 @@ import TextareaInput from "@/components/FormInputs/TextAreaInput";
 import { generateSlug } from "@/lib/generateSlug";
 import ImageUpload from "@/components/FormInputs/ImageUpload";
 import { makePostRequest } from "@/lib/apiRequest";
-import SelectInput from "@/components/FormInputs/SelectInput";
+import ToggleInput from "@/components/FormInputs/ToggleInput";
+import { useRouter } from "next/navigation";
+//import SelectInput from "@/components/FormInputs/SelectInput";
 
 const NewCategory = () => {
   //const router = useRouter();
   const [imageUrl, setImageUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const markets = [
-    {
-      id: 1,
-      title: "Sproutes Farmers Market",
-    },
-    {
-      id: 2,
-      title: "Cabbages Farmers Market",
-    },
-    {
-      id: 3,
-      title: "Carrots Farmers Market",
-    },
-    {
-      id: 4,
-      title: "Guavas Farmers Market",
-    },
-    {
-      id: 5,
-      title: "Bananas Farmers Market",
-    },
-  ];
+  // const markets = [
+  //   {
+  //     id: 1,
+  //     title: "Sproutes Farmers Market",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Cabbages Farmers Market",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Carrots Farmers Market",
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "Guavas Farmers Market",
+  //   },
+  //   {
+  //     id: 5,
+  //     title: "Bananas Farmers Market",
+  //   },
+  // ];
   console.log("IMAGE URL========", imageUrl);
   const {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors, isValid },
   } = useForm({
     //defaultValues: initialData,
     mode: "onChange",
+    isActive: true,
   });
+  const isActive = watch("isActive");
+  const router = useRouter();
+  function redirect() {
+    router.push("/dashboard/categories");
+  }
   const onSubmit = async (data) => {
     const slug = generateSlug(data.title);
     data.slug = slug;
     data.imageUrl = imageUrl;
     console.log("DATA===>", data);
 
-    makePostRequest(setIsLoading, "api/categories", data, "Categories", reset);
+    makePostRequest(
+      setIsLoading,
+      "api/categories",
+      data,
+      "Categories",
+      reset,
+      redirect
+    );
     setImageUrl("");
   };
 
@@ -74,14 +90,14 @@ const NewCategory = () => {
             register={register}
             errors={errors}
           />
-          <SelectInput
+          {/* <SelectInput
             label="Select Market"
             name="marketIds"
             register={register}
             errors={errors}
             options={markets}
             multiple={false}
-          />
+          /> */}
           <TextareaInput
             label="Category Description"
             name="description"
@@ -93,6 +109,13 @@ const NewCategory = () => {
             imageUploader="imageUploader"
             value={imageUrl}
             onChange={(url) => setImageUrl(url)}
+          />
+          <ToggleInput
+            label="Publish your category"
+            name="isActive"
+            trueTitle="Active"
+            falseTitle="Draft"
+            register={register}
           />
         </div>
         <SubmitButton

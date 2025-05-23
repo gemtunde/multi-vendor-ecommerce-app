@@ -9,12 +9,26 @@ import TextareaInput from "@/components/FormInputs/TextAreaInput";
 import { generateSlug } from "@/lib/generateSlug";
 import ImageUpload from "@/components/FormInputs/ImageUpload";
 import { makePostRequest } from "@/lib/apiRequest";
+import SelectInput from "@/components/FormInputs/SelectInput";
 
 const NewMarket = () => {
   //const router = useRouter();
   const [logoUrl, setLogoUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  const categories = [
+    {
+      id: 1,
+      title: "Category 1",
+    },
+    {
+      id: 2,
+      title: "Category 2",
+    },
+    {
+      id: 3,
+      title: "Category 3",
+    },
+  ];
   console.log("IMAGE URL========", logoUrl);
   const {
     register,
@@ -50,6 +64,14 @@ const NewMarket = () => {
             register={register}
             errors={errors}
           />
+          <SelectInput
+            label="Select Category"
+            name="categoryIds"
+            register={register}
+            errors={errors}
+            options={categories}
+            multiple={true}
+          />
           <TextareaInput
             label="Market Description"
             name="description"
@@ -59,7 +81,7 @@ const NewMarket = () => {
 
           <ImageUpload
             imageUploader="marketImageUploader"
-            value={imageUrl}
+            value={logoUrl}
             onChange={(url) => setLogoUrl(url)}
           />
         </div>

@@ -8,6 +8,7 @@ import { makePostRequest } from "@/lib/apiRequest";
 import { generateCouponCode } from "@/lib/generateCouponCode";
 import { generateIsoFormattedDate } from "@/lib/generateIsoFormattedDate";
 import { useRouter } from "next/navigation";
+import ToggleInput from "@/components/FormInputs/ToggleInput";
 
 const NewCoupon = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,14 +16,17 @@ const NewCoupon = () => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors, isValid },
   } = useForm({
     //defaultValues: initialData,
+    isActive: true,
   });
   const router = useRouter();
   function redirect() {
     router.push("/dashboard/coupons");
   }
+  const isActive = watch("isActive");
   const onSubmit = async (data) => {
     const couponCode = generateCouponCode(data.title, data.expiryDate);
     const isoFormattedDate = generateIsoFormattedDate(data.expiryDate);
@@ -64,6 +68,13 @@ const NewCoupon = () => {
             type="date"
             register={register}
             errors={errors}
+          />
+          <ToggleInput
+            label="Publish your coupon"
+            name="isActive"
+            trueTitle="Active"
+            falseTitle="Draft"
+            register={register}
           />
         </div>
         <SubmitButton
