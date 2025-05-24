@@ -87,8 +87,8 @@ model Product {
   category   Category  @relation(fields: [categoryId], references: [id])
   categoryId String @db.ObjectId
   
-  farmer   Farmer  @relation(fields: [farmerId], references: [id])
-  farmerId String @db.ObjectId
+   user   User  @relation(fields: [userId], references: [id])
+userId String @db.ObjectId
 
   createdAt  DateTime  @default(now())
   updatedAt  DateTime? @updatedAt
@@ -112,9 +112,9 @@ model Training {
 }
 
 enum UserRole{
-  ADMIN, 
-  FARMER,
-  USER, 
+  ADMIN 
+  FARMER
+  USER
   MODERATOR
 }
 model FarmerProfile{
@@ -132,7 +132,7 @@ model FarmerProfile{
   isActive Boolean
 
   user   User  @relation(fields: [userId], references: [id])
-userId String @db.ObjectId
+userId String @db.ObjectId @unique
   
   createdAt  DateTime  @default(now())
   updatedAt  DateTime? @updatedAt
@@ -140,9 +140,10 @@ userId String @db.ObjectId
 
 // user can be ADMIN, FARMER, CUSTMER, AGENT
 model User {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
-  email         String?   @unique
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  name      String?
+  email     String?   @unique
+  password  String 
   emailVerified DateTime?
   products Product[]
   role     UserRole @default(USER)

@@ -39,15 +39,39 @@ export type Market = $Result.DefaultSelection<Prisma.$MarketPayload>
  */
 export type Product = $Result.DefaultSelection<Prisma.$ProductPayload>
 /**
- * Model Farmer
- * 
- */
-export type Farmer = $Result.DefaultSelection<Prisma.$FarmerPayload>
-/**
  * Model Training
  * 
  */
 export type Training = $Result.DefaultSelection<Prisma.$TrainingPayload>
+/**
+ * Model FarmerProfile
+ * 
+ */
+export type FarmerProfile = $Result.DefaultSelection<Prisma.$FarmerProfilePayload>
+/**
+ * Model User
+ * 
+ */
+export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const UserRole: {
+  ADMIN: 'ADMIN',
+  FARMER: 'FARMER',
+  USER: 'USER',
+  MODERATOR: 'MODERATOR'
+};
+
+export type UserRole = (typeof UserRole)[keyof typeof UserRole]
+
+}
+
+export type UserRole = $Enums.UserRole
+
+export const UserRole: typeof $Enums.UserRole
 
 /**
  * ##  Prisma Client ʲˢ
@@ -192,16 +216,6 @@ export class PrismaClient<
   get product(): Prisma.ProductDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.farmer`: Exposes CRUD operations for the **Farmer** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Farmers
-    * const farmers = await prisma.farmer.findMany()
-    * ```
-    */
-  get farmer(): Prisma.FarmerDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.training`: Exposes CRUD operations for the **Training** model.
     * Example usage:
     * ```ts
@@ -210,6 +224,26 @@ export class PrismaClient<
     * ```
     */
   get training(): Prisma.TrainingDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.farmerProfile`: Exposes CRUD operations for the **FarmerProfile** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FarmerProfiles
+    * const farmerProfiles = await prisma.farmerProfile.findMany()
+    * ```
+    */
+  get farmerProfile(): Prisma.FarmerProfileDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.user`: Exposes CRUD operations for the **User** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Users
+    * const users = await prisma.user.findMany()
+    * ```
+    */
+  get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -655,8 +689,9 @@ export namespace Prisma {
     Category: 'Category',
     Market: 'Market',
     Product: 'Product',
-    Farmer: 'Farmer',
-    Training: 'Training'
+    Training: 'Training',
+    FarmerProfile: 'FarmerProfile',
+    User: 'User'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -675,7 +710,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "coupon" | "banner" | "category" | "market" | "product" | "farmer" | "training"
+      modelProps: "coupon" | "banner" | "category" | "market" | "product" | "training" | "farmerProfile" | "user"
       txIsolationLevel: never
     }
     model: {
@@ -1049,80 +1084,6 @@ export namespace Prisma {
           }
         }
       }
-      Farmer: {
-        payload: Prisma.$FarmerPayload<ExtArgs>
-        fields: Prisma.FarmerFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.FarmerFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FarmerPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.FarmerFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FarmerPayload>
-          }
-          findFirst: {
-            args: Prisma.FarmerFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FarmerPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.FarmerFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FarmerPayload>
-          }
-          findMany: {
-            args: Prisma.FarmerFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FarmerPayload>[]
-          }
-          create: {
-            args: Prisma.FarmerCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FarmerPayload>
-          }
-          createMany: {
-            args: Prisma.FarmerCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.FarmerDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FarmerPayload>
-          }
-          update: {
-            args: Prisma.FarmerUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FarmerPayload>
-          }
-          deleteMany: {
-            args: Prisma.FarmerDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.FarmerUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.FarmerUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FarmerPayload>
-          }
-          aggregate: {
-            args: Prisma.FarmerAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateFarmer>
-          }
-          groupBy: {
-            args: Prisma.FarmerGroupByArgs<ExtArgs>
-            result: $Utils.Optional<FarmerGroupByOutputType>[]
-          }
-          findRaw: {
-            args: Prisma.FarmerFindRawArgs<ExtArgs>
-            result: JsonObject
-          }
-          aggregateRaw: {
-            args: Prisma.FarmerAggregateRawArgs<ExtArgs>
-            result: JsonObject
-          }
-          count: {
-            args: Prisma.FarmerCountArgs<ExtArgs>
-            result: $Utils.Optional<FarmerCountAggregateOutputType> | number
-          }
-        }
-      }
       Training: {
         payload: Prisma.$TrainingPayload<ExtArgs>
         fields: Prisma.TrainingFieldRefs
@@ -1194,6 +1155,154 @@ export namespace Prisma {
           count: {
             args: Prisma.TrainingCountArgs<ExtArgs>
             result: $Utils.Optional<TrainingCountAggregateOutputType> | number
+          }
+        }
+      }
+      FarmerProfile: {
+        payload: Prisma.$FarmerProfilePayload<ExtArgs>
+        fields: Prisma.FarmerProfileFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FarmerProfileFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerProfilePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FarmerProfileFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerProfilePayload>
+          }
+          findFirst: {
+            args: Prisma.FarmerProfileFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerProfilePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FarmerProfileFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerProfilePayload>
+          }
+          findMany: {
+            args: Prisma.FarmerProfileFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerProfilePayload>[]
+          }
+          create: {
+            args: Prisma.FarmerProfileCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerProfilePayload>
+          }
+          createMany: {
+            args: Prisma.FarmerProfileCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.FarmerProfileDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerProfilePayload>
+          }
+          update: {
+            args: Prisma.FarmerProfileUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerProfilePayload>
+          }
+          deleteMany: {
+            args: Prisma.FarmerProfileDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FarmerProfileUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.FarmerProfileUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FarmerProfilePayload>
+          }
+          aggregate: {
+            args: Prisma.FarmerProfileAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFarmerProfile>
+          }
+          groupBy: {
+            args: Prisma.FarmerProfileGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FarmerProfileGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.FarmerProfileFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.FarmerProfileAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.FarmerProfileCountArgs<ExtArgs>
+            result: $Utils.Optional<FarmerProfileCountAggregateOutputType> | number
+          }
+        }
+      }
+      User: {
+        payload: Prisma.$UserPayload<ExtArgs>
+        fields: Prisma.UserFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          findFirst: {
+            args: Prisma.UserFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          findMany: {
+            args: Prisma.UserFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
+          }
+          create: {
+            args: Prisma.UserCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          createMany: {
+            args: Prisma.UserCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.UserDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          update: {
+            args: Prisma.UserUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.UserUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          aggregate: {
+            args: Prisma.UserAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUser>
+          }
+          groupBy: {
+            args: Prisma.UserGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.UserFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.UserAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.UserCountArgs<ExtArgs>
+            result: $Utils.Optional<UserCountAggregateOutputType> | number
           }
         }
       }
@@ -1273,8 +1382,9 @@ export namespace Prisma {
     category?: CategoryOmit
     market?: MarketOmit
     product?: ProductOmit
-    farmer?: FarmerOmit
     training?: TrainingOmit
+    farmerProfile?: FarmerProfileOmit
+    user?: UserOmit
   }
 
   /* Types for Logging */
@@ -1445,32 +1555,32 @@ export namespace Prisma {
 
 
   /**
-   * Count Type FarmerCountOutputType
+   * Count Type UserCountOutputType
    */
 
-  export type FarmerCountOutputType = {
+  export type UserCountOutputType = {
     products: number
   }
 
-  export type FarmerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    products?: boolean | FarmerCountOutputTypeCountProductsArgs
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    products?: boolean | UserCountOutputTypeCountProductsArgs
   }
 
   // Custom InputTypes
   /**
-   * FarmerCountOutputType without action
+   * UserCountOutputType without action
    */
-  export type FarmerCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FarmerCountOutputType
+     * Select specific fields to fetch from the UserCountOutputType
      */
-    select?: FarmerCountOutputTypeSelect<ExtArgs> | null
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * FarmerCountOutputType without action
+   * UserCountOutputType without action
    */
-  export type FarmerCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProductWhereInput
   }
 
@@ -5567,7 +5677,7 @@ export namespace Prisma {
     productPrice: number | null
     salePrice: number | null
     categoryId: string | null
-    farmerId: string | null
+    userId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5584,7 +5694,7 @@ export namespace Prisma {
     productPrice: number | null
     salePrice: number | null
     categoryId: string | null
-    farmerId: string | null
+    userId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5602,7 +5712,7 @@ export namespace Prisma {
     salePrice: number
     tags: number
     categoryId: number
-    farmerId: number
+    userId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -5631,7 +5741,7 @@ export namespace Prisma {
     productPrice?: true
     salePrice?: true
     categoryId?: true
-    farmerId?: true
+    userId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5648,7 +5758,7 @@ export namespace Prisma {
     productPrice?: true
     salePrice?: true
     categoryId?: true
-    farmerId?: true
+    userId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5666,7 +5776,7 @@ export namespace Prisma {
     salePrice?: true
     tags?: true
     categoryId?: true
-    farmerId?: true
+    userId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -5771,7 +5881,7 @@ export namespace Prisma {
     salePrice: number
     tags: string[]
     categoryId: string
-    farmerId: string
+    userId: string
     createdAt: Date
     updatedAt: Date | null
     _count: ProductCountAggregateOutputType | null
@@ -5808,11 +5918,11 @@ export namespace Prisma {
     salePrice?: boolean
     tags?: boolean
     categoryId?: boolean
-    farmerId?: boolean
+    userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
-    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
 
@@ -5830,22 +5940,22 @@ export namespace Prisma {
     salePrice?: boolean
     tags?: boolean
     categoryId?: boolean
-    farmerId?: boolean
+    userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "isActive" | "imageUrl" | "description" | "sku" | "barcode" | "productPrice" | "salePrice" | "tags" | "categoryId" | "farmerId" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "isActive" | "imageUrl" | "description" | "sku" | "barcode" | "productPrice" | "salePrice" | "tags" | "categoryId" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
-    farmer?: boolean | FarmerDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $ProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Product"
     objects: {
       category: Prisma.$CategoryPayload<ExtArgs>
-      farmer: Prisma.$FarmerPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5860,7 +5970,7 @@ export namespace Prisma {
       salePrice: number
       tags: string[]
       categoryId: string
-      farmerId: string
+      userId: string
       createdAt: Date
       updatedAt: Date | null
     }, ExtArgs["result"]["product"]>
@@ -6227,7 +6337,7 @@ export namespace Prisma {
   export interface Prisma__ProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     category<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    farmer<T extends FarmerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FarmerDefaultArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6269,7 +6379,7 @@ export namespace Prisma {
     readonly salePrice: FieldRef<"Product", 'Float'>
     readonly tags: FieldRef<"Product", 'String[]'>
     readonly categoryId: FieldRef<"Product", 'String'>
-    readonly farmerId: FieldRef<"Product", 'String'>
+    readonly userId: FieldRef<"Product", 'String'>
     readonly createdAt: FieldRef<"Product", 'DateTime'>
     readonly updatedAt: FieldRef<"Product", 'DateTime'>
   }
@@ -6657,1099 +6767,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ProductInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model Farmer
-   */
-
-  export type AggregateFarmer = {
-    _count: FarmerCountAggregateOutputType | null
-    _min: FarmerMinAggregateOutputType | null
-    _max: FarmerMaxAggregateOutputType | null
-  }
-
-  export type FarmerMinAggregateOutputType = {
-    id: string | null
-    name: string | null
-    address: string | null
-    code: string | null
-    contactPerson: string | null
-    contactPersonPhone: string | null
-    email: string | null
-    notes: string | null
-    phone: string | null
-    terms: string | null
-    isActive: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type FarmerMaxAggregateOutputType = {
-    id: string | null
-    name: string | null
-    address: string | null
-    code: string | null
-    contactPerson: string | null
-    contactPersonPhone: string | null
-    email: string | null
-    notes: string | null
-    phone: string | null
-    terms: string | null
-    isActive: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type FarmerCountAggregateOutputType = {
-    id: number
-    name: number
-    address: number
-    code: number
-    contactPerson: number
-    contactPersonPhone: number
-    email: number
-    notes: number
-    phone: number
-    terms: number
-    isActive: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type FarmerMinAggregateInputType = {
-    id?: true
-    name?: true
-    address?: true
-    code?: true
-    contactPerson?: true
-    contactPersonPhone?: true
-    email?: true
-    notes?: true
-    phone?: true
-    terms?: true
-    isActive?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type FarmerMaxAggregateInputType = {
-    id?: true
-    name?: true
-    address?: true
-    code?: true
-    contactPerson?: true
-    contactPersonPhone?: true
-    email?: true
-    notes?: true
-    phone?: true
-    terms?: true
-    isActive?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type FarmerCountAggregateInputType = {
-    id?: true
-    name?: true
-    address?: true
-    code?: true
-    contactPerson?: true
-    contactPersonPhone?: true
-    email?: true
-    notes?: true
-    phone?: true
-    terms?: true
-    isActive?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type FarmerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Farmer to aggregate.
-     */
-    where?: FarmerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Farmers to fetch.
-     */
-    orderBy?: FarmerOrderByWithRelationInput | FarmerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: FarmerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Farmers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Farmers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Farmers
-    **/
-    _count?: true | FarmerCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: FarmerMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: FarmerMaxAggregateInputType
-  }
-
-  export type GetFarmerAggregateType<T extends FarmerAggregateArgs> = {
-        [P in keyof T & keyof AggregateFarmer]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateFarmer[P]>
-      : GetScalarType<T[P], AggregateFarmer[P]>
-  }
-
-
-
-
-  export type FarmerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FarmerWhereInput
-    orderBy?: FarmerOrderByWithAggregationInput | FarmerOrderByWithAggregationInput[]
-    by: FarmerScalarFieldEnum[] | FarmerScalarFieldEnum
-    having?: FarmerScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: FarmerCountAggregateInputType | true
-    _min?: FarmerMinAggregateInputType
-    _max?: FarmerMaxAggregateInputType
-  }
-
-  export type FarmerGroupByOutputType = {
-    id: string
-    name: string
-    address: string | null
-    code: string
-    contactPerson: string | null
-    contactPersonPhone: string | null
-    email: string
-    notes: string | null
-    phone: string
-    terms: string | null
-    isActive: boolean
-    createdAt: Date
-    updatedAt: Date | null
-    _count: FarmerCountAggregateOutputType | null
-    _min: FarmerMinAggregateOutputType | null
-    _max: FarmerMaxAggregateOutputType | null
-  }
-
-  type GetFarmerGroupByPayload<T extends FarmerGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<FarmerGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof FarmerGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], FarmerGroupByOutputType[P]>
-            : GetScalarType<T[P], FarmerGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type FarmerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    address?: boolean
-    code?: boolean
-    contactPerson?: boolean
-    contactPersonPhone?: boolean
-    email?: boolean
-    notes?: boolean
-    phone?: boolean
-    terms?: boolean
-    isActive?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    products?: boolean | Farmer$productsArgs<ExtArgs>
-    _count?: boolean | FarmerCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["farmer"]>
-
-
-
-  export type FarmerSelectScalar = {
-    id?: boolean
-    name?: boolean
-    address?: boolean
-    code?: boolean
-    contactPerson?: boolean
-    contactPersonPhone?: boolean
-    email?: boolean
-    notes?: boolean
-    phone?: boolean
-    terms?: boolean
-    isActive?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type FarmerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "address" | "code" | "contactPerson" | "contactPersonPhone" | "email" | "notes" | "phone" | "terms" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["farmer"]>
-  export type FarmerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    products?: boolean | Farmer$productsArgs<ExtArgs>
-    _count?: boolean | FarmerCountOutputTypeDefaultArgs<ExtArgs>
-  }
-
-  export type $FarmerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Farmer"
-    objects: {
-      products: Prisma.$ProductPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      name: string
-      address: string | null
-      code: string
-      contactPerson: string | null
-      contactPersonPhone: string | null
-      email: string
-      notes: string | null
-      phone: string
-      terms: string | null
-      isActive: boolean
-      createdAt: Date
-      updatedAt: Date | null
-    }, ExtArgs["result"]["farmer"]>
-    composites: {}
-  }
-
-  type FarmerGetPayload<S extends boolean | null | undefined | FarmerDefaultArgs> = $Result.GetResult<Prisma.$FarmerPayload, S>
-
-  type FarmerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<FarmerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: FarmerCountAggregateInputType | true
-    }
-
-  export interface FarmerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Farmer'], meta: { name: 'Farmer' } }
-    /**
-     * Find zero or one Farmer that matches the filter.
-     * @param {FarmerFindUniqueArgs} args - Arguments to find a Farmer
-     * @example
-     * // Get one Farmer
-     * const farmer = await prisma.farmer.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends FarmerFindUniqueArgs>(args: SelectSubset<T, FarmerFindUniqueArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Farmer that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {FarmerFindUniqueOrThrowArgs} args - Arguments to find a Farmer
-     * @example
-     * // Get one Farmer
-     * const farmer = await prisma.farmer.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends FarmerFindUniqueOrThrowArgs>(args: SelectSubset<T, FarmerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Farmer that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FarmerFindFirstArgs} args - Arguments to find a Farmer
-     * @example
-     * // Get one Farmer
-     * const farmer = await prisma.farmer.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends FarmerFindFirstArgs>(args?: SelectSubset<T, FarmerFindFirstArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Farmer that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FarmerFindFirstOrThrowArgs} args - Arguments to find a Farmer
-     * @example
-     * // Get one Farmer
-     * const farmer = await prisma.farmer.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends FarmerFindFirstOrThrowArgs>(args?: SelectSubset<T, FarmerFindFirstOrThrowArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Farmers that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FarmerFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Farmers
-     * const farmers = await prisma.farmer.findMany()
-     * 
-     * // Get first 10 Farmers
-     * const farmers = await prisma.farmer.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const farmerWithIdOnly = await prisma.farmer.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends FarmerFindManyArgs>(args?: SelectSubset<T, FarmerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Farmer.
-     * @param {FarmerCreateArgs} args - Arguments to create a Farmer.
-     * @example
-     * // Create one Farmer
-     * const Farmer = await prisma.farmer.create({
-     *   data: {
-     *     // ... data to create a Farmer
-     *   }
-     * })
-     * 
-     */
-    create<T extends FarmerCreateArgs>(args: SelectSubset<T, FarmerCreateArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Farmers.
-     * @param {FarmerCreateManyArgs} args - Arguments to create many Farmers.
-     * @example
-     * // Create many Farmers
-     * const farmer = await prisma.farmer.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends FarmerCreateManyArgs>(args?: SelectSubset<T, FarmerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a Farmer.
-     * @param {FarmerDeleteArgs} args - Arguments to delete one Farmer.
-     * @example
-     * // Delete one Farmer
-     * const Farmer = await prisma.farmer.delete({
-     *   where: {
-     *     // ... filter to delete one Farmer
-     *   }
-     * })
-     * 
-     */
-    delete<T extends FarmerDeleteArgs>(args: SelectSubset<T, FarmerDeleteArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Farmer.
-     * @param {FarmerUpdateArgs} args - Arguments to update one Farmer.
-     * @example
-     * // Update one Farmer
-     * const farmer = await prisma.farmer.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends FarmerUpdateArgs>(args: SelectSubset<T, FarmerUpdateArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Farmers.
-     * @param {FarmerDeleteManyArgs} args - Arguments to filter Farmers to delete.
-     * @example
-     * // Delete a few Farmers
-     * const { count } = await prisma.farmer.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends FarmerDeleteManyArgs>(args?: SelectSubset<T, FarmerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Farmers.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FarmerUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Farmers
-     * const farmer = await prisma.farmer.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends FarmerUpdateManyArgs>(args: SelectSubset<T, FarmerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Farmer.
-     * @param {FarmerUpsertArgs} args - Arguments to update or create a Farmer.
-     * @example
-     * // Update or create a Farmer
-     * const farmer = await prisma.farmer.upsert({
-     *   create: {
-     *     // ... data to create a Farmer
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Farmer we want to update
-     *   }
-     * })
-     */
-    upsert<T extends FarmerUpsertArgs>(args: SelectSubset<T, FarmerUpsertArgs<ExtArgs>>): Prisma__FarmerClient<$Result.GetResult<Prisma.$FarmerPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Farmers that matches the filter.
-     * @param {FarmerFindRawArgs} args - Select which filters you would like to apply.
-     * @example
-     * const farmer = await prisma.farmer.findRaw({
-     *   filter: { age: { $gt: 25 } }
-     * })
-     */
-    findRaw(args?: FarmerFindRawArgs): Prisma.PrismaPromise<JsonObject>
-
-    /**
-     * Perform aggregation operations on a Farmer.
-     * @param {FarmerAggregateRawArgs} args - Select which aggregations you would like to apply.
-     * @example
-     * const farmer = await prisma.farmer.aggregateRaw({
-     *   pipeline: [
-     *     { $match: { status: "registered" } },
-     *     { $group: { _id: "$country", total: { $sum: 1 } } }
-     *   ]
-     * })
-     */
-    aggregateRaw(args?: FarmerAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
-
-
-    /**
-     * Count the number of Farmers.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FarmerCountArgs} args - Arguments to filter Farmers to count.
-     * @example
-     * // Count the number of Farmers
-     * const count = await prisma.farmer.count({
-     *   where: {
-     *     // ... the filter for the Farmers we want to count
-     *   }
-     * })
-    **/
-    count<T extends FarmerCountArgs>(
-      args?: Subset<T, FarmerCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], FarmerCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Farmer.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FarmerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends FarmerAggregateArgs>(args: Subset<T, FarmerAggregateArgs>): Prisma.PrismaPromise<GetFarmerAggregateType<T>>
-
-    /**
-     * Group by Farmer.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FarmerGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends FarmerGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: FarmerGroupByArgs['orderBy'] }
-        : { orderBy?: FarmerGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, FarmerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFarmerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Farmer model
-   */
-  readonly fields: FarmerFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Farmer.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__FarmerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    products<T extends Farmer$productsArgs<ExtArgs> = {}>(args?: Subset<T, Farmer$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Farmer model
-   */
-  interface FarmerFieldRefs {
-    readonly id: FieldRef<"Farmer", 'String'>
-    readonly name: FieldRef<"Farmer", 'String'>
-    readonly address: FieldRef<"Farmer", 'String'>
-    readonly code: FieldRef<"Farmer", 'String'>
-    readonly contactPerson: FieldRef<"Farmer", 'String'>
-    readonly contactPersonPhone: FieldRef<"Farmer", 'String'>
-    readonly email: FieldRef<"Farmer", 'String'>
-    readonly notes: FieldRef<"Farmer", 'String'>
-    readonly phone: FieldRef<"Farmer", 'String'>
-    readonly terms: FieldRef<"Farmer", 'String'>
-    readonly isActive: FieldRef<"Farmer", 'Boolean'>
-    readonly createdAt: FieldRef<"Farmer", 'DateTime'>
-    readonly updatedAt: FieldRef<"Farmer", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Farmer findUnique
-   */
-  export type FarmerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Farmer
-     */
-    select?: FarmerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Farmer
-     */
-    omit?: FarmerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FarmerInclude<ExtArgs> | null
-    /**
-     * Filter, which Farmer to fetch.
-     */
-    where: FarmerWhereUniqueInput
-  }
-
-  /**
-   * Farmer findUniqueOrThrow
-   */
-  export type FarmerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Farmer
-     */
-    select?: FarmerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Farmer
-     */
-    omit?: FarmerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FarmerInclude<ExtArgs> | null
-    /**
-     * Filter, which Farmer to fetch.
-     */
-    where: FarmerWhereUniqueInput
-  }
-
-  /**
-   * Farmer findFirst
-   */
-  export type FarmerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Farmer
-     */
-    select?: FarmerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Farmer
-     */
-    omit?: FarmerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FarmerInclude<ExtArgs> | null
-    /**
-     * Filter, which Farmer to fetch.
-     */
-    where?: FarmerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Farmers to fetch.
-     */
-    orderBy?: FarmerOrderByWithRelationInput | FarmerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Farmers.
-     */
-    cursor?: FarmerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Farmers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Farmers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Farmers.
-     */
-    distinct?: FarmerScalarFieldEnum | FarmerScalarFieldEnum[]
-  }
-
-  /**
-   * Farmer findFirstOrThrow
-   */
-  export type FarmerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Farmer
-     */
-    select?: FarmerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Farmer
-     */
-    omit?: FarmerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FarmerInclude<ExtArgs> | null
-    /**
-     * Filter, which Farmer to fetch.
-     */
-    where?: FarmerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Farmers to fetch.
-     */
-    orderBy?: FarmerOrderByWithRelationInput | FarmerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Farmers.
-     */
-    cursor?: FarmerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Farmers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Farmers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Farmers.
-     */
-    distinct?: FarmerScalarFieldEnum | FarmerScalarFieldEnum[]
-  }
-
-  /**
-   * Farmer findMany
-   */
-  export type FarmerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Farmer
-     */
-    select?: FarmerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Farmer
-     */
-    omit?: FarmerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FarmerInclude<ExtArgs> | null
-    /**
-     * Filter, which Farmers to fetch.
-     */
-    where?: FarmerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Farmers to fetch.
-     */
-    orderBy?: FarmerOrderByWithRelationInput | FarmerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Farmers.
-     */
-    cursor?: FarmerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Farmers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Farmers.
-     */
-    skip?: number
-    distinct?: FarmerScalarFieldEnum | FarmerScalarFieldEnum[]
-  }
-
-  /**
-   * Farmer create
-   */
-  export type FarmerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Farmer
-     */
-    select?: FarmerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Farmer
-     */
-    omit?: FarmerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FarmerInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Farmer.
-     */
-    data: XOR<FarmerCreateInput, FarmerUncheckedCreateInput>
-  }
-
-  /**
-   * Farmer createMany
-   */
-  export type FarmerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Farmers.
-     */
-    data: FarmerCreateManyInput | FarmerCreateManyInput[]
-  }
-
-  /**
-   * Farmer update
-   */
-  export type FarmerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Farmer
-     */
-    select?: FarmerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Farmer
-     */
-    omit?: FarmerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FarmerInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Farmer.
-     */
-    data: XOR<FarmerUpdateInput, FarmerUncheckedUpdateInput>
-    /**
-     * Choose, which Farmer to update.
-     */
-    where: FarmerWhereUniqueInput
-  }
-
-  /**
-   * Farmer updateMany
-   */
-  export type FarmerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Farmers.
-     */
-    data: XOR<FarmerUpdateManyMutationInput, FarmerUncheckedUpdateManyInput>
-    /**
-     * Filter which Farmers to update
-     */
-    where?: FarmerWhereInput
-    /**
-     * Limit how many Farmers to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Farmer upsert
-   */
-  export type FarmerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Farmer
-     */
-    select?: FarmerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Farmer
-     */
-    omit?: FarmerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FarmerInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Farmer to update in case it exists.
-     */
-    where: FarmerWhereUniqueInput
-    /**
-     * In case the Farmer found by the `where` argument doesn't exist, create a new Farmer with this data.
-     */
-    create: XOR<FarmerCreateInput, FarmerUncheckedCreateInput>
-    /**
-     * In case the Farmer was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<FarmerUpdateInput, FarmerUncheckedUpdateInput>
-  }
-
-  /**
-   * Farmer delete
-   */
-  export type FarmerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Farmer
-     */
-    select?: FarmerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Farmer
-     */
-    omit?: FarmerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FarmerInclude<ExtArgs> | null
-    /**
-     * Filter which Farmer to delete.
-     */
-    where: FarmerWhereUniqueInput
-  }
-
-  /**
-   * Farmer deleteMany
-   */
-  export type FarmerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Farmers to delete
-     */
-    where?: FarmerWhereInput
-    /**
-     * Limit how many Farmers to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Farmer findRaw
-   */
-  export type FarmerFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
-     */
-    filter?: InputJsonValue
-    /**
-     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-  /**
-   * Farmer aggregateRaw
-   */
-  export type FarmerAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
-     */
-    pipeline?: InputJsonValue[]
-    /**
-     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
-     */
-    options?: InputJsonValue
-  }
-
-  /**
-   * Farmer.products
-   */
-  export type Farmer$productsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Product
-     */
-    select?: ProductSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Product
-     */
-    omit?: ProductOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProductInclude<ExtArgs> | null
-    where?: ProductWhereInput
-    orderBy?: ProductOrderByWithRelationInput | ProductOrderByWithRelationInput[]
-    cursor?: ProductWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ProductScalarFieldEnum | ProductScalarFieldEnum[]
-  }
-
-  /**
-   * Farmer without action
-   */
-  export type FarmerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Farmer
-     */
-    select?: FarmerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Farmer
-     */
-    omit?: FarmerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FarmerInclude<ExtArgs> | null
   }
 
 
@@ -8788,6 +7805,2156 @@ export namespace Prisma {
 
 
   /**
+   * Model FarmerProfile
+   */
+
+  export type AggregateFarmerProfile = {
+    _count: FarmerProfileCountAggregateOutputType | null
+    _min: FarmerProfileMinAggregateOutputType | null
+    _max: FarmerProfileMaxAggregateOutputType | null
+  }
+
+  export type FarmerProfileMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    address: string | null
+    code: string | null
+    contactPerson: string | null
+    contactPersonPhone: string | null
+    profileImageUrl: string | null
+    email: string | null
+    notes: string | null
+    phone: string | null
+    terms: string | null
+    isActive: boolean | null
+    userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FarmerProfileMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    address: string | null
+    code: string | null
+    contactPerson: string | null
+    contactPersonPhone: string | null
+    profileImageUrl: string | null
+    email: string | null
+    notes: string | null
+    phone: string | null
+    terms: string | null
+    isActive: boolean | null
+    userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FarmerProfileCountAggregateOutputType = {
+    id: number
+    name: number
+    address: number
+    code: number
+    contactPerson: number
+    contactPersonPhone: number
+    profileImageUrl: number
+    email: number
+    notes: number
+    phone: number
+    terms: number
+    isActive: number
+    userId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type FarmerProfileMinAggregateInputType = {
+    id?: true
+    name?: true
+    address?: true
+    code?: true
+    contactPerson?: true
+    contactPersonPhone?: true
+    profileImageUrl?: true
+    email?: true
+    notes?: true
+    phone?: true
+    terms?: true
+    isActive?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FarmerProfileMaxAggregateInputType = {
+    id?: true
+    name?: true
+    address?: true
+    code?: true
+    contactPerson?: true
+    contactPersonPhone?: true
+    profileImageUrl?: true
+    email?: true
+    notes?: true
+    phone?: true
+    terms?: true
+    isActive?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FarmerProfileCountAggregateInputType = {
+    id?: true
+    name?: true
+    address?: true
+    code?: true
+    contactPerson?: true
+    contactPersonPhone?: true
+    profileImageUrl?: true
+    email?: true
+    notes?: true
+    phone?: true
+    terms?: true
+    isActive?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type FarmerProfileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FarmerProfile to aggregate.
+     */
+    where?: FarmerProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FarmerProfiles to fetch.
+     */
+    orderBy?: FarmerProfileOrderByWithRelationInput | FarmerProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FarmerProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FarmerProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FarmerProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FarmerProfiles
+    **/
+    _count?: true | FarmerProfileCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FarmerProfileMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FarmerProfileMaxAggregateInputType
+  }
+
+  export type GetFarmerProfileAggregateType<T extends FarmerProfileAggregateArgs> = {
+        [P in keyof T & keyof AggregateFarmerProfile]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFarmerProfile[P]>
+      : GetScalarType<T[P], AggregateFarmerProfile[P]>
+  }
+
+
+
+
+  export type FarmerProfileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FarmerProfileWhereInput
+    orderBy?: FarmerProfileOrderByWithAggregationInput | FarmerProfileOrderByWithAggregationInput[]
+    by: FarmerProfileScalarFieldEnum[] | FarmerProfileScalarFieldEnum
+    having?: FarmerProfileScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FarmerProfileCountAggregateInputType | true
+    _min?: FarmerProfileMinAggregateInputType
+    _max?: FarmerProfileMaxAggregateInputType
+  }
+
+  export type FarmerProfileGroupByOutputType = {
+    id: string
+    name: string
+    address: string | null
+    code: string
+    contactPerson: string | null
+    contactPersonPhone: string | null
+    profileImageUrl: string | null
+    email: string
+    notes: string | null
+    phone: string
+    terms: string | null
+    isActive: boolean
+    userId: string
+    createdAt: Date
+    updatedAt: Date | null
+    _count: FarmerProfileCountAggregateOutputType | null
+    _min: FarmerProfileMinAggregateOutputType | null
+    _max: FarmerProfileMaxAggregateOutputType | null
+  }
+
+  type GetFarmerProfileGroupByPayload<T extends FarmerProfileGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FarmerProfileGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FarmerProfileGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FarmerProfileGroupByOutputType[P]>
+            : GetScalarType<T[P], FarmerProfileGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FarmerProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    address?: boolean
+    code?: boolean
+    contactPerson?: boolean
+    contactPersonPhone?: boolean
+    profileImageUrl?: boolean
+    email?: boolean
+    notes?: boolean
+    phone?: boolean
+    terms?: boolean
+    isActive?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["farmerProfile"]>
+
+
+
+  export type FarmerProfileSelectScalar = {
+    id?: boolean
+    name?: boolean
+    address?: boolean
+    code?: boolean
+    contactPerson?: boolean
+    contactPersonPhone?: boolean
+    profileImageUrl?: boolean
+    email?: boolean
+    notes?: boolean
+    phone?: boolean
+    terms?: boolean
+    isActive?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type FarmerProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "address" | "code" | "contactPerson" | "contactPersonPhone" | "profileImageUrl" | "email" | "notes" | "phone" | "terms" | "isActive" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["farmerProfile"]>
+  export type FarmerProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $FarmerProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FarmerProfile"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      address: string | null
+      code: string
+      contactPerson: string | null
+      contactPersonPhone: string | null
+      profileImageUrl: string | null
+      email: string
+      notes: string | null
+      phone: string
+      terms: string | null
+      isActive: boolean
+      userId: string
+      createdAt: Date
+      updatedAt: Date | null
+    }, ExtArgs["result"]["farmerProfile"]>
+    composites: {}
+  }
+
+  type FarmerProfileGetPayload<S extends boolean | null | undefined | FarmerProfileDefaultArgs> = $Result.GetResult<Prisma.$FarmerProfilePayload, S>
+
+  type FarmerProfileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FarmerProfileFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FarmerProfileCountAggregateInputType | true
+    }
+
+  export interface FarmerProfileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FarmerProfile'], meta: { name: 'FarmerProfile' } }
+    /**
+     * Find zero or one FarmerProfile that matches the filter.
+     * @param {FarmerProfileFindUniqueArgs} args - Arguments to find a FarmerProfile
+     * @example
+     * // Get one FarmerProfile
+     * const farmerProfile = await prisma.farmerProfile.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FarmerProfileFindUniqueArgs>(args: SelectSubset<T, FarmerProfileFindUniqueArgs<ExtArgs>>): Prisma__FarmerProfileClient<$Result.GetResult<Prisma.$FarmerProfilePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FarmerProfile that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FarmerProfileFindUniqueOrThrowArgs} args - Arguments to find a FarmerProfile
+     * @example
+     * // Get one FarmerProfile
+     * const farmerProfile = await prisma.farmerProfile.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FarmerProfileFindUniqueOrThrowArgs>(args: SelectSubset<T, FarmerProfileFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FarmerProfileClient<$Result.GetResult<Prisma.$FarmerProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FarmerProfile that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FarmerProfileFindFirstArgs} args - Arguments to find a FarmerProfile
+     * @example
+     * // Get one FarmerProfile
+     * const farmerProfile = await prisma.farmerProfile.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FarmerProfileFindFirstArgs>(args?: SelectSubset<T, FarmerProfileFindFirstArgs<ExtArgs>>): Prisma__FarmerProfileClient<$Result.GetResult<Prisma.$FarmerProfilePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FarmerProfile that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FarmerProfileFindFirstOrThrowArgs} args - Arguments to find a FarmerProfile
+     * @example
+     * // Get one FarmerProfile
+     * const farmerProfile = await prisma.farmerProfile.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FarmerProfileFindFirstOrThrowArgs>(args?: SelectSubset<T, FarmerProfileFindFirstOrThrowArgs<ExtArgs>>): Prisma__FarmerProfileClient<$Result.GetResult<Prisma.$FarmerProfilePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FarmerProfiles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FarmerProfileFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FarmerProfiles
+     * const farmerProfiles = await prisma.farmerProfile.findMany()
+     * 
+     * // Get first 10 FarmerProfiles
+     * const farmerProfiles = await prisma.farmerProfile.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const farmerProfileWithIdOnly = await prisma.farmerProfile.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FarmerProfileFindManyArgs>(args?: SelectSubset<T, FarmerProfileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FarmerProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FarmerProfile.
+     * @param {FarmerProfileCreateArgs} args - Arguments to create a FarmerProfile.
+     * @example
+     * // Create one FarmerProfile
+     * const FarmerProfile = await prisma.farmerProfile.create({
+     *   data: {
+     *     // ... data to create a FarmerProfile
+     *   }
+     * })
+     * 
+     */
+    create<T extends FarmerProfileCreateArgs>(args: SelectSubset<T, FarmerProfileCreateArgs<ExtArgs>>): Prisma__FarmerProfileClient<$Result.GetResult<Prisma.$FarmerProfilePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FarmerProfiles.
+     * @param {FarmerProfileCreateManyArgs} args - Arguments to create many FarmerProfiles.
+     * @example
+     * // Create many FarmerProfiles
+     * const farmerProfile = await prisma.farmerProfile.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FarmerProfileCreateManyArgs>(args?: SelectSubset<T, FarmerProfileCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a FarmerProfile.
+     * @param {FarmerProfileDeleteArgs} args - Arguments to delete one FarmerProfile.
+     * @example
+     * // Delete one FarmerProfile
+     * const FarmerProfile = await prisma.farmerProfile.delete({
+     *   where: {
+     *     // ... filter to delete one FarmerProfile
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FarmerProfileDeleteArgs>(args: SelectSubset<T, FarmerProfileDeleteArgs<ExtArgs>>): Prisma__FarmerProfileClient<$Result.GetResult<Prisma.$FarmerProfilePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FarmerProfile.
+     * @param {FarmerProfileUpdateArgs} args - Arguments to update one FarmerProfile.
+     * @example
+     * // Update one FarmerProfile
+     * const farmerProfile = await prisma.farmerProfile.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FarmerProfileUpdateArgs>(args: SelectSubset<T, FarmerProfileUpdateArgs<ExtArgs>>): Prisma__FarmerProfileClient<$Result.GetResult<Prisma.$FarmerProfilePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FarmerProfiles.
+     * @param {FarmerProfileDeleteManyArgs} args - Arguments to filter FarmerProfiles to delete.
+     * @example
+     * // Delete a few FarmerProfiles
+     * const { count } = await prisma.farmerProfile.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FarmerProfileDeleteManyArgs>(args?: SelectSubset<T, FarmerProfileDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FarmerProfiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FarmerProfileUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FarmerProfiles
+     * const farmerProfile = await prisma.farmerProfile.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FarmerProfileUpdateManyArgs>(args: SelectSubset<T, FarmerProfileUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one FarmerProfile.
+     * @param {FarmerProfileUpsertArgs} args - Arguments to update or create a FarmerProfile.
+     * @example
+     * // Update or create a FarmerProfile
+     * const farmerProfile = await prisma.farmerProfile.upsert({
+     *   create: {
+     *     // ... data to create a FarmerProfile
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FarmerProfile we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FarmerProfileUpsertArgs>(args: SelectSubset<T, FarmerProfileUpsertArgs<ExtArgs>>): Prisma__FarmerProfileClient<$Result.GetResult<Prisma.$FarmerProfilePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FarmerProfiles that matches the filter.
+     * @param {FarmerProfileFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const farmerProfile = await prisma.farmerProfile.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: FarmerProfileFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a FarmerProfile.
+     * @param {FarmerProfileAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const farmerProfile = await prisma.farmerProfile.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: FarmerProfileAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of FarmerProfiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FarmerProfileCountArgs} args - Arguments to filter FarmerProfiles to count.
+     * @example
+     * // Count the number of FarmerProfiles
+     * const count = await prisma.farmerProfile.count({
+     *   where: {
+     *     // ... the filter for the FarmerProfiles we want to count
+     *   }
+     * })
+    **/
+    count<T extends FarmerProfileCountArgs>(
+      args?: Subset<T, FarmerProfileCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FarmerProfileCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FarmerProfile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FarmerProfileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FarmerProfileAggregateArgs>(args: Subset<T, FarmerProfileAggregateArgs>): Prisma.PrismaPromise<GetFarmerProfileAggregateType<T>>
+
+    /**
+     * Group by FarmerProfile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FarmerProfileGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FarmerProfileGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FarmerProfileGroupByArgs['orderBy'] }
+        : { orderBy?: FarmerProfileGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FarmerProfileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFarmerProfileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FarmerProfile model
+   */
+  readonly fields: FarmerProfileFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FarmerProfile.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FarmerProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FarmerProfile model
+   */
+  interface FarmerProfileFieldRefs {
+    readonly id: FieldRef<"FarmerProfile", 'String'>
+    readonly name: FieldRef<"FarmerProfile", 'String'>
+    readonly address: FieldRef<"FarmerProfile", 'String'>
+    readonly code: FieldRef<"FarmerProfile", 'String'>
+    readonly contactPerson: FieldRef<"FarmerProfile", 'String'>
+    readonly contactPersonPhone: FieldRef<"FarmerProfile", 'String'>
+    readonly profileImageUrl: FieldRef<"FarmerProfile", 'String'>
+    readonly email: FieldRef<"FarmerProfile", 'String'>
+    readonly notes: FieldRef<"FarmerProfile", 'String'>
+    readonly phone: FieldRef<"FarmerProfile", 'String'>
+    readonly terms: FieldRef<"FarmerProfile", 'String'>
+    readonly isActive: FieldRef<"FarmerProfile", 'Boolean'>
+    readonly userId: FieldRef<"FarmerProfile", 'String'>
+    readonly createdAt: FieldRef<"FarmerProfile", 'DateTime'>
+    readonly updatedAt: FieldRef<"FarmerProfile", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FarmerProfile findUnique
+   */
+  export type FarmerProfileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmerProfile
+     */
+    select?: FarmerProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmerProfile
+     */
+    omit?: FarmerProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmerProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which FarmerProfile to fetch.
+     */
+    where: FarmerProfileWhereUniqueInput
+  }
+
+  /**
+   * FarmerProfile findUniqueOrThrow
+   */
+  export type FarmerProfileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmerProfile
+     */
+    select?: FarmerProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmerProfile
+     */
+    omit?: FarmerProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmerProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which FarmerProfile to fetch.
+     */
+    where: FarmerProfileWhereUniqueInput
+  }
+
+  /**
+   * FarmerProfile findFirst
+   */
+  export type FarmerProfileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmerProfile
+     */
+    select?: FarmerProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmerProfile
+     */
+    omit?: FarmerProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmerProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which FarmerProfile to fetch.
+     */
+    where?: FarmerProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FarmerProfiles to fetch.
+     */
+    orderBy?: FarmerProfileOrderByWithRelationInput | FarmerProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FarmerProfiles.
+     */
+    cursor?: FarmerProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FarmerProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FarmerProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FarmerProfiles.
+     */
+    distinct?: FarmerProfileScalarFieldEnum | FarmerProfileScalarFieldEnum[]
+  }
+
+  /**
+   * FarmerProfile findFirstOrThrow
+   */
+  export type FarmerProfileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmerProfile
+     */
+    select?: FarmerProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmerProfile
+     */
+    omit?: FarmerProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmerProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which FarmerProfile to fetch.
+     */
+    where?: FarmerProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FarmerProfiles to fetch.
+     */
+    orderBy?: FarmerProfileOrderByWithRelationInput | FarmerProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FarmerProfiles.
+     */
+    cursor?: FarmerProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FarmerProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FarmerProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FarmerProfiles.
+     */
+    distinct?: FarmerProfileScalarFieldEnum | FarmerProfileScalarFieldEnum[]
+  }
+
+  /**
+   * FarmerProfile findMany
+   */
+  export type FarmerProfileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmerProfile
+     */
+    select?: FarmerProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmerProfile
+     */
+    omit?: FarmerProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmerProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which FarmerProfiles to fetch.
+     */
+    where?: FarmerProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FarmerProfiles to fetch.
+     */
+    orderBy?: FarmerProfileOrderByWithRelationInput | FarmerProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FarmerProfiles.
+     */
+    cursor?: FarmerProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FarmerProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FarmerProfiles.
+     */
+    skip?: number
+    distinct?: FarmerProfileScalarFieldEnum | FarmerProfileScalarFieldEnum[]
+  }
+
+  /**
+   * FarmerProfile create
+   */
+  export type FarmerProfileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmerProfile
+     */
+    select?: FarmerProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmerProfile
+     */
+    omit?: FarmerProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmerProfileInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FarmerProfile.
+     */
+    data: XOR<FarmerProfileCreateInput, FarmerProfileUncheckedCreateInput>
+  }
+
+  /**
+   * FarmerProfile createMany
+   */
+  export type FarmerProfileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FarmerProfiles.
+     */
+    data: FarmerProfileCreateManyInput | FarmerProfileCreateManyInput[]
+  }
+
+  /**
+   * FarmerProfile update
+   */
+  export type FarmerProfileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmerProfile
+     */
+    select?: FarmerProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmerProfile
+     */
+    omit?: FarmerProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmerProfileInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FarmerProfile.
+     */
+    data: XOR<FarmerProfileUpdateInput, FarmerProfileUncheckedUpdateInput>
+    /**
+     * Choose, which FarmerProfile to update.
+     */
+    where: FarmerProfileWhereUniqueInput
+  }
+
+  /**
+   * FarmerProfile updateMany
+   */
+  export type FarmerProfileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FarmerProfiles.
+     */
+    data: XOR<FarmerProfileUpdateManyMutationInput, FarmerProfileUncheckedUpdateManyInput>
+    /**
+     * Filter which FarmerProfiles to update
+     */
+    where?: FarmerProfileWhereInput
+    /**
+     * Limit how many FarmerProfiles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FarmerProfile upsert
+   */
+  export type FarmerProfileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmerProfile
+     */
+    select?: FarmerProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmerProfile
+     */
+    omit?: FarmerProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmerProfileInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FarmerProfile to update in case it exists.
+     */
+    where: FarmerProfileWhereUniqueInput
+    /**
+     * In case the FarmerProfile found by the `where` argument doesn't exist, create a new FarmerProfile with this data.
+     */
+    create: XOR<FarmerProfileCreateInput, FarmerProfileUncheckedCreateInput>
+    /**
+     * In case the FarmerProfile was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FarmerProfileUpdateInput, FarmerProfileUncheckedUpdateInput>
+  }
+
+  /**
+   * FarmerProfile delete
+   */
+  export type FarmerProfileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmerProfile
+     */
+    select?: FarmerProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmerProfile
+     */
+    omit?: FarmerProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmerProfileInclude<ExtArgs> | null
+    /**
+     * Filter which FarmerProfile to delete.
+     */
+    where: FarmerProfileWhereUniqueInput
+  }
+
+  /**
+   * FarmerProfile deleteMany
+   */
+  export type FarmerProfileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FarmerProfiles to delete
+     */
+    where?: FarmerProfileWhereInput
+    /**
+     * Limit how many FarmerProfiles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FarmerProfile findRaw
+   */
+  export type FarmerProfileFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * FarmerProfile aggregateRaw
+   */
+  export type FarmerProfileAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * FarmerProfile without action
+   */
+  export type FarmerProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmerProfile
+     */
+    select?: FarmerProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmerProfile
+     */
+    omit?: FarmerProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmerProfileInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model User
+   */
+
+  export type AggregateUser = {
+    _count: UserCountAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
+  }
+
+  export type UserMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    email: string | null
+    password: string | null
+    emailVerified: Date | null
+    role: $Enums.UserRole | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    email: string | null
+    password: string | null
+    emailVerified: Date | null
+    role: $Enums.UserRole | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserCountAggregateOutputType = {
+    id: number
+    name: number
+    email: number
+    password: number
+    emailVerified: number
+    role: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type UserMinAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    password?: true
+    emailVerified?: true
+    role?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserMaxAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    password?: true
+    emailVerified?: true
+    role?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserCountAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    password?: true
+    emailVerified?: true
+    role?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type UserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which User to aggregate.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Users
+    **/
+    _count?: true | UserCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserMaxAggregateInputType
+  }
+
+  export type GetUserAggregateType<T extends UserAggregateArgs> = {
+        [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUser[P]>
+      : GetScalarType<T[P], AggregateUser[P]>
+  }
+
+
+
+
+  export type UserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithAggregationInput | UserOrderByWithAggregationInput[]
+    by: UserScalarFieldEnum[] | UserScalarFieldEnum
+    having?: UserScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserCountAggregateInputType | true
+    _min?: UserMinAggregateInputType
+    _max?: UserMaxAggregateInputType
+  }
+
+  export type UserGroupByOutputType = {
+    id: string
+    name: string | null
+    email: string | null
+    password: string
+    emailVerified: Date | null
+    role: $Enums.UserRole
+    createdAt: Date
+    updatedAt: Date
+    _count: UserCountAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
+  }
+
+  type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserGroupByOutputType[P]>
+            : GetScalarType<T[P], UserGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    password?: boolean
+    emailVerified?: boolean
+    role?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    products?: boolean | User$productsArgs<ExtArgs>
+    farmerProfile?: boolean | User$farmerProfileArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["user"]>
+
+
+
+  export type UserSelectScalar = {
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    password?: boolean
+    emailVerified?: boolean
+    role?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "emailVerified" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    products?: boolean | User$productsArgs<ExtArgs>
+    farmerProfile?: boolean | User$farmerProfileArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "User"
+    objects: {
+      products: Prisma.$ProductPayload<ExtArgs>[]
+      farmerProfile: Prisma.$FarmerProfilePayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string | null
+      email: string | null
+      password: string
+      emailVerified: Date | null
+      role: $Enums.UserRole
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["user"]>
+    composites: {}
+  }
+
+  type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
+
+  type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserCountAggregateInputType | true
+    }
+
+  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
+    /**
+     * Find zero or one User that matches the filter.
+     * @param {UserFindUniqueArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserFindUniqueArgs>(args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one User that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(args: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first User that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindFirstArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserFindFirstArgs>(args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first User that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindFirstOrThrowArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Users that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Users
+     * const users = await prisma.user.findMany()
+     * 
+     * // Get first 10 Users
+     * const users = await prisma.user.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserFindManyArgs>(args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a User.
+     * @param {UserCreateArgs} args - Arguments to create a User.
+     * @example
+     * // Create one User
+     * const User = await prisma.user.create({
+     *   data: {
+     *     // ... data to create a User
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserCreateArgs>(args: SelectSubset<T, UserCreateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Users.
+     * @param {UserCreateManyArgs} args - Arguments to create many Users.
+     * @example
+     * // Create many Users
+     * const user = await prisma.user.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserCreateManyArgs>(args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a User.
+     * @param {UserDeleteArgs} args - Arguments to delete one User.
+     * @example
+     * // Delete one User
+     * const User = await prisma.user.delete({
+     *   where: {
+     *     // ... filter to delete one User
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserDeleteArgs>(args: SelectSubset<T, UserDeleteArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one User.
+     * @param {UserUpdateArgs} args - Arguments to update one User.
+     * @example
+     * // Update one User
+     * const user = await prisma.user.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserUpdateArgs>(args: SelectSubset<T, UserUpdateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Users.
+     * @param {UserDeleteManyArgs} args - Arguments to filter Users to delete.
+     * @example
+     * // Delete a few Users
+     * const { count } = await prisma.user.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserDeleteManyArgs>(args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Users
+     * const user = await prisma.user.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserUpdateManyArgs>(args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one User.
+     * @param {UserUpsertArgs} args - Arguments to update or create a User.
+     * @example
+     * // Update or create a User
+     * const user = await prisma.user.upsert({
+     *   create: {
+     *     // ... data to create a User
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the User we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserUpsertArgs>(args: SelectSubset<T, UserUpsertArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Users that matches the filter.
+     * @param {UserFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const user = await prisma.user.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: UserFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a User.
+     * @param {UserAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const user = await prisma.user.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: UserAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserCountArgs} args - Arguments to filter Users to count.
+     * @example
+     * // Count the number of Users
+     * const count = await prisma.user.count({
+     *   where: {
+     *     // ... the filter for the Users we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserCountArgs>(
+      args?: Subset<T, UserCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a User.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserAggregateArgs>(args: Subset<T, UserAggregateArgs>): Prisma.PrismaPromise<GetUserAggregateType<T>>
+
+    /**
+     * Group by User.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserGroupByArgs['orderBy'] }
+        : { orderBy?: UserGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the User model
+   */
+  readonly fields: UserFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for User.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    products<T extends User$productsArgs<ExtArgs> = {}>(args?: Subset<T, User$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    farmerProfile<T extends User$farmerProfileArgs<ExtArgs> = {}>(args?: Subset<T, User$farmerProfileArgs<ExtArgs>>): Prisma__FarmerProfileClient<$Result.GetResult<Prisma.$FarmerProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the User model
+   */
+  interface UserFieldRefs {
+    readonly id: FieldRef<"User", 'String'>
+    readonly name: FieldRef<"User", 'String'>
+    readonly email: FieldRef<"User", 'String'>
+    readonly password: FieldRef<"User", 'String'>
+    readonly emailVerified: FieldRef<"User", 'DateTime'>
+    readonly role: FieldRef<"User", 'UserRole'>
+    readonly createdAt: FieldRef<"User", 'DateTime'>
+    readonly updatedAt: FieldRef<"User", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * User findUnique
+   */
+  export type UserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User findUniqueOrThrow
+   */
+  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User findFirst
+   */
+  export type UserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Users.
+     */
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * User findFirstOrThrow
+   */
+  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Users.
+     */
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * User findMany
+   */
+  export type UserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which Users to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * User create
+   */
+  export type UserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * The data needed to create a User.
+     */
+    data: XOR<UserCreateInput, UserUncheckedCreateInput>
+  }
+
+  /**
+   * User createMany
+   */
+  export type UserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Users.
+     */
+    data: UserCreateManyInput | UserCreateManyInput[]
+  }
+
+  /**
+   * User update
+   */
+  export type UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * The data needed to update a User.
+     */
+    data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+    /**
+     * Choose, which User to update.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User updateMany
+   */
+  export type UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Users.
+     */
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
+    /**
+     * Filter which Users to update
+     */
+    where?: UserWhereInput
+    /**
+     * Limit how many Users to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * User upsert
+   */
+  export type UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * The filter to search for the User to update in case it exists.
+     */
+    where: UserWhereUniqueInput
+    /**
+     * In case the User found by the `where` argument doesn't exist, create a new User with this data.
+     */
+    create: XOR<UserCreateInput, UserUncheckedCreateInput>
+    /**
+     * In case the User was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+  }
+
+  /**
+   * User delete
+   */
+  export type UserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter which User to delete.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User deleteMany
+   */
+  export type UserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Users to delete
+     */
+    where?: UserWhereInput
+    /**
+     * Limit how many Users to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * User findRaw
+   */
+  export type UserFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * User aggregateRaw
+   */
+  export type UserAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * User.products
+   */
+  export type User$productsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Product
+     */
+    select?: ProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Product
+     */
+    omit?: ProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductInclude<ExtArgs> | null
+    where?: ProductWhereInput
+    orderBy?: ProductOrderByWithRelationInput | ProductOrderByWithRelationInput[]
+    cursor?: ProductWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProductScalarFieldEnum | ProductScalarFieldEnum[]
+  }
+
+  /**
+   * User.farmerProfile
+   */
+  export type User$farmerProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FarmerProfile
+     */
+    select?: FarmerProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FarmerProfile
+     */
+    omit?: FarmerProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FarmerProfileInclude<ExtArgs> | null
+    where?: FarmerProfileWhereInput
+  }
+
+  /**
+   * User without action
+   */
+  export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -8860,31 +10027,12 @@ export namespace Prisma {
     salePrice: 'salePrice',
     tags: 'tags',
     categoryId: 'categoryId',
-    farmerId: 'farmerId',
+    userId: 'userId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
   export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
-
-
-  export const FarmerScalarFieldEnum: {
-    id: 'id',
-    name: 'name',
-    address: 'address',
-    code: 'code',
-    contactPerson: 'contactPerson',
-    contactPersonPhone: 'contactPersonPhone',
-    email: 'email',
-    notes: 'notes',
-    phone: 'phone',
-    terms: 'terms',
-    isActive: 'isActive',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type FarmerScalarFieldEnum = (typeof FarmerScalarFieldEnum)[keyof typeof FarmerScalarFieldEnum]
 
 
   export const TrainingScalarFieldEnum: {
@@ -8901,6 +10049,41 @@ export namespace Prisma {
   };
 
   export type TrainingScalarFieldEnum = (typeof TrainingScalarFieldEnum)[keyof typeof TrainingScalarFieldEnum]
+
+
+  export const FarmerProfileScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    address: 'address',
+    code: 'code',
+    contactPerson: 'contactPerson',
+    contactPersonPhone: 'contactPersonPhone',
+    profileImageUrl: 'profileImageUrl',
+    email: 'email',
+    notes: 'notes',
+    phone: 'phone',
+    terms: 'terms',
+    isActive: 'isActive',
+    userId: 'userId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type FarmerProfileScalarFieldEnum = (typeof FarmerProfileScalarFieldEnum)[keyof typeof FarmerProfileScalarFieldEnum]
+
+
+  export const UserScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    email: 'email',
+    password: 'password',
+    emailVerified: 'emailVerified',
+    role: 'role',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -8970,6 +10153,20 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'UserRole'
+   */
+  export type EnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole'>
+    
+
+
+  /**
+   * Reference to a field of type 'UserRole[]'
+   */
+  export type ListEnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole[]'>
     
 
 
@@ -9286,11 +10483,11 @@ export namespace Prisma {
     salePrice?: FloatFilter<"Product"> | number
     tags?: StringNullableListFilter<"Product">
     categoryId?: StringFilter<"Product"> | string
-    farmerId?: StringFilter<"Product"> | string
+    userId?: StringFilter<"Product"> | string
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeNullableFilter<"Product"> | Date | string | null
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
-    farmer?: XOR<FarmerScalarRelationFilter, FarmerWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type ProductOrderByWithRelationInput = {
@@ -9306,11 +10503,11 @@ export namespace Prisma {
     salePrice?: SortOrder
     tags?: SortOrder
     categoryId?: SortOrder
-    farmerId?: SortOrder
+    userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     category?: CategoryOrderByWithRelationInput
-    farmer?: FarmerOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -9329,11 +10526,11 @@ export namespace Prisma {
     salePrice?: FloatFilter<"Product"> | number
     tags?: StringNullableListFilter<"Product">
     categoryId?: StringFilter<"Product"> | string
-    farmerId?: StringFilter<"Product"> | string
+    userId?: StringFilter<"Product"> | string
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeNullableFilter<"Product"> | Date | string | null
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
-    farmer?: XOR<FarmerScalarRelationFilter, FarmerWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "slug">
 
   export type ProductOrderByWithAggregationInput = {
@@ -9349,7 +10546,7 @@ export namespace Prisma {
     salePrice?: SortOrder
     tags?: SortOrder
     categoryId?: SortOrder
-    farmerId?: SortOrder
+    userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ProductCountOrderByAggregateInput
@@ -9375,104 +10572,9 @@ export namespace Prisma {
     salePrice?: FloatWithAggregatesFilter<"Product"> | number
     tags?: StringNullableListFilter<"Product">
     categoryId?: StringWithAggregatesFilter<"Product"> | string
-    farmerId?: StringWithAggregatesFilter<"Product"> | string
+    userId?: StringWithAggregatesFilter<"Product"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     updatedAt?: DateTimeNullableWithAggregatesFilter<"Product"> | Date | string | null
-  }
-
-  export type FarmerWhereInput = {
-    AND?: FarmerWhereInput | FarmerWhereInput[]
-    OR?: FarmerWhereInput[]
-    NOT?: FarmerWhereInput | FarmerWhereInput[]
-    id?: StringFilter<"Farmer"> | string
-    name?: StringFilter<"Farmer"> | string
-    address?: StringNullableFilter<"Farmer"> | string | null
-    code?: StringFilter<"Farmer"> | string
-    contactPerson?: StringNullableFilter<"Farmer"> | string | null
-    contactPersonPhone?: StringNullableFilter<"Farmer"> | string | null
-    email?: StringFilter<"Farmer"> | string
-    notes?: StringNullableFilter<"Farmer"> | string | null
-    phone?: StringFilter<"Farmer"> | string
-    terms?: StringNullableFilter<"Farmer"> | string | null
-    isActive?: BoolFilter<"Farmer"> | boolean
-    createdAt?: DateTimeFilter<"Farmer"> | Date | string
-    updatedAt?: DateTimeNullableFilter<"Farmer"> | Date | string | null
-    products?: ProductListRelationFilter
-  }
-
-  export type FarmerOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    address?: SortOrder
-    code?: SortOrder
-    contactPerson?: SortOrder
-    contactPersonPhone?: SortOrder
-    email?: SortOrder
-    notes?: SortOrder
-    phone?: SortOrder
-    terms?: SortOrder
-    isActive?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    products?: ProductOrderByRelationAggregateInput
-  }
-
-  export type FarmerWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    name?: string
-    AND?: FarmerWhereInput | FarmerWhereInput[]
-    OR?: FarmerWhereInput[]
-    NOT?: FarmerWhereInput | FarmerWhereInput[]
-    address?: StringNullableFilter<"Farmer"> | string | null
-    code?: StringFilter<"Farmer"> | string
-    contactPerson?: StringNullableFilter<"Farmer"> | string | null
-    contactPersonPhone?: StringNullableFilter<"Farmer"> | string | null
-    email?: StringFilter<"Farmer"> | string
-    notes?: StringNullableFilter<"Farmer"> | string | null
-    phone?: StringFilter<"Farmer"> | string
-    terms?: StringNullableFilter<"Farmer"> | string | null
-    isActive?: BoolFilter<"Farmer"> | boolean
-    createdAt?: DateTimeFilter<"Farmer"> | Date | string
-    updatedAt?: DateTimeNullableFilter<"Farmer"> | Date | string | null
-    products?: ProductListRelationFilter
-  }, "id" | "name">
-
-  export type FarmerOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    address?: SortOrder
-    code?: SortOrder
-    contactPerson?: SortOrder
-    contactPersonPhone?: SortOrder
-    email?: SortOrder
-    notes?: SortOrder
-    phone?: SortOrder
-    terms?: SortOrder
-    isActive?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: FarmerCountOrderByAggregateInput
-    _max?: FarmerMaxOrderByAggregateInput
-    _min?: FarmerMinOrderByAggregateInput
-  }
-
-  export type FarmerScalarWhereWithAggregatesInput = {
-    AND?: FarmerScalarWhereWithAggregatesInput | FarmerScalarWhereWithAggregatesInput[]
-    OR?: FarmerScalarWhereWithAggregatesInput[]
-    NOT?: FarmerScalarWhereWithAggregatesInput | FarmerScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Farmer"> | string
-    name?: StringWithAggregatesFilter<"Farmer"> | string
-    address?: StringNullableWithAggregatesFilter<"Farmer"> | string | null
-    code?: StringWithAggregatesFilter<"Farmer"> | string
-    contactPerson?: StringNullableWithAggregatesFilter<"Farmer"> | string | null
-    contactPersonPhone?: StringNullableWithAggregatesFilter<"Farmer"> | string | null
-    email?: StringWithAggregatesFilter<"Farmer"> | string
-    notes?: StringNullableWithAggregatesFilter<"Farmer"> | string | null
-    phone?: StringWithAggregatesFilter<"Farmer"> | string
-    terms?: StringNullableWithAggregatesFilter<"Farmer"> | string | null
-    isActive?: BoolWithAggregatesFilter<"Farmer"> | boolean
-    createdAt?: DateTimeWithAggregatesFilter<"Farmer"> | Date | string
-    updatedAt?: DateTimeNullableWithAggregatesFilter<"Farmer"> | Date | string | null
   }
 
   export type TrainingWhereInput = {
@@ -9553,6 +10655,184 @@ export namespace Prisma {
     categoryId?: StringWithAggregatesFilter<"Training"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Training"> | Date | string
     updatedAt?: DateTimeNullableWithAggregatesFilter<"Training"> | Date | string | null
+  }
+
+  export type FarmerProfileWhereInput = {
+    AND?: FarmerProfileWhereInput | FarmerProfileWhereInput[]
+    OR?: FarmerProfileWhereInput[]
+    NOT?: FarmerProfileWhereInput | FarmerProfileWhereInput[]
+    id?: StringFilter<"FarmerProfile"> | string
+    name?: StringFilter<"FarmerProfile"> | string
+    address?: StringNullableFilter<"FarmerProfile"> | string | null
+    code?: StringFilter<"FarmerProfile"> | string
+    contactPerson?: StringNullableFilter<"FarmerProfile"> | string | null
+    contactPersonPhone?: StringNullableFilter<"FarmerProfile"> | string | null
+    profileImageUrl?: StringNullableFilter<"FarmerProfile"> | string | null
+    email?: StringFilter<"FarmerProfile"> | string
+    notes?: StringNullableFilter<"FarmerProfile"> | string | null
+    phone?: StringFilter<"FarmerProfile"> | string
+    terms?: StringNullableFilter<"FarmerProfile"> | string | null
+    isActive?: BoolFilter<"FarmerProfile"> | boolean
+    userId?: StringFilter<"FarmerProfile"> | string
+    createdAt?: DateTimeFilter<"FarmerProfile"> | Date | string
+    updatedAt?: DateTimeNullableFilter<"FarmerProfile"> | Date | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type FarmerProfileOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    address?: SortOrder
+    code?: SortOrder
+    contactPerson?: SortOrder
+    contactPersonPhone?: SortOrder
+    profileImageUrl?: SortOrder
+    email?: SortOrder
+    notes?: SortOrder
+    phone?: SortOrder
+    terms?: SortOrder
+    isActive?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type FarmerProfileWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: FarmerProfileWhereInput | FarmerProfileWhereInput[]
+    OR?: FarmerProfileWhereInput[]
+    NOT?: FarmerProfileWhereInput | FarmerProfileWhereInput[]
+    name?: StringFilter<"FarmerProfile"> | string
+    address?: StringNullableFilter<"FarmerProfile"> | string | null
+    code?: StringFilter<"FarmerProfile"> | string
+    contactPerson?: StringNullableFilter<"FarmerProfile"> | string | null
+    contactPersonPhone?: StringNullableFilter<"FarmerProfile"> | string | null
+    profileImageUrl?: StringNullableFilter<"FarmerProfile"> | string | null
+    email?: StringFilter<"FarmerProfile"> | string
+    notes?: StringNullableFilter<"FarmerProfile"> | string | null
+    phone?: StringFilter<"FarmerProfile"> | string
+    terms?: StringNullableFilter<"FarmerProfile"> | string | null
+    isActive?: BoolFilter<"FarmerProfile"> | boolean
+    createdAt?: DateTimeFilter<"FarmerProfile"> | Date | string
+    updatedAt?: DateTimeNullableFilter<"FarmerProfile"> | Date | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type FarmerProfileOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    address?: SortOrder
+    code?: SortOrder
+    contactPerson?: SortOrder
+    contactPersonPhone?: SortOrder
+    profileImageUrl?: SortOrder
+    email?: SortOrder
+    notes?: SortOrder
+    phone?: SortOrder
+    terms?: SortOrder
+    isActive?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: FarmerProfileCountOrderByAggregateInput
+    _max?: FarmerProfileMaxOrderByAggregateInput
+    _min?: FarmerProfileMinOrderByAggregateInput
+  }
+
+  export type FarmerProfileScalarWhereWithAggregatesInput = {
+    AND?: FarmerProfileScalarWhereWithAggregatesInput | FarmerProfileScalarWhereWithAggregatesInput[]
+    OR?: FarmerProfileScalarWhereWithAggregatesInput[]
+    NOT?: FarmerProfileScalarWhereWithAggregatesInput | FarmerProfileScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FarmerProfile"> | string
+    name?: StringWithAggregatesFilter<"FarmerProfile"> | string
+    address?: StringNullableWithAggregatesFilter<"FarmerProfile"> | string | null
+    code?: StringWithAggregatesFilter<"FarmerProfile"> | string
+    contactPerson?: StringNullableWithAggregatesFilter<"FarmerProfile"> | string | null
+    contactPersonPhone?: StringNullableWithAggregatesFilter<"FarmerProfile"> | string | null
+    profileImageUrl?: StringNullableWithAggregatesFilter<"FarmerProfile"> | string | null
+    email?: StringWithAggregatesFilter<"FarmerProfile"> | string
+    notes?: StringNullableWithAggregatesFilter<"FarmerProfile"> | string | null
+    phone?: StringWithAggregatesFilter<"FarmerProfile"> | string
+    terms?: StringNullableWithAggregatesFilter<"FarmerProfile"> | string | null
+    isActive?: BoolWithAggregatesFilter<"FarmerProfile"> | boolean
+    userId?: StringWithAggregatesFilter<"FarmerProfile"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"FarmerProfile"> | Date | string
+    updatedAt?: DateTimeNullableWithAggregatesFilter<"FarmerProfile"> | Date | string | null
+  }
+
+  export type UserWhereInput = {
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    id?: StringFilter<"User"> | string
+    name?: StringNullableFilter<"User"> | string | null
+    email?: StringNullableFilter<"User"> | string | null
+    password?: StringFilter<"User"> | string
+    emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
+    role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
+    products?: ProductListRelationFilter
+    farmerProfile?: XOR<FarmerProfileNullableScalarRelationFilter, FarmerProfileWhereInput> | null
+  }
+
+  export type UserOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    emailVerified?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    products?: ProductOrderByRelationAggregateInput
+    farmerProfile?: FarmerProfileOrderByWithRelationInput
+  }
+
+  export type UserWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    email?: string
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    name?: StringNullableFilter<"User"> | string | null
+    password?: StringFilter<"User"> | string
+    emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
+    role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
+    products?: ProductListRelationFilter
+    farmerProfile?: XOR<FarmerProfileNullableScalarRelationFilter, FarmerProfileWhereInput> | null
+  }, "id" | "email">
+
+  export type UserOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    emailVerified?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: UserCountOrderByAggregateInput
+    _max?: UserMaxOrderByAggregateInput
+    _min?: UserMinOrderByAggregateInput
+  }
+
+  export type UserScalarWhereWithAggregatesInput = {
+    AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    OR?: UserScalarWhereWithAggregatesInput[]
+    NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"User"> | string
+    name?: StringNullableWithAggregatesFilter<"User"> | string | null
+    email?: StringNullableWithAggregatesFilter<"User"> | string | null
+    password?: StringWithAggregatesFilter<"User"> | string
+    emailVerified?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
+    createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
   export type CouponCreateInput = {
@@ -9872,7 +11152,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string | null
     category: CategoryCreateNestedOneWithoutProductsInput
-    farmer: FarmerCreateNestedOneWithoutProductsInput
+    user: UserCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateInput = {
@@ -9888,7 +11168,7 @@ export namespace Prisma {
     salePrice: number
     tags?: ProductCreatetagsInput | string[]
     categoryId: string
-    farmerId: string
+    userId: string
     createdAt?: Date | string
     updatedAt?: Date | string | null
   }
@@ -9907,7 +11187,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
-    farmer?: FarmerUpdateOneRequiredWithoutProductsNestedInput
+    user?: UserUpdateOneRequiredWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateInput = {
@@ -9922,7 +11202,7 @@ export namespace Prisma {
     salePrice?: FloatFieldUpdateOperationsInput | number
     tags?: ProductUpdatetagsInput | string[]
     categoryId?: StringFieldUpdateOperationsInput | string
-    farmerId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -9940,7 +11220,7 @@ export namespace Prisma {
     salePrice: number
     tags?: ProductCreatetagsInput | string[]
     categoryId: string
-    farmerId: string
+    userId: string
     createdAt?: Date | string
     updatedAt?: Date | string | null
   }
@@ -9972,119 +11252,7 @@ export namespace Prisma {
     salePrice?: FloatFieldUpdateOperationsInput | number
     tags?: ProductUpdatetagsInput | string[]
     categoryId?: StringFieldUpdateOperationsInput | string
-    farmerId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type FarmerCreateInput = {
-    id?: string
-    name: string
-    address?: string | null
-    code: string
-    contactPerson?: string | null
-    contactPersonPhone?: string | null
-    email: string
-    notes?: string | null
-    phone: string
-    terms?: string | null
-    isActive: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string | null
-    products?: ProductCreateNestedManyWithoutFarmerInput
-  }
-
-  export type FarmerUncheckedCreateInput = {
-    id?: string
-    name: string
-    address?: string | null
-    code: string
-    contactPerson?: string | null
-    contactPersonPhone?: string | null
-    email: string
-    notes?: string | null
-    phone: string
-    terms?: string | null
-    isActive: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string | null
-    products?: ProductUncheckedCreateNestedManyWithoutFarmerInput
-  }
-
-  export type FarmerUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    code?: StringFieldUpdateOperationsInput | string
-    contactPerson?: NullableStringFieldUpdateOperationsInput | string | null
-    contactPersonPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: StringFieldUpdateOperationsInput | string
-    terms?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    products?: ProductUpdateManyWithoutFarmerNestedInput
-  }
-
-  export type FarmerUncheckedUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    code?: StringFieldUpdateOperationsInput | string
-    contactPerson?: NullableStringFieldUpdateOperationsInput | string | null
-    contactPersonPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: StringFieldUpdateOperationsInput | string
-    terms?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    products?: ProductUncheckedUpdateManyWithoutFarmerNestedInput
-  }
-
-  export type FarmerCreateManyInput = {
-    id?: string
-    name: string
-    address?: string | null
-    code: string
-    contactPerson?: string | null
-    contactPersonPhone?: string | null
-    email: string
-    notes?: string | null
-    phone: string
-    terms?: string | null
-    isActive: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string | null
-  }
-
-  export type FarmerUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    code?: StringFieldUpdateOperationsInput | string
-    contactPerson?: NullableStringFieldUpdateOperationsInput | string | null
-    contactPersonPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: StringFieldUpdateOperationsInput | string
-    terms?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type FarmerUncheckedUpdateManyInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    code?: StringFieldUpdateOperationsInput | string
-    contactPerson?: NullableStringFieldUpdateOperationsInput | string | null
-    contactPersonPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: StringFieldUpdateOperationsInput | string
-    terms?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
+    userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -10173,6 +11341,208 @@ export namespace Prisma {
     categoryId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type FarmerProfileCreateInput = {
+    id?: string
+    name: string
+    address?: string | null
+    code: string
+    contactPerson?: string | null
+    contactPersonPhone?: string | null
+    profileImageUrl?: string | null
+    email: string
+    notes?: string | null
+    phone: string
+    terms?: string | null
+    isActive: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+    user: UserCreateNestedOneWithoutFarmerProfileInput
+  }
+
+  export type FarmerProfileUncheckedCreateInput = {
+    id?: string
+    name: string
+    address?: string | null
+    code: string
+    contactPerson?: string | null
+    contactPersonPhone?: string | null
+    profileImageUrl?: string | null
+    email: string
+    notes?: string | null
+    phone: string
+    terms?: string | null
+    isActive: boolean
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+  }
+
+  export type FarmerProfileUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    contactPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPersonPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: StringFieldUpdateOperationsInput | string
+    terms?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user?: UserUpdateOneRequiredWithoutFarmerProfileNestedInput
+  }
+
+  export type FarmerProfileUncheckedUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    contactPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPersonPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: StringFieldUpdateOperationsInput | string
+    terms?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type FarmerProfileCreateManyInput = {
+    id?: string
+    name: string
+    address?: string | null
+    code: string
+    contactPerson?: string | null
+    contactPersonPhone?: string | null
+    profileImageUrl?: string | null
+    email: string
+    notes?: string | null
+    phone: string
+    terms?: string | null
+    isActive: boolean
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+  }
+
+  export type FarmerProfileUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    contactPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPersonPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: StringFieldUpdateOperationsInput | string
+    terms?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type FarmerProfileUncheckedUpdateManyInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    contactPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPersonPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: StringFieldUpdateOperationsInput | string
+    terms?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type UserCreateInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    password: string
+    emailVerified?: Date | string | null
+    role?: $Enums.UserRole
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductCreateNestedManyWithoutUserInput
+    farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    password: string
+    emailVerified?: Date | string | null
+    role?: $Enums.UserRole
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductUncheckedCreateNestedManyWithoutUserInput
+    farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUpdateInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUpdateManyWithoutUserNestedInput
+    farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUncheckedUpdateManyWithoutUserNestedInput
+    farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserCreateManyInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    password: string
+    emailVerified?: Date | string | null
+    role?: $Enums.UserRole
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUpdateManyMutationInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateManyInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -10500,9 +11870,9 @@ export namespace Prisma {
     isNot?: CategoryWhereInput
   }
 
-  export type FarmerScalarRelationFilter = {
-    is?: FarmerWhereInput
-    isNot?: FarmerWhereInput
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
   }
 
   export type ProductCountOrderByAggregateInput = {
@@ -10518,7 +11888,7 @@ export namespace Prisma {
     salePrice?: SortOrder
     tags?: SortOrder
     categoryId?: SortOrder
-    farmerId?: SortOrder
+    userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -10540,7 +11910,7 @@ export namespace Prisma {
     productPrice?: SortOrder
     salePrice?: SortOrder
     categoryId?: SortOrder
-    farmerId?: SortOrder
+    userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -10557,7 +11927,7 @@ export namespace Prisma {
     productPrice?: SortOrder
     salePrice?: SortOrder
     categoryId?: SortOrder
-    farmerId?: SortOrder
+    userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -10581,54 +11951,6 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type FarmerCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    address?: SortOrder
-    code?: SortOrder
-    contactPerson?: SortOrder
-    contactPersonPhone?: SortOrder
-    email?: SortOrder
-    notes?: SortOrder
-    phone?: SortOrder
-    terms?: SortOrder
-    isActive?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type FarmerMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    address?: SortOrder
-    code?: SortOrder
-    contactPerson?: SortOrder
-    contactPersonPhone?: SortOrder
-    email?: SortOrder
-    notes?: SortOrder
-    phone?: SortOrder
-    terms?: SortOrder
-    isActive?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type FarmerMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    address?: SortOrder
-    code?: SortOrder
-    contactPerson?: SortOrder
-    contactPersonPhone?: SortOrder
-    email?: SortOrder
-    notes?: SortOrder
-    phone?: SortOrder
-    terms?: SortOrder
-    isActive?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type TrainingCountOrderByAggregateInput = {
@@ -10668,6 +11990,115 @@ export namespace Prisma {
     categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type FarmerProfileCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    address?: SortOrder
+    code?: SortOrder
+    contactPerson?: SortOrder
+    contactPersonPhone?: SortOrder
+    profileImageUrl?: SortOrder
+    email?: SortOrder
+    notes?: SortOrder
+    phone?: SortOrder
+    terms?: SortOrder
+    isActive?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FarmerProfileMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    address?: SortOrder
+    code?: SortOrder
+    contactPerson?: SortOrder
+    contactPersonPhone?: SortOrder
+    profileImageUrl?: SortOrder
+    email?: SortOrder
+    notes?: SortOrder
+    phone?: SortOrder
+    terms?: SortOrder
+    isActive?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FarmerProfileMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    address?: SortOrder
+    code?: SortOrder
+    contactPerson?: SortOrder
+    contactPersonPhone?: SortOrder
+    profileImageUrl?: SortOrder
+    email?: SortOrder
+    notes?: SortOrder
+    phone?: SortOrder
+    terms?: SortOrder
+    isActive?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumUserRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
+  }
+
+  export type FarmerProfileNullableScalarRelationFilter = {
+    is?: FarmerProfileWhereInput | null
+    isNot?: FarmerProfileWhereInput | null
+  }
+
+  export type UserCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    emailVerified?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    emailVerified?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    emailVerified?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumUserRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleWithAggregatesFilter<$PrismaModel> | $Enums.UserRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumUserRoleFilter<$PrismaModel>
+    _max?: NestedEnumUserRoleFilter<$PrismaModel>
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -10880,10 +12311,10 @@ export namespace Prisma {
     connect?: CategoryWhereUniqueInput
   }
 
-  export type FarmerCreateNestedOneWithoutProductsInput = {
-    create?: XOR<FarmerCreateWithoutProductsInput, FarmerUncheckedCreateWithoutProductsInput>
-    connectOrCreate?: FarmerCreateOrConnectWithoutProductsInput
-    connect?: FarmerWhereUniqueInput
+  export type UserCreateNestedOneWithoutProductsInput = {
+    create?: XOR<UserCreateWithoutProductsInput, UserUncheckedCreateWithoutProductsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProductsInput
+    connect?: UserWhereUniqueInput
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -10907,54 +12338,12 @@ export namespace Prisma {
     update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutProductsInput, CategoryUpdateWithoutProductsInput>, CategoryUncheckedUpdateWithoutProductsInput>
   }
 
-  export type FarmerUpdateOneRequiredWithoutProductsNestedInput = {
-    create?: XOR<FarmerCreateWithoutProductsInput, FarmerUncheckedCreateWithoutProductsInput>
-    connectOrCreate?: FarmerCreateOrConnectWithoutProductsInput
-    upsert?: FarmerUpsertWithoutProductsInput
-    connect?: FarmerWhereUniqueInput
-    update?: XOR<XOR<FarmerUpdateToOneWithWhereWithoutProductsInput, FarmerUpdateWithoutProductsInput>, FarmerUncheckedUpdateWithoutProductsInput>
-  }
-
-  export type ProductCreateNestedManyWithoutFarmerInput = {
-    create?: XOR<ProductCreateWithoutFarmerInput, ProductUncheckedCreateWithoutFarmerInput> | ProductCreateWithoutFarmerInput[] | ProductUncheckedCreateWithoutFarmerInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutFarmerInput | ProductCreateOrConnectWithoutFarmerInput[]
-    createMany?: ProductCreateManyFarmerInputEnvelope
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-  }
-
-  export type ProductUncheckedCreateNestedManyWithoutFarmerInput = {
-    create?: XOR<ProductCreateWithoutFarmerInput, ProductUncheckedCreateWithoutFarmerInput> | ProductCreateWithoutFarmerInput[] | ProductUncheckedCreateWithoutFarmerInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutFarmerInput | ProductCreateOrConnectWithoutFarmerInput[]
-    createMany?: ProductCreateManyFarmerInputEnvelope
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-  }
-
-  export type ProductUpdateManyWithoutFarmerNestedInput = {
-    create?: XOR<ProductCreateWithoutFarmerInput, ProductUncheckedCreateWithoutFarmerInput> | ProductCreateWithoutFarmerInput[] | ProductUncheckedCreateWithoutFarmerInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutFarmerInput | ProductCreateOrConnectWithoutFarmerInput[]
-    upsert?: ProductUpsertWithWhereUniqueWithoutFarmerInput | ProductUpsertWithWhereUniqueWithoutFarmerInput[]
-    createMany?: ProductCreateManyFarmerInputEnvelope
-    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    update?: ProductUpdateWithWhereUniqueWithoutFarmerInput | ProductUpdateWithWhereUniqueWithoutFarmerInput[]
-    updateMany?: ProductUpdateManyWithWhereWithoutFarmerInput | ProductUpdateManyWithWhereWithoutFarmerInput[]
-    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
-  }
-
-  export type ProductUncheckedUpdateManyWithoutFarmerNestedInput = {
-    create?: XOR<ProductCreateWithoutFarmerInput, ProductUncheckedCreateWithoutFarmerInput> | ProductCreateWithoutFarmerInput[] | ProductUncheckedCreateWithoutFarmerInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutFarmerInput | ProductCreateOrConnectWithoutFarmerInput[]
-    upsert?: ProductUpsertWithWhereUniqueWithoutFarmerInput | ProductUpsertWithWhereUniqueWithoutFarmerInput[]
-    createMany?: ProductCreateManyFarmerInputEnvelope
-    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    update?: ProductUpdateWithWhereUniqueWithoutFarmerInput | ProductUpdateWithWhereUniqueWithoutFarmerInput[]
-    updateMany?: ProductUpdateManyWithWhereWithoutFarmerInput | ProductUpdateManyWithWhereWithoutFarmerInput[]
-    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
+  export type UserUpdateOneRequiredWithoutProductsNestedInput = {
+    create?: XOR<UserCreateWithoutProductsInput, UserUncheckedCreateWithoutProductsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProductsInput
+    upsert?: UserUpsertWithoutProductsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProductsInput, UserUpdateWithoutProductsInput>, UserUncheckedUpdateWithoutProductsInput>
   }
 
   export type CategoryCreateNestedOneWithoutTrainingsInput = {
@@ -10969,6 +12358,98 @@ export namespace Prisma {
     upsert?: CategoryUpsertWithoutTrainingsInput
     connect?: CategoryWhereUniqueInput
     update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutTrainingsInput, CategoryUpdateWithoutTrainingsInput>, CategoryUncheckedUpdateWithoutTrainingsInput>
+  }
+
+  export type UserCreateNestedOneWithoutFarmerProfileInput = {
+    create?: XOR<UserCreateWithoutFarmerProfileInput, UserUncheckedCreateWithoutFarmerProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFarmerProfileInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutFarmerProfileNestedInput = {
+    create?: XOR<UserCreateWithoutFarmerProfileInput, UserUncheckedCreateWithoutFarmerProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFarmerProfileInput
+    upsert?: UserUpsertWithoutFarmerProfileInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFarmerProfileInput, UserUpdateWithoutFarmerProfileInput>, UserUncheckedUpdateWithoutFarmerProfileInput>
+  }
+
+  export type ProductCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProductCreateWithoutUserInput, ProductUncheckedCreateWithoutUserInput> | ProductCreateWithoutUserInput[] | ProductUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutUserInput | ProductCreateOrConnectWithoutUserInput[]
+    createMany?: ProductCreateManyUserInputEnvelope
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+  }
+
+  export type FarmerProfileCreateNestedOneWithoutUserInput = {
+    create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
+    connect?: FarmerProfileWhereUniqueInput
+  }
+
+  export type ProductUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProductCreateWithoutUserInput, ProductUncheckedCreateWithoutUserInput> | ProductCreateWithoutUserInput[] | ProductUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutUserInput | ProductCreateOrConnectWithoutUserInput[]
+    createMany?: ProductCreateManyUserInputEnvelope
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+  }
+
+  export type FarmerProfileUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
+    connect?: FarmerProfileWhereUniqueInput
+  }
+
+  export type EnumUserRoleFieldUpdateOperationsInput = {
+    set?: $Enums.UserRole
+  }
+
+  export type ProductUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProductCreateWithoutUserInput, ProductUncheckedCreateWithoutUserInput> | ProductCreateWithoutUserInput[] | ProductUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutUserInput | ProductCreateOrConnectWithoutUserInput[]
+    upsert?: ProductUpsertWithWhereUniqueWithoutUserInput | ProductUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProductCreateManyUserInputEnvelope
+    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    update?: ProductUpdateWithWhereUniqueWithoutUserInput | ProductUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProductUpdateManyWithWhereWithoutUserInput | ProductUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
+  }
+
+  export type FarmerProfileUpdateOneWithoutUserNestedInput = {
+    create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
+    upsert?: FarmerProfileUpsertWithoutUserInput
+    disconnect?: FarmerProfileWhereInput | boolean
+    delete?: FarmerProfileWhereInput | boolean
+    connect?: FarmerProfileWhereUniqueInput
+    update?: XOR<XOR<FarmerProfileUpdateToOneWithWhereWithoutUserInput, FarmerProfileUpdateWithoutUserInput>, FarmerProfileUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ProductUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProductCreateWithoutUserInput, ProductUncheckedCreateWithoutUserInput> | ProductCreateWithoutUserInput[] | ProductUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutUserInput | ProductCreateOrConnectWithoutUserInput[]
+    upsert?: ProductUpsertWithWhereUniqueWithoutUserInput | ProductUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProductCreateManyUserInputEnvelope
+    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    update?: ProductUpdateWithWhereUniqueWithoutUserInput | ProductUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProductUpdateManyWithWhereWithoutUserInput | ProductUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
+  }
+
+  export type FarmerProfileUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: FarmerProfileCreateOrConnectWithoutUserInput
+    upsert?: FarmerProfileUpsertWithoutUserInput
+    disconnect?: FarmerProfileWhereInput | boolean
+    delete?: FarmerProfileWhereInput | boolean
+    connect?: FarmerProfileWhereUniqueInput
+    update?: XOR<XOR<FarmerProfileUpdateToOneWithWhereWithoutUserInput, FarmerProfileUpdateWithoutUserInput>, FarmerProfileUncheckedUpdateWithoutUserInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -11150,6 +12631,23 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type NestedEnumUserRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
+  }
+
+  export type NestedEnumUserRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleWithAggregatesFilter<$PrismaModel> | $Enums.UserRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumUserRoleFilter<$PrismaModel>
+    _max?: NestedEnumUserRoleFilter<$PrismaModel>
+  }
+
   export type ProductCreateWithoutCategoryInput = {
     id?: string
     title: string
@@ -11164,7 +12662,7 @@ export namespace Prisma {
     tags?: ProductCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    farmer: FarmerCreateNestedOneWithoutProductsInput
+    user: UserCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateWithoutCategoryInput = {
@@ -11179,7 +12677,7 @@ export namespace Prisma {
     productPrice: number
     salePrice: number
     tags?: ProductCreatetagsInput | string[]
-    farmerId: string
+    userId: string
     createdAt?: Date | string
     updatedAt?: Date | string | null
   }
@@ -11286,7 +12784,7 @@ export namespace Prisma {
     salePrice?: FloatFilter<"Product"> | number
     tags?: StringNullableListFilter<"Product">
     categoryId?: StringFilter<"Product"> | string
-    farmerId?: StringFilter<"Product"> | string
+    userId?: StringFilter<"Product"> | string
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeNullableFilter<"Product"> | Date | string | null
   }
@@ -11449,41 +12947,33 @@ export namespace Prisma {
     create: XOR<CategoryCreateWithoutProductsInput, CategoryUncheckedCreateWithoutProductsInput>
   }
 
-  export type FarmerCreateWithoutProductsInput = {
+  export type UserCreateWithoutProductsInput = {
     id?: string
-    name: string
-    address?: string | null
-    code: string
-    contactPerson?: string | null
-    contactPersonPhone?: string | null
-    email: string
-    notes?: string | null
-    phone: string
-    terms?: string | null
-    isActive: boolean
+    name?: string | null
+    email?: string | null
+    password: string
+    emailVerified?: Date | string | null
+    role?: $Enums.UserRole
     createdAt?: Date | string
-    updatedAt?: Date | string | null
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileCreateNestedOneWithoutUserInput
   }
 
-  export type FarmerUncheckedCreateWithoutProductsInput = {
+  export type UserUncheckedCreateWithoutProductsInput = {
     id?: string
-    name: string
-    address?: string | null
-    code: string
-    contactPerson?: string | null
-    contactPersonPhone?: string | null
-    email: string
-    notes?: string | null
-    phone: string
-    terms?: string | null
-    isActive: boolean
+    name?: string | null
+    email?: string | null
+    password: string
+    emailVerified?: Date | string | null
+    role?: $Enums.UserRole
     createdAt?: Date | string
-    updatedAt?: Date | string | null
+    updatedAt?: Date | string
+    farmerProfile?: FarmerProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
-  export type FarmerCreateOrConnectWithoutProductsInput = {
-    where: FarmerWhereUniqueInput
-    create: XOR<FarmerCreateWithoutProductsInput, FarmerUncheckedCreateWithoutProductsInput>
+  export type UserCreateOrConnectWithoutProductsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutProductsInput, UserUncheckedCreateWithoutProductsInput>
   }
 
   export type CategoryUpsertWithoutProductsInput = {
@@ -11522,104 +13012,37 @@ export namespace Prisma {
     markets?: MarketUncheckedUpdateManyWithoutCategoriesNestedInput
   }
 
-  export type FarmerUpsertWithoutProductsInput = {
-    update: XOR<FarmerUpdateWithoutProductsInput, FarmerUncheckedUpdateWithoutProductsInput>
-    create: XOR<FarmerCreateWithoutProductsInput, FarmerUncheckedCreateWithoutProductsInput>
-    where?: FarmerWhereInput
+  export type UserUpsertWithoutProductsInput = {
+    update: XOR<UserUpdateWithoutProductsInput, UserUncheckedUpdateWithoutProductsInput>
+    create: XOR<UserCreateWithoutProductsInput, UserUncheckedCreateWithoutProductsInput>
+    where?: UserWhereInput
   }
 
-  export type FarmerUpdateToOneWithWhereWithoutProductsInput = {
-    where?: FarmerWhereInput
-    data: XOR<FarmerUpdateWithoutProductsInput, FarmerUncheckedUpdateWithoutProductsInput>
+  export type UserUpdateToOneWithWhereWithoutProductsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutProductsInput, UserUncheckedUpdateWithoutProductsInput>
   }
 
-  export type FarmerUpdateWithoutProductsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    code?: StringFieldUpdateOperationsInput | string
-    contactPerson?: NullableStringFieldUpdateOperationsInput | string | null
-    contactPersonPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: StringFieldUpdateOperationsInput | string
-    terms?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
+  export type UserUpdateWithoutProductsInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUpdateOneWithoutUserNestedInput
   }
 
-  export type FarmerUncheckedUpdateWithoutProductsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    code?: StringFieldUpdateOperationsInput | string
-    contactPerson?: NullableStringFieldUpdateOperationsInput | string | null
-    contactPersonPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    phone?: StringFieldUpdateOperationsInput | string
-    terms?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
+  export type UserUncheckedUpdateWithoutProductsInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type ProductCreateWithoutFarmerInput = {
-    id?: string
-    title: string
-    slug: string
-    isActive: boolean
-    imageUrl?: string | null
-    description?: string | null
-    sku?: string | null
-    barcode?: string | null
-    productPrice: number
-    salePrice: number
-    tags?: ProductCreatetagsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string | null
-    category: CategoryCreateNestedOneWithoutProductsInput
-  }
-
-  export type ProductUncheckedCreateWithoutFarmerInput = {
-    id?: string
-    title: string
-    slug: string
-    isActive: boolean
-    imageUrl?: string | null
-    description?: string | null
-    sku?: string | null
-    barcode?: string | null
-    productPrice: number
-    salePrice: number
-    tags?: ProductCreatetagsInput | string[]
-    categoryId: string
-    createdAt?: Date | string
-    updatedAt?: Date | string | null
-  }
-
-  export type ProductCreateOrConnectWithoutFarmerInput = {
-    where: ProductWhereUniqueInput
-    create: XOR<ProductCreateWithoutFarmerInput, ProductUncheckedCreateWithoutFarmerInput>
-  }
-
-  export type ProductCreateManyFarmerInputEnvelope = {
-    data: ProductCreateManyFarmerInput | ProductCreateManyFarmerInput[]
-  }
-
-  export type ProductUpsertWithWhereUniqueWithoutFarmerInput = {
-    where: ProductWhereUniqueInput
-    update: XOR<ProductUpdateWithoutFarmerInput, ProductUncheckedUpdateWithoutFarmerInput>
-    create: XOR<ProductCreateWithoutFarmerInput, ProductUncheckedCreateWithoutFarmerInput>
-  }
-
-  export type ProductUpdateWithWhereUniqueWithoutFarmerInput = {
-    where: ProductWhereUniqueInput
-    data: XOR<ProductUpdateWithoutFarmerInput, ProductUncheckedUpdateWithoutFarmerInput>
-  }
-
-  export type ProductUpdateManyWithWhereWithoutFarmerInput = {
-    where: ProductScalarWhereInput
-    data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutFarmerInput>
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    farmerProfile?: FarmerProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type CategoryCreateWithoutTrainingsInput = {
@@ -11690,6 +13113,209 @@ export namespace Prisma {
     markets?: MarketUncheckedUpdateManyWithoutCategoriesNestedInput
   }
 
+  export type UserCreateWithoutFarmerProfileInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    password: string
+    emailVerified?: Date | string | null
+    role?: $Enums.UserRole
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutFarmerProfileInput = {
+    id?: string
+    name?: string | null
+    email?: string | null
+    password: string
+    emailVerified?: Date | string | null
+    role?: $Enums.UserRole
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutFarmerProfileInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutFarmerProfileInput, UserUncheckedCreateWithoutFarmerProfileInput>
+  }
+
+  export type UserUpsertWithoutFarmerProfileInput = {
+    update: XOR<UserUpdateWithoutFarmerProfileInput, UserUncheckedUpdateWithoutFarmerProfileInput>
+    create: XOR<UserCreateWithoutFarmerProfileInput, UserUncheckedCreateWithoutFarmerProfileInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutFarmerProfileInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutFarmerProfileInput, UserUncheckedUpdateWithoutFarmerProfileInput>
+  }
+
+  export type UserUpdateWithoutFarmerProfileInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutFarmerProfileInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ProductCreateWithoutUserInput = {
+    id?: string
+    title: string
+    slug: string
+    isActive: boolean
+    imageUrl?: string | null
+    description?: string | null
+    sku?: string | null
+    barcode?: string | null
+    productPrice: number
+    salePrice: number
+    tags?: ProductCreatetagsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+    category: CategoryCreateNestedOneWithoutProductsInput
+  }
+
+  export type ProductUncheckedCreateWithoutUserInput = {
+    id?: string
+    title: string
+    slug: string
+    isActive: boolean
+    imageUrl?: string | null
+    description?: string | null
+    sku?: string | null
+    barcode?: string | null
+    productPrice: number
+    salePrice: number
+    tags?: ProductCreatetagsInput | string[]
+    categoryId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+  }
+
+  export type ProductCreateOrConnectWithoutUserInput = {
+    where: ProductWhereUniqueInput
+    create: XOR<ProductCreateWithoutUserInput, ProductUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProductCreateManyUserInputEnvelope = {
+    data: ProductCreateManyUserInput | ProductCreateManyUserInput[]
+  }
+
+  export type FarmerProfileCreateWithoutUserInput = {
+    id?: string
+    name: string
+    address?: string | null
+    code: string
+    contactPerson?: string | null
+    contactPersonPhone?: string | null
+    profileImageUrl?: string | null
+    email: string
+    notes?: string | null
+    phone: string
+    terms?: string | null
+    isActive: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+  }
+
+  export type FarmerProfileUncheckedCreateWithoutUserInput = {
+    id?: string
+    name: string
+    address?: string | null
+    code: string
+    contactPerson?: string | null
+    contactPersonPhone?: string | null
+    profileImageUrl?: string | null
+    email: string
+    notes?: string | null
+    phone: string
+    terms?: string | null
+    isActive: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+  }
+
+  export type FarmerProfileCreateOrConnectWithoutUserInput = {
+    where: FarmerProfileWhereUniqueInput
+    create: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProductUpsertWithWhereUniqueWithoutUserInput = {
+    where: ProductWhereUniqueInput
+    update: XOR<ProductUpdateWithoutUserInput, ProductUncheckedUpdateWithoutUserInput>
+    create: XOR<ProductCreateWithoutUserInput, ProductUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProductUpdateWithWhereUniqueWithoutUserInput = {
+    where: ProductWhereUniqueInput
+    data: XOR<ProductUpdateWithoutUserInput, ProductUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ProductUpdateManyWithWhereWithoutUserInput = {
+    where: ProductScalarWhereInput
+    data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type FarmerProfileUpsertWithoutUserInput = {
+    update: XOR<FarmerProfileUpdateWithoutUserInput, FarmerProfileUncheckedUpdateWithoutUserInput>
+    create: XOR<FarmerProfileCreateWithoutUserInput, FarmerProfileUncheckedCreateWithoutUserInput>
+    where?: FarmerProfileWhereInput
+  }
+
+  export type FarmerProfileUpdateToOneWithWhereWithoutUserInput = {
+    where?: FarmerProfileWhereInput
+    data: XOR<FarmerProfileUpdateWithoutUserInput, FarmerProfileUncheckedUpdateWithoutUserInput>
+  }
+
+  export type FarmerProfileUpdateWithoutUserInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    contactPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPersonPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: StringFieldUpdateOperationsInput | string
+    terms?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type FarmerProfileUncheckedUpdateWithoutUserInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    code?: StringFieldUpdateOperationsInput | string
+    contactPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPersonPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: StringFieldUpdateOperationsInput | string
+    terms?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type ProductCreateManyCategoryInput = {
     id?: string
     title: string
@@ -11702,7 +13328,7 @@ export namespace Prisma {
     productPrice: number
     salePrice: number
     tags?: ProductCreatetagsInput | string[]
-    farmerId: string
+    userId: string
     createdAt?: Date | string
     updatedAt?: Date | string | null
   }
@@ -11732,7 +13358,7 @@ export namespace Prisma {
     tags?: ProductUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    farmer?: FarmerUpdateOneRequiredWithoutProductsNestedInput
+    user?: UserUpdateOneRequiredWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutCategoryInput = {
@@ -11746,7 +13372,7 @@ export namespace Prisma {
     productPrice?: FloatFieldUpdateOperationsInput | number
     salePrice?: FloatFieldUpdateOperationsInput | number
     tags?: ProductUpdatetagsInput | string[]
-    farmerId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -11762,7 +13388,7 @@ export namespace Prisma {
     productPrice?: FloatFieldUpdateOperationsInput | number
     salePrice?: FloatFieldUpdateOperationsInput | number
     tags?: ProductUpdatetagsInput | string[]
-    farmerId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -11868,7 +13494,7 @@ export namespace Prisma {
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type ProductCreateManyFarmerInput = {
+  export type ProductCreateManyUserInput = {
     id?: string
     title: string
     slug: string
@@ -11885,7 +13511,7 @@ export namespace Prisma {
     updatedAt?: Date | string | null
   }
 
-  export type ProductUpdateWithoutFarmerInput = {
+  export type ProductUpdateWithoutUserInput = {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -11901,7 +13527,7 @@ export namespace Prisma {
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
   }
 
-  export type ProductUncheckedUpdateWithoutFarmerInput = {
+  export type ProductUncheckedUpdateWithoutUserInput = {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -11917,7 +13543,7 @@ export namespace Prisma {
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type ProductUncheckedUpdateManyWithoutFarmerInput = {
+  export type ProductUncheckedUpdateManyWithoutUserInput = {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
