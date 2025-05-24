@@ -7,6 +7,7 @@ export default function TextInput({
   type = "text",
   className = "sm:col-span-2",
   defaultValue = "",
+  disabled = false,
 }) {
   return (
     <div className={className}>
@@ -21,6 +22,7 @@ export default function TextInput({
           {...register(`${name}`, { required: isRequired })}
           type={type}
           name={name}
+          disabled={disabled}
           id={name}
           defaultValue={defaultValue}
           autoComplete={name}

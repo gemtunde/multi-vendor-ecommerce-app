@@ -10,7 +10,7 @@ import TextInput from "../FormInputs/TextInput";
 import { makePostRequest } from "@/lib/apiRequest";
 //import { FaGithub, FaGoogle } from "react-icons/fa";
 
-export default function RegisterForm() {
+export default function RegisterForm({ role = "USER" }) {
   //const router = useRouter();
   const {
     register,
@@ -18,7 +18,7 @@ export default function RegisterForm() {
     reset,
     formState: { errors, isValid },
   } = useForm();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const [emailErr, setEmailErr] = useState("");
 
   const router = useRouter();
@@ -27,41 +27,45 @@ export default function RegisterForm() {
   }
   async function onSubmit(data) {
     console.log("USER", data);
-    makePostRequest(setIsLoading, "api/users", data, "User", reset, redirect);
-    // try {
-    //   setLoading(true);
-    //   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-    //   const response = await fetch(`${baseUrl}/api/user`, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(data),
-    //   });
+    // makePostRequest(setIsLoading, "api/users", data, "User", reset, redirect);
+    try {
+      setLoading(true);
+      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+      const response = await fetch(`${baseUrl}/api/users`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    //   const responseData = await response.json();
+      const responseData = await response.json();
 
-    //   if (response.ok) {
-    //     setLoading(false);
-    //     toast.success("User Created Successfully");
-    //     reset();
-    //     router.push("/login");
-    //   } else {
-    //     setLoading(false);
-    //     if (response.status === 409) {
-    //       setEmailErr("User with this Email already exists");
-    //       toast.error("User with this Email already exists");
-    //     } else {
-    //       // Handle other errors
-    //       console.error("Server Error:", responseData.message);
-    //       toast.error("Oops Something Went wrong");
-    //     }
-    //   }
-    // } catch (error) {
-    //   setLoading(false);
-    //   console.error("Network Error:", error);
-    //   toast.error("Something Went wrong, Please Try Again");
-    // }
+      if (response.ok) {
+        setLoading(false);
+        toast.success("User Created Successfully");
+        reset();
+        if (role === "USER") {
+          router.push("/");
+        } else {
+          router.push(`/onboarding/${responseData.data.id}`);
+        }
+      } else {
+        setLoading(false);
+        if (response.status === 409) {
+          setEmailErr("User with this Email already exists");
+          toast.error("User with this Email already exists");
+        } else {
+          // Handle other errors
+          console.error("Server Error:", responseData.message);
+          toast.error("Oops Something Went wrong");
+        }
+      }
+    } catch (error) {
+      setLoading(false);
+      console.error("Network Error:", error);
+      toast.error("Something Went wrong, Please Try Again");
+    }
   }
 
   return (
@@ -70,6 +74,17 @@ export default function RegisterForm() {
       className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-slate-600 dark:border-gray-700 mx-auto my-3"
     >
       <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
+        {role !== "USER" && (
+          <TextInput
+            label="Role"
+            name="role"
+            register={register}
+            errors={errors}
+            defaultValue={role}
+            disabled
+            //className="full"
+          />
+        )}
         <TextInput
           label="Fullname"
           name="name"
