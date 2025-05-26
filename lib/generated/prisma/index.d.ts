@@ -5658,11 +5658,19 @@ export namespace Prisma {
   export type ProductAvgAggregateOutputType = {
     productPrice: number | null
     salePrice: number | null
+    wholesalePrice: number | null
+    wholesaleQty: number | null
+    productStock: number | null
+    qty: number | null
   }
 
   export type ProductSumAggregateOutputType = {
     productPrice: number | null
     salePrice: number | null
+    wholesalePrice: number | null
+    wholesaleQty: number | null
+    productStock: number | null
+    qty: number | null
   }
 
   export type ProductMinAggregateOutputType = {
@@ -5676,6 +5684,13 @@ export namespace Prisma {
     barcode: string | null
     productPrice: number | null
     salePrice: number | null
+    isWholesale: boolean | null
+    wholesalePrice: number | null
+    wholesaleQty: number | null
+    productCode: string | null
+    productStock: number | null
+    qty: number | null
+    unit: string | null
     categoryId: string | null
     userId: string | null
     createdAt: Date | null
@@ -5693,6 +5708,13 @@ export namespace Prisma {
     barcode: string | null
     productPrice: number | null
     salePrice: number | null
+    isWholesale: boolean | null
+    wholesalePrice: number | null
+    wholesaleQty: number | null
+    productCode: string | null
+    productStock: number | null
+    qty: number | null
+    unit: string | null
     categoryId: string | null
     userId: string | null
     createdAt: Date | null
@@ -5711,6 +5733,13 @@ export namespace Prisma {
     productPrice: number
     salePrice: number
     tags: number
+    isWholesale: number
+    wholesalePrice: number
+    wholesaleQty: number
+    productCode: number
+    productStock: number
+    qty: number
+    unit: number
     categoryId: number
     userId: number
     createdAt: number
@@ -5722,11 +5751,19 @@ export namespace Prisma {
   export type ProductAvgAggregateInputType = {
     productPrice?: true
     salePrice?: true
+    wholesalePrice?: true
+    wholesaleQty?: true
+    productStock?: true
+    qty?: true
   }
 
   export type ProductSumAggregateInputType = {
     productPrice?: true
     salePrice?: true
+    wholesalePrice?: true
+    wholesaleQty?: true
+    productStock?: true
+    qty?: true
   }
 
   export type ProductMinAggregateInputType = {
@@ -5740,6 +5777,13 @@ export namespace Prisma {
     barcode?: true
     productPrice?: true
     salePrice?: true
+    isWholesale?: true
+    wholesalePrice?: true
+    wholesaleQty?: true
+    productCode?: true
+    productStock?: true
+    qty?: true
+    unit?: true
     categoryId?: true
     userId?: true
     createdAt?: true
@@ -5757,6 +5801,13 @@ export namespace Prisma {
     barcode?: true
     productPrice?: true
     salePrice?: true
+    isWholesale?: true
+    wholesalePrice?: true
+    wholesaleQty?: true
+    productCode?: true
+    productStock?: true
+    qty?: true
+    unit?: true
     categoryId?: true
     userId?: true
     createdAt?: true
@@ -5775,6 +5826,13 @@ export namespace Prisma {
     productPrice?: true
     salePrice?: true
     tags?: true
+    isWholesale?: true
+    wholesalePrice?: true
+    wholesaleQty?: true
+    productCode?: true
+    productStock?: true
+    qty?: true
+    unit?: true
     categoryId?: true
     userId?: true
     createdAt?: true
@@ -5880,6 +5938,13 @@ export namespace Prisma {
     productPrice: number
     salePrice: number
     tags: string[]
+    isWholesale: boolean
+    wholesalePrice: number
+    wholesaleQty: number
+    productCode: string | null
+    productStock: number
+    qty: number
+    unit: string | null
     categoryId: string
     userId: string
     createdAt: Date
@@ -5917,6 +5982,13 @@ export namespace Prisma {
     productPrice?: boolean
     salePrice?: boolean
     tags?: boolean
+    isWholesale?: boolean
+    wholesalePrice?: boolean
+    wholesaleQty?: boolean
+    productCode?: boolean
+    productStock?: boolean
+    qty?: boolean
+    unit?: boolean
     categoryId?: boolean
     userId?: boolean
     createdAt?: boolean
@@ -5939,13 +6011,20 @@ export namespace Prisma {
     productPrice?: boolean
     salePrice?: boolean
     tags?: boolean
+    isWholesale?: boolean
+    wholesalePrice?: boolean
+    wholesaleQty?: boolean
+    productCode?: boolean
+    productStock?: boolean
+    qty?: boolean
+    unit?: boolean
     categoryId?: boolean
     userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "isActive" | "imageUrl" | "description" | "sku" | "barcode" | "productPrice" | "salePrice" | "tags" | "categoryId" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "isActive" | "imageUrl" | "description" | "sku" | "barcode" | "productPrice" | "salePrice" | "tags" | "isWholesale" | "wholesalePrice" | "wholesaleQty" | "productCode" | "productStock" | "qty" | "unit" | "categoryId" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -5969,6 +6048,13 @@ export namespace Prisma {
       productPrice: number
       salePrice: number
       tags: string[]
+      isWholesale: boolean
+      wholesalePrice: number
+      wholesaleQty: number
+      productCode: string | null
+      productStock: number
+      qty: number
+      unit: string | null
       categoryId: string
       userId: string
       createdAt: Date
@@ -6378,6 +6464,13 @@ export namespace Prisma {
     readonly productPrice: FieldRef<"Product", 'Float'>
     readonly salePrice: FieldRef<"Product", 'Float'>
     readonly tags: FieldRef<"Product", 'String[]'>
+    readonly isWholesale: FieldRef<"Product", 'Boolean'>
+    readonly wholesalePrice: FieldRef<"Product", 'Float'>
+    readonly wholesaleQty: FieldRef<"Product", 'Int'>
+    readonly productCode: FieldRef<"Product", 'String'>
+    readonly productStock: FieldRef<"Product", 'Int'>
+    readonly qty: FieldRef<"Product", 'Int'>
+    readonly unit: FieldRef<"Product", 'String'>
     readonly categoryId: FieldRef<"Product", 'String'>
     readonly userId: FieldRef<"Product", 'String'>
     readonly createdAt: FieldRef<"Product", 'DateTime'>
@@ -10089,6 +10182,13 @@ export namespace Prisma {
     productPrice: 'productPrice',
     salePrice: 'salePrice',
     tags: 'tags',
+    isWholesale: 'isWholesale',
+    wholesalePrice: 'wholesalePrice',
+    wholesaleQty: 'wholesaleQty',
+    productCode: 'productCode',
+    productStock: 'productStock',
+    qty: 'qty',
+    unit: 'unit',
     categoryId: 'categoryId',
     userId: 'userId',
     createdAt: 'createdAt',
@@ -10223,20 +10323,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'UserRole'
-   */
-  export type EnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole'>
-    
-
-
-  /**
-   * Reference to a field of type 'UserRole[]'
-   */
-  export type ListEnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -10247,6 +10333,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'UserRole'
+   */
+  export type EnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole'>
+    
+
+
+  /**
+   * Reference to a field of type 'UserRole[]'
+   */
+  export type ListEnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole[]'>
     
   /**
    * Deep Input Types
@@ -10548,6 +10648,13 @@ export namespace Prisma {
     productPrice?: FloatFilter<"Product"> | number
     salePrice?: FloatFilter<"Product"> | number
     tags?: StringNullableListFilter<"Product">
+    isWholesale?: BoolFilter<"Product"> | boolean
+    wholesalePrice?: FloatFilter<"Product"> | number
+    wholesaleQty?: IntFilter<"Product"> | number
+    productCode?: StringNullableFilter<"Product"> | string | null
+    productStock?: IntFilter<"Product"> | number
+    qty?: IntFilter<"Product"> | number
+    unit?: StringNullableFilter<"Product"> | string | null
     categoryId?: StringFilter<"Product"> | string
     userId?: StringFilter<"Product"> | string
     createdAt?: DateTimeFilter<"Product"> | Date | string
@@ -10568,6 +10675,13 @@ export namespace Prisma {
     productPrice?: SortOrder
     salePrice?: SortOrder
     tags?: SortOrder
+    isWholesale?: SortOrder
+    wholesalePrice?: SortOrder
+    wholesaleQty?: SortOrder
+    productCode?: SortOrder
+    productStock?: SortOrder
+    qty?: SortOrder
+    unit?: SortOrder
     categoryId?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
@@ -10591,6 +10705,13 @@ export namespace Prisma {
     productPrice?: FloatFilter<"Product"> | number
     salePrice?: FloatFilter<"Product"> | number
     tags?: StringNullableListFilter<"Product">
+    isWholesale?: BoolFilter<"Product"> | boolean
+    wholesalePrice?: FloatFilter<"Product"> | number
+    wholesaleQty?: IntFilter<"Product"> | number
+    productCode?: StringNullableFilter<"Product"> | string | null
+    productStock?: IntFilter<"Product"> | number
+    qty?: IntFilter<"Product"> | number
+    unit?: StringNullableFilter<"Product"> | string | null
     categoryId?: StringFilter<"Product"> | string
     userId?: StringFilter<"Product"> | string
     createdAt?: DateTimeFilter<"Product"> | Date | string
@@ -10611,6 +10732,13 @@ export namespace Prisma {
     productPrice?: SortOrder
     salePrice?: SortOrder
     tags?: SortOrder
+    isWholesale?: SortOrder
+    wholesalePrice?: SortOrder
+    wholesaleQty?: SortOrder
+    productCode?: SortOrder
+    productStock?: SortOrder
+    qty?: SortOrder
+    unit?: SortOrder
     categoryId?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
@@ -10637,6 +10765,13 @@ export namespace Prisma {
     productPrice?: FloatWithAggregatesFilter<"Product"> | number
     salePrice?: FloatWithAggregatesFilter<"Product"> | number
     tags?: StringNullableListFilter<"Product">
+    isWholesale?: BoolWithAggregatesFilter<"Product"> | boolean
+    wholesalePrice?: FloatWithAggregatesFilter<"Product"> | number
+    wholesaleQty?: IntWithAggregatesFilter<"Product"> | number
+    productCode?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    productStock?: IntWithAggregatesFilter<"Product"> | number
+    qty?: IntWithAggregatesFilter<"Product"> | number
+    unit?: StringNullableWithAggregatesFilter<"Product"> | string | null
     categoryId?: StringWithAggregatesFilter<"Product"> | string
     userId?: StringWithAggregatesFilter<"Product"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
@@ -11232,6 +11367,13 @@ export namespace Prisma {
     productPrice: number
     salePrice: number
     tags?: ProductCreatetagsInput | string[]
+    isWholesale: boolean
+    wholesalePrice: number
+    wholesaleQty: number
+    productCode?: string | null
+    productStock: number
+    qty: number
+    unit?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
     category: CategoryCreateNestedOneWithoutProductsInput
@@ -11250,6 +11392,13 @@ export namespace Prisma {
     productPrice: number
     salePrice: number
     tags?: ProductCreatetagsInput | string[]
+    isWholesale: boolean
+    wholesalePrice: number
+    wholesaleQty: number
+    productCode?: string | null
+    productStock: number
+    qty: number
+    unit?: string | null
     categoryId: string
     userId: string
     createdAt?: Date | string
@@ -11267,6 +11416,13 @@ export namespace Prisma {
     productPrice?: FloatFieldUpdateOperationsInput | number
     salePrice?: FloatFieldUpdateOperationsInput | number
     tags?: ProductUpdatetagsInput | string[]
+    isWholesale?: BoolFieldUpdateOperationsInput | boolean
+    wholesalePrice?: FloatFieldUpdateOperationsInput | number
+    wholesaleQty?: IntFieldUpdateOperationsInput | number
+    productCode?: NullableStringFieldUpdateOperationsInput | string | null
+    productStock?: IntFieldUpdateOperationsInput | number
+    qty?: IntFieldUpdateOperationsInput | number
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
@@ -11284,6 +11440,13 @@ export namespace Prisma {
     productPrice?: FloatFieldUpdateOperationsInput | number
     salePrice?: FloatFieldUpdateOperationsInput | number
     tags?: ProductUpdatetagsInput | string[]
+    isWholesale?: BoolFieldUpdateOperationsInput | boolean
+    wholesalePrice?: FloatFieldUpdateOperationsInput | number
+    wholesaleQty?: IntFieldUpdateOperationsInput | number
+    productCode?: NullableStringFieldUpdateOperationsInput | string | null
+    productStock?: IntFieldUpdateOperationsInput | number
+    qty?: IntFieldUpdateOperationsInput | number
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
     categoryId?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11302,6 +11465,13 @@ export namespace Prisma {
     productPrice: number
     salePrice: number
     tags?: ProductCreatetagsInput | string[]
+    isWholesale: boolean
+    wholesalePrice: number
+    wholesaleQty: number
+    productCode?: string | null
+    productStock: number
+    qty: number
+    unit?: string | null
     categoryId: string
     userId: string
     createdAt?: Date | string
@@ -11319,6 +11489,13 @@ export namespace Prisma {
     productPrice?: FloatFieldUpdateOperationsInput | number
     salePrice?: FloatFieldUpdateOperationsInput | number
     tags?: ProductUpdatetagsInput | string[]
+    isWholesale?: BoolFieldUpdateOperationsInput | boolean
+    wholesalePrice?: FloatFieldUpdateOperationsInput | number
+    wholesaleQty?: IntFieldUpdateOperationsInput | number
+    productCode?: NullableStringFieldUpdateOperationsInput | string | null
+    productStock?: IntFieldUpdateOperationsInput | number
+    qty?: IntFieldUpdateOperationsInput | number
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -11334,6 +11511,13 @@ export namespace Prisma {
     productPrice?: FloatFieldUpdateOperationsInput | number
     salePrice?: FloatFieldUpdateOperationsInput | number
     tags?: ProductUpdatetagsInput | string[]
+    isWholesale?: BoolFieldUpdateOperationsInput | boolean
+    wholesalePrice?: FloatFieldUpdateOperationsInput | number
+    wholesaleQty?: IntFieldUpdateOperationsInput | number
+    productCode?: NullableStringFieldUpdateOperationsInput | string | null
+    productStock?: IntFieldUpdateOperationsInput | number
+    qty?: IntFieldUpdateOperationsInput | number
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
     categoryId?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11969,6 +12153,17 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type CategoryScalarRelationFilter = {
     is?: CategoryWhereInput
     isNot?: CategoryWhereInput
@@ -11991,6 +12186,13 @@ export namespace Prisma {
     productPrice?: SortOrder
     salePrice?: SortOrder
     tags?: SortOrder
+    isWholesale?: SortOrder
+    wholesalePrice?: SortOrder
+    wholesaleQty?: SortOrder
+    productCode?: SortOrder
+    productStock?: SortOrder
+    qty?: SortOrder
+    unit?: SortOrder
     categoryId?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
@@ -12000,6 +12202,10 @@ export namespace Prisma {
   export type ProductAvgOrderByAggregateInput = {
     productPrice?: SortOrder
     salePrice?: SortOrder
+    wholesalePrice?: SortOrder
+    wholesaleQty?: SortOrder
+    productStock?: SortOrder
+    qty?: SortOrder
   }
 
   export type ProductMaxOrderByAggregateInput = {
@@ -12013,6 +12219,13 @@ export namespace Prisma {
     barcode?: SortOrder
     productPrice?: SortOrder
     salePrice?: SortOrder
+    isWholesale?: SortOrder
+    wholesalePrice?: SortOrder
+    wholesaleQty?: SortOrder
+    productCode?: SortOrder
+    productStock?: SortOrder
+    qty?: SortOrder
+    unit?: SortOrder
     categoryId?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
@@ -12030,6 +12243,13 @@ export namespace Prisma {
     barcode?: SortOrder
     productPrice?: SortOrder
     salePrice?: SortOrder
+    isWholesale?: SortOrder
+    wholesalePrice?: SortOrder
+    wholesaleQty?: SortOrder
+    productCode?: SortOrder
+    productStock?: SortOrder
+    qty?: SortOrder
+    unit?: SortOrder
     categoryId?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
@@ -12039,6 +12259,10 @@ export namespace Prisma {
   export type ProductSumOrderByAggregateInput = {
     productPrice?: SortOrder
     salePrice?: SortOrder
+    wholesalePrice?: SortOrder
+    wholesaleQty?: SortOrder
+    productStock?: SortOrder
+    qty?: SortOrder
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -12055,6 +12279,22 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type TrainingCountOrderByAggregateInput = {
@@ -12449,6 +12689,14 @@ export namespace Prisma {
     push?: string | string[]
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type CategoryUpdateOneRequiredWithoutProductsNestedInput = {
     create?: XOR<CategoryCreateWithoutProductsInput, CategoryUncheckedCreateWithoutProductsInput>
     connectOrCreate?: CategoryCreateOrConnectWithoutProductsInput
@@ -12759,6 +13007,22 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type NestedEnumUserRoleFilter<$PrismaModel = never> = {
     equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
     in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
@@ -12788,6 +13052,13 @@ export namespace Prisma {
     productPrice: number
     salePrice: number
     tags?: ProductCreatetagsInput | string[]
+    isWholesale: boolean
+    wholesalePrice: number
+    wholesaleQty: number
+    productCode?: string | null
+    productStock: number
+    qty: number
+    unit?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
     user: UserCreateNestedOneWithoutProductsInput
@@ -12805,6 +13076,13 @@ export namespace Prisma {
     productPrice: number
     salePrice: number
     tags?: ProductCreatetagsInput | string[]
+    isWholesale: boolean
+    wholesalePrice: number
+    wholesaleQty: number
+    productCode?: string | null
+    productStock: number
+    qty: number
+    unit?: string | null
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string | null
@@ -12911,6 +13189,13 @@ export namespace Prisma {
     productPrice?: FloatFilter<"Product"> | number
     salePrice?: FloatFilter<"Product"> | number
     tags?: StringNullableListFilter<"Product">
+    isWholesale?: BoolFilter<"Product"> | boolean
+    wholesalePrice?: FloatFilter<"Product"> | number
+    wholesaleQty?: IntFilter<"Product"> | number
+    productCode?: StringNullableFilter<"Product"> | string | null
+    productStock?: IntFilter<"Product"> | number
+    qty?: IntFilter<"Product"> | number
+    unit?: StringNullableFilter<"Product"> | string | null
     categoryId?: StringFilter<"Product"> | string
     userId?: StringFilter<"Product"> | string
     createdAt?: DateTimeFilter<"Product"> | Date | string
@@ -13315,6 +13600,13 @@ export namespace Prisma {
     productPrice: number
     salePrice: number
     tags?: ProductCreatetagsInput | string[]
+    isWholesale: boolean
+    wholesalePrice: number
+    wholesaleQty: number
+    productCode?: string | null
+    productStock: number
+    qty: number
+    unit?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
     category: CategoryCreateNestedOneWithoutProductsInput
@@ -13332,6 +13624,13 @@ export namespace Prisma {
     productPrice: number
     salePrice: number
     tags?: ProductCreatetagsInput | string[]
+    isWholesale: boolean
+    wholesalePrice: number
+    wholesaleQty: number
+    productCode?: string | null
+    productStock: number
+    qty: number
+    unit?: string | null
     categoryId: string
     createdAt?: Date | string
     updatedAt?: Date | string | null
@@ -13468,6 +13767,13 @@ export namespace Prisma {
     productPrice: number
     salePrice: number
     tags?: ProductCreatetagsInput | string[]
+    isWholesale: boolean
+    wholesalePrice: number
+    wholesaleQty: number
+    productCode?: string | null
+    productStock: number
+    qty: number
+    unit?: string | null
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string | null
@@ -13496,6 +13802,13 @@ export namespace Prisma {
     productPrice?: FloatFieldUpdateOperationsInput | number
     salePrice?: FloatFieldUpdateOperationsInput | number
     tags?: ProductUpdatetagsInput | string[]
+    isWholesale?: BoolFieldUpdateOperationsInput | boolean
+    wholesalePrice?: FloatFieldUpdateOperationsInput | number
+    wholesaleQty?: IntFieldUpdateOperationsInput | number
+    productCode?: NullableStringFieldUpdateOperationsInput | string | null
+    productStock?: IntFieldUpdateOperationsInput | number
+    qty?: IntFieldUpdateOperationsInput | number
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user?: UserUpdateOneRequiredWithoutProductsNestedInput
@@ -13512,6 +13825,13 @@ export namespace Prisma {
     productPrice?: FloatFieldUpdateOperationsInput | number
     salePrice?: FloatFieldUpdateOperationsInput | number
     tags?: ProductUpdatetagsInput | string[]
+    isWholesale?: BoolFieldUpdateOperationsInput | boolean
+    wholesalePrice?: FloatFieldUpdateOperationsInput | number
+    wholesaleQty?: IntFieldUpdateOperationsInput | number
+    productCode?: NullableStringFieldUpdateOperationsInput | string | null
+    productStock?: IntFieldUpdateOperationsInput | number
+    qty?: IntFieldUpdateOperationsInput | number
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -13528,6 +13848,13 @@ export namespace Prisma {
     productPrice?: FloatFieldUpdateOperationsInput | number
     salePrice?: FloatFieldUpdateOperationsInput | number
     tags?: ProductUpdatetagsInput | string[]
+    isWholesale?: BoolFieldUpdateOperationsInput | boolean
+    wholesalePrice?: FloatFieldUpdateOperationsInput | number
+    wholesaleQty?: IntFieldUpdateOperationsInput | number
+    productCode?: NullableStringFieldUpdateOperationsInput | string | null
+    productStock?: IntFieldUpdateOperationsInput | number
+    qty?: IntFieldUpdateOperationsInput | number
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -13646,6 +13973,13 @@ export namespace Prisma {
     productPrice: number
     salePrice: number
     tags?: ProductCreatetagsInput | string[]
+    isWholesale: boolean
+    wholesalePrice: number
+    wholesaleQty: number
+    productCode?: string | null
+    productStock: number
+    qty: number
+    unit?: string | null
     categoryId: string
     createdAt?: Date | string
     updatedAt?: Date | string | null
@@ -13662,6 +13996,13 @@ export namespace Prisma {
     productPrice?: FloatFieldUpdateOperationsInput | number
     salePrice?: FloatFieldUpdateOperationsInput | number
     tags?: ProductUpdatetagsInput | string[]
+    isWholesale?: BoolFieldUpdateOperationsInput | boolean
+    wholesalePrice?: FloatFieldUpdateOperationsInput | number
+    wholesaleQty?: IntFieldUpdateOperationsInput | number
+    productCode?: NullableStringFieldUpdateOperationsInput | string | null
+    productStock?: IntFieldUpdateOperationsInput | number
+    qty?: IntFieldUpdateOperationsInput | number
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
@@ -13678,6 +14019,13 @@ export namespace Prisma {
     productPrice?: FloatFieldUpdateOperationsInput | number
     salePrice?: FloatFieldUpdateOperationsInput | number
     tags?: ProductUpdatetagsInput | string[]
+    isWholesale?: BoolFieldUpdateOperationsInput | boolean
+    wholesalePrice?: FloatFieldUpdateOperationsInput | number
+    wholesaleQty?: IntFieldUpdateOperationsInput | number
+    productCode?: NullableStringFieldUpdateOperationsInput | string | null
+    productStock?: IntFieldUpdateOperationsInput | number
+    qty?: IntFieldUpdateOperationsInput | number
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
     categoryId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -13694,6 +14042,13 @@ export namespace Prisma {
     productPrice?: FloatFieldUpdateOperationsInput | number
     salePrice?: FloatFieldUpdateOperationsInput | number
     tags?: ProductUpdatetagsInput | string[]
+    isWholesale?: BoolFieldUpdateOperationsInput | boolean
+    wholesalePrice?: FloatFieldUpdateOperationsInput | number
+    wholesaleQty?: IntFieldUpdateOperationsInput | number
+    productCode?: NullableStringFieldUpdateOperationsInput | string | null
+    productStock?: IntFieldUpdateOperationsInput | number
+    qty?: IntFieldUpdateOperationsInput | number
+    unit?: NullableStringFieldUpdateOperationsInput | string | null
     categoryId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

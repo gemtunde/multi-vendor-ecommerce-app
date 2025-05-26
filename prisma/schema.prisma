@@ -83,6 +83,13 @@ model Product {
   productPrice Float 
   salePrice Float 
   tags String[]
+  isWholesale Boolean
+  wholesalePrice Float
+  wholesaleQty  Int
+  productCode String?
+  productStock Int
+  qty Int
+  unit String?
   
   category   Category  @relation(fields: [categoryId], references: [id])
   categoryId String @db.ObjectId

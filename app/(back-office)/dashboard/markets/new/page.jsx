@@ -1,98 +1,14 @@
-"use client";
-import React, { useState } from "react";
-import FormHeader from "@/components/backoffice/FormHeader";
-import TextInput from "@/components/FormInputs/TextInput";
-//import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
-import SubmitButton from "@/components/FormInputs/SubmitButton";
-import TextareaInput from "@/components/FormInputs/TextAreaInput";
-import { generateSlug } from "@/lib/generateSlug";
-import ImageUpload from "@/components/FormInputs/ImageUpload";
-import { makePostRequest } from "@/lib/apiRequest";
-import SelectInput from "@/components/FormInputs/SelectInput";
+import NewMarketForm from "@/components/backoffice/NewMarketForm";
+import { getData } from "@/lib/getData";
+import React from "react";
 
-const NewMarket = () => {
-  //const router = useRouter();
-  const [logoUrl, setLogoUrl] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const categories = [
-    {
-      id: 1,
-      title: "Category 1",
-    },
-    {
-      id: 2,
-      title: "Category 2",
-    },
-    {
-      id: 3,
-      title: "Category 3",
-    },
-  ];
-  console.log("IMAGE URL========", logoUrl);
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm({
-    //defaultValues: initialData,
+export default async function NewMarket() {
+  const categoriesData = await getData("categories");
+  const categories = categoriesData.map((category) => {
+    return {
+      id: category.id,
+      title: category.title,
+    };
   });
-  const onSubmit = async (data) => {
-    const slug = generateSlug(data.title);
-    data.slug = slug;
-    data.logoUrl = logoUrl;
-    console.log("DATA===>", data);
-
-    makePostRequest(setIsLoading, "api/markets", data, "Markets", reset);
-    setImageUrl("");
-  };
-
-  return (
-    <div>
-      {/* header */}
-      <FormHeader title="New Market" />
-      {/* form */}
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-slate-600 dark:border-gray-700 mx-auto my-3"
-      >
-        <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-          <TextInput
-            label="Market Title"
-            name="title"
-            register={register}
-            errors={errors}
-          />
-          <SelectInput
-            label="Select Category"
-            name="categoryIds"
-            register={register}
-            errors={errors}
-            options={categories}
-            multiple={true}
-          />
-          <TextareaInput
-            label="Market Description"
-            name="description"
-            register={register}
-            errors={errors}
-          />
-
-          <ImageUpload
-            imageUploader="marketImageUploader"
-            value={logoUrl}
-            onChange={(url) => setLogoUrl(url)}
-          />
-        </div>
-        <SubmitButton
-          isLoading={isLoading}
-          buttonTitle="Create Market"
-          loadingButtonTitle="Creating market, please wait..."
-        />
-      </form>
-    </div>
-  );
-};
-
-export default NewMarket;
+  return <NewMarketForm categories={categories} />;
+}

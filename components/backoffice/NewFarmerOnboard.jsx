@@ -37,7 +37,7 @@ const NewFarmerOnboardForm = ({ user }) => {
   const isActive = watch("isActive");
 
   const onSubmit = async (data) => {
-    const code = generateUserCode(data.name);
+    const code = generateUserCode("GEM", data.name);
     data.code = code;
     data.userId = user?.id;
     data.products = products;

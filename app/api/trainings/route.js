@@ -1,33 +1,81 @@
+import db from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
     const {
       title,
-      categoryIds,
+      categoryId,
       description,
       content,
       isActive,
       slug,
       imageUrl,
     } = await request.json();
-    const newTraining = {
-      title,
-      categoryIds,
-      description,
-      content,
-      isActive,
-      slug,
-      imageUrl,
-    };
+    const existingMarket = await db.market.findUnique({
+      where: { slug },
+    });
+    if (existingMarket) {
+      return NextResponse.json(
+        {
+          data: null,
+          message: "Market already exists",
+        },
+        { status: 409 }
+      );
+    }
+    const newTraining = await db.training.create({
+      data: {
+        title,
+        categoryId,
+        description,
+        content,
+        isActive,
+        slug,
+        imageUrl,
+      },
+    });
+    // const newTraining = {
+    //   title,
+    //   categoryIds,
+    //   description,
+    //   content,
+    //   isActive,
+    //   slug,
+    //   imageUrl,
+    // };
 
-    console.log("API CATEGoRIES--===----<<", newTraining);
-    return NextResponse.json(newTraining);
+    console.log("API Training--===----<<", newTraining);
+    return NextResponse.json({
+      data: newTraining,
+      message: "Market created successfully",
+    });
   } catch (error) {
     console.log(error);
     return NextResponse.json(
       {
         message: "Failed to create new training",
+        error,
+      },
+      { status: 500 }
+    );
+  }
+}
+
+export async function GET(request) {
+  try {
+    const trainings = await db.training.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    console.log("trainings", trainings);
+    return NextResponse.json(trainings);
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      {
+        message: "Failed to fetch trainings",
         error,
       },
       { status: 500 }
