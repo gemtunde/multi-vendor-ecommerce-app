@@ -4,16 +4,20 @@ import CommunityTrainingList from "@/components/frontend/CommunityTrainingList";
 import Footer from "@/components/frontend/Footer";
 import Hero from "@/components/frontend/Hero";
 import MarketList from "@/components/frontend/MarketList";
+import { getData } from "@/lib/getData";
 
-export default function Home() {
+export default async function Home() {
+  const categories = await getData("categories");
   return (
     <div className="min-h-screen">
       <Hero />
       <MarketList />
-      <CategoryList />
-      <CategoryList />
+      {categories.map((category) => {
+        return <CategoryList category={category} key={category.id} />;
+      })}
+      {/* <CategoryList /> */}
       <CommunityTrainingList />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

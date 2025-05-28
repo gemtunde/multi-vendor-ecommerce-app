@@ -55,7 +55,7 @@ const NewCommunityTrainingForm = ({ categories }) => {
   });
   const router = useRouter();
   function redirect() {
-    router.push("/dashboard/trainings");
+    router.push("/dashboard/community");
   }
   const isActive = watch("isActive");
 

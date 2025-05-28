@@ -1,8 +1,10 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { Carousel } from "nuka-carousel";
+import Link from "next/link";
 
-export default function HeroCarousel() {
+export default function HeroCarousel({ banners }) {
   return (
     <Carousel
       autoplay
@@ -38,11 +40,18 @@ export default function HeroCarousel() {
         );
       }}
     >
-      <img src="/banners/banner1.gif" />
-      <img src="/banners/banner2.jpg" />
-      <img src="/banners/banner3.gif" />
-      <img src="/banners/banner4.png" />
-      <img src="/banners/banner5.gif" />
+      {banners.map((banner) => {
+        return (
+          <img
+            width={712}
+            height={284}
+            src={banner.imageUrl}
+            // className="w-full"
+            alt={banner.title}
+          />
+        );
+      })}
+      {/* <img src="/banners/banner1.gif" /> */}
     </Carousel>
   );
 }

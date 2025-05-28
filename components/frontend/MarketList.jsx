@@ -1,7 +1,9 @@
 import React from "react";
 import MarketCarousel from "./MarketCarousel";
+import { getData } from "@/lib/getData";
 
-export default function MarketList() {
+export default async function MarketList() {
+  const markets = await getData("markets");
   return (
     <div className="text-white py-6">
       {/* Market list */}
@@ -10,7 +12,7 @@ export default function MarketList() {
           Shop By Market
         </h2>
         <div className="p-4">
-          <MarketCarousel />
+          <MarketCarousel markets={markets} />
         </div>
       </div>
     </div>

@@ -40,6 +40,9 @@ export async function GET(request) {
       orderBy: {
         createdAt: "desc",
       },
+      include: {
+        products: true,
+      },
     });
     console.log("Categories", categories);
     return NextResponse.json(categories);

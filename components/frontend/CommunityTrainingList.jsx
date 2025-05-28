@@ -1,7 +1,9 @@
 import React from "react";
 import CommunityTrainingCarousel from "./CommunityTrainingCarousel";
+import { getData } from "@/lib/getData";
 
-export default function CommunityTrainingList() {
+export default async function CommunityTrainingList() {
+  const trainings = await getData("trainings");
   return (
     <div className="text-white py-6">
       {/* Market list */}
@@ -15,7 +17,7 @@ export default function CommunityTrainingList() {
           </h2>
         </div>
         <div className="p-4">
-          <CommunityTrainingCarousel />
+          <CommunityTrainingCarousel trainings={trainings} />
         </div>
       </div>
     </div>
