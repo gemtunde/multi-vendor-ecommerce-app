@@ -42,21 +42,36 @@ export async function POST(request) {
         slug,
         imageUrl,
         barcode,
-        categoryId,
         description,
-        userId: farmerId,
         productPrice: parseFloat(productPrice),
         salePrice: parseFloat(salePrice),
         sku,
         tags,
         isWholesale,
         isActive,
-        wholesalePrice: parseFloat(wholesalePrice),
-        wholesaleQty: parseInt(wholesaleQty),
+        //  wholesalePrice: parseFloat(wholesalePrice),
+        // wholesaleQty: parseInt(wholesaleQty),
         productCode,
-        unit,
+        // unit,
         productStock: parseInt(productStock),
         qty: parseInt(qty),
+        ...(unit ? { unit } : {}),
+        ...(wholesalePrice !== undefined &&
+        wholesalePrice !== "" &&
+        !isNaN(wholesalePrice)
+          ? { wholesalePrice: parseFloat(wholesalePrice) }
+          : {}),
+        ...(wholesaleQty !== undefined &&
+        wholesaleQty !== "" &&
+        !isNaN(wholesaleQty)
+          ? { wholesaleQty: parseInt(wholesaleQty) }
+          : {}),
+        category: {
+          connect: { id: categoryId },
+        },
+        user: {
+          connect: { id: farmerId },
+        },
       },
     });
 

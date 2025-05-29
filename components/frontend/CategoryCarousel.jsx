@@ -102,9 +102,9 @@ export default function CategoryCarousel({ products }) {
     >
       {products.map((product) => {
         return (
-          <div className="mx-2 px-4" key={product.id}>
+          <div className="mx-2 rounded-lg dark:bg-slate-600" key={product.id}>
             <Link
-              href=""
+              href={`/products/${product.slug}`}
               // className="rounded-lg "
               // className="flex items-center gap-3 p-2 dark:text-slate-50 hover:bg-slate-300 dark:hover:bg-slate-600 duration-500 transition-all "
             >
@@ -120,9 +120,9 @@ export default function CategoryCarousel({ products }) {
                 {product.title}
               </h2>
             </Link>
-            <div className="flex justify-between gap-2">
-              <p>NGN{product.salePrice}</p>
-              <button className="flex items-center space-x-2">
+            <div className="flex items-center justify-between gap-2 p-4">
+              <p className="font-semibold">NGN{product.salePrice}</p>
+              <button className="flex items-center space-x-2 bg-lime-600 px-4 py-2 rounded-md text-white">
                 <BaggageClaim />
                 <span>Add</span>
               </button>

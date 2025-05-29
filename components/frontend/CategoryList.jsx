@@ -14,7 +14,7 @@ export default function CategoryList({ category }) {
             See All
           </h2>
         </div>
-        <div className="p-4">
+        <div className="p-4 bg-white dark:bg-slate-800">
           <CategoryCarousel products={category.products} />
         </div>
       </div>
