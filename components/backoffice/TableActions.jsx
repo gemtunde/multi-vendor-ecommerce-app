@@ -18,7 +18,7 @@ const TableActions = () => {
           <span>Export</span>
         </Button>
         {/* Search */}
-        <div className="flex-grow">
+        {/* <div className="flex-grow">
           <label htmlFor="table-search" className="sr-only">
             Search
           </label>
@@ -33,7 +33,7 @@ const TableActions = () => {
               placeholder="Search for items"
             />
           </div>
-        </div>
+        </div> */}
         {/* Delete */}
         <Button variant="destructive">
           <Trash2 />
