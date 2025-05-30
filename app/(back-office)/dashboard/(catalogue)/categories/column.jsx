@@ -1,5 +1,6 @@
 "use client";
 
+import DeleteBtn from "@/components/Actions/DeleteBtn";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -90,7 +91,12 @@ export const categoryColumns = [
               Copy status
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Delete</DropdownMenuItem>
+            <DropdownMenuItem>
+              <DeleteBtn
+                title={row.original.title}
+                endpoint={`categories/${row.original.id}`}
+              />
+            </DropdownMenuItem>
             <DropdownMenuItem>Edit</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

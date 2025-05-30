@@ -20,7 +20,11 @@ export default async function Farmers() {
       <TableActions />
       {/* table */}
       <div className="py-8">
-        <DataTable data={farmers} columns={farmersColumns} />
+        <DataTable
+          data={farmers}
+          columns={farmersColumns}
+          filterKeys={["name"]}
+        />
       </div>
     </div>
   );

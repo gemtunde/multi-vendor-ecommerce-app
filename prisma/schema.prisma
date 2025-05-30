@@ -84,20 +84,17 @@ model Product {
   salePrice Float 
   tags String[]
   isWholesale Boolean
-  
-  ...(unit && { unit }) 
-  ...(wholesalePrice && { wholesalePrice: parseFloat(wholesalePrice) })
-  ...(wholesaleQty && { wholesaleQty: parseInt(wholesaleQty) }) 
-
+  unit String?
+  wholesalePrice Float?
+  wholesaleQty Int?
   productCode String?
-  productStock Int
+  productStock Int?
   qty Int?
   
-  category   Category  @relation(fields: [categoryId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   categoryId String @db.ObjectId
    
-
-   user   User  @relation(fields: [userId], references: [id])
+   user   User  @relation(fields: [userId], references: [id],onDelete: Cascade, onUpdate: Cascade)
 userId String @db.ObjectId
 
   createdAt  DateTime  @default(now())
@@ -114,7 +111,7 @@ model Training {
   imageUrl String?
   isActive Boolean
 
-  category   Category  @relation(fields: [categoryId], references: [id])
+  category   Category?  @relation(fields: [categoryId], references: [id])
   categoryId String @db.ObjectId
 
   createdAt  DateTime  @default(now())
@@ -144,7 +141,7 @@ model FarmerProfile{
   mainCrop String
   landSize Float
 
-  user   User  @relation(fields: [userId], references: [id])
+  user   User  @relation(fields: [userId], references: [id],onDelete: Cascade, onUpdate: Cascade)
   userId String @db.ObjectId @unique
   
   createdAt  DateTime  @default(now())

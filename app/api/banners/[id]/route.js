@@ -3,21 +3,18 @@ import { NextResponse } from "next/server";
 
 export async function GET(request, { params: { id } }) {
   try {
-    const category = await db.category.findUnique({
+    const banner = await db.banner.findUnique({
       where: {
         id,
       },
-      include: {
-        products: true,
-      },
     });
-    console.log("Category", category);
-    return NextResponse.json(category);
+    console.log("Banner", banner);
+    return NextResponse.json(banner);
   } catch (error) {
     console.log(error);
     return NextResponse.json(
       {
-        message: "Failed to fetch user",
+        message: "Failed to fetch banner",
         error,
       },
       { status: 500 }
@@ -26,22 +23,22 @@ export async function GET(request, { params: { id } }) {
 }
 export async function DELETE(request, { params: { id } }) {
   try {
-    const isCategoryExist = await db.category.findUnique({
+    const isBannerExist = await db.banner.findUnique({
       where: {
         id,
       },
     });
-    if (!isCategoryExist) {
+    if (!isBannerExist) {
       return NextResponse.json(
         {
           data: null,
-          message: " Category not found",
+          message: " Banner not found",
           error,
         },
         { status: 404 }
       );
     }
-    const deleteCategory = await db.category.delete({
+    const deleteBanner = await db.banner.delete({
       where: {
         id,
       },
@@ -49,7 +46,7 @@ export async function DELETE(request, { params: { id } }) {
 
     return NextResponse.json(
       {
-        data: deleteCategory,
+        data: deleteBanner,
         message: "Successfully deleted",
       },
       { status: 200 }
@@ -58,7 +55,7 @@ export async function DELETE(request, { params: { id } }) {
     console.log(error);
     return NextResponse.json(
       {
-        message: "Failed to delete category",
+        message: "Failed to delete Banner",
         error,
       },
       { status: 500 }
