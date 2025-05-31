@@ -3,18 +3,18 @@ import { NextResponse } from "next/server";
 
 export async function GET(request, { params: { id } }) {
   try {
-    const farmerProfile = await db.farmerProfile.findUnique({
+    const coupon = await db.coupon.findUnique({
       where: {
         id,
       },
     });
-    console.log("farmer Profile", farmerProfile);
-    return NextResponse.json(farmerProfile);
+    console.log("coupon", coupon);
+    return NextResponse.json(coupon);
   } catch (error) {
     console.log(error);
     return NextResponse.json(
       {
-        message: "Failed to fetch farmer Profile",
+        message: "Failed to fetch coupon",
         error,
       },
       { status: 500 }
@@ -23,22 +23,22 @@ export async function GET(request, { params: { id } }) {
 }
 export async function DELETE(request, { params: { id } }) {
   try {
-    const isFarmerProfileExist = await db.farmerProfile.findUnique({
+    const isCouponExist = await db.coupon.findUnique({
       where: {
         id,
       },
     });
-    if (!isFarmerProfileExist) {
+    if (!isCouponExist) {
       return NextResponse.json(
         {
           data: null,
-          message: " farmer Profile not found",
+          message: " coupon not found",
           error,
         },
         { status: 404 }
       );
     }
-    const deleteFarmerProfile = await db.farmerProfile.delete({
+    const deleteCoupon = await db.coupon.delete({
       where: {
         id,
       },
@@ -46,7 +46,7 @@ export async function DELETE(request, { params: { id } }) {
 
     return NextResponse.json(
       {
-        data: deleteFarmerProfile,
+        data: deleteCoupon,
         message: "Successfully deleted",
       },
       { status: 200 }
@@ -55,7 +55,7 @@ export async function DELETE(request, { params: { id } }) {
     console.log(error);
     return NextResponse.json(
       {
-        message: "Failed to delete farmer profile",
+        message: "Failed to delete Coupon",
         error,
       },
       { status: 500 }

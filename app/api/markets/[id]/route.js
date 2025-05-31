@@ -3,18 +3,18 @@ import { NextResponse } from "next/server";
 
 export async function GET(request, { params: { id } }) {
   try {
-    const farmerProfile = await db.farmerProfile.findUnique({
+    const market = await db.market.findUnique({
       where: {
         id,
       },
     });
-    console.log("farmer Profile", farmerProfile);
-    return NextResponse.json(farmerProfile);
+    console.log("market", market);
+    return NextResponse.json(market);
   } catch (error) {
     console.log(error);
     return NextResponse.json(
       {
-        message: "Failed to fetch farmer Profile",
+        message: "Failed to fetch market",
         error,
       },
       { status: 500 }
@@ -23,22 +23,22 @@ export async function GET(request, { params: { id } }) {
 }
 export async function DELETE(request, { params: { id } }) {
   try {
-    const isFarmerProfileExist = await db.farmerProfile.findUnique({
+    const isMarketExist = await db.market.findUnique({
       where: {
         id,
       },
     });
-    if (!isFarmerProfileExist) {
+    if (!isMarketExist) {
       return NextResponse.json(
         {
           data: null,
-          message: " farmer Profile not found",
+          message: " market not found",
           error,
         },
         { status: 404 }
       );
     }
-    const deleteFarmerProfile = await db.farmerProfile.delete({
+    const deleteMarket = await db.market.delete({
       where: {
         id,
       },
@@ -46,7 +46,7 @@ export async function DELETE(request, { params: { id } }) {
 
     return NextResponse.json(
       {
-        data: deleteFarmerProfile,
+        data: deleteMarket,
         message: "Successfully deleted",
       },
       { status: 200 }
@@ -55,7 +55,7 @@ export async function DELETE(request, { params: { id } }) {
     console.log(error);
     return NextResponse.json(
       {
-        message: "Failed to delete farmer profile",
+        message: "Failed to delete Market",
         error,
       },
       { status: 500 }

@@ -1,5 +1,6 @@
 "use client";
 
+import DeleteBtn from "@/components/Actions/DeleteBtn";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -34,22 +35,6 @@ export const couponsColumns = [
       return <p className="ml-4">{title}</p>;
     },
   },
-  // {
-  //   accessorKey: "imageUrl",
-  //   header: "Category Image",
-  //   cell: ({ row }) => {
-  //     const imageUrl = row.getValue("imageUrl");
-  //     return (
-  //       <Image
-  //         src={imageUrl}
-  //         alt={row.title}
-  //         width={100}
-  //         height={100}
-  //         className="rounded-full w-14 h-14"
-  //       />
-  //     );
-  //   },
-  // },
   {
     accessorKey: "couponCode",
     header: "Coupon Code",
@@ -98,7 +83,12 @@ export const couponsColumns = [
               Copy status
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Delete</DropdownMenuItem>
+            <DropdownMenuItem>
+              <DeleteBtn
+                title={row.original.title}
+                endpoint={`coupons/${row.original.id}`}
+              />
+            </DropdownMenuItem>
             <DropdownMenuItem>Edit</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

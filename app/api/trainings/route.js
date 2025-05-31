@@ -12,14 +12,14 @@ export async function POST(request) {
       slug,
       imageUrl,
     } = await request.json();
-    const existingMarket = await db.market.findUnique({
+    const existingTraining = await db.training.findUnique({
       where: { slug },
     });
-    if (existingMarket) {
+    if (existingTraining) {
       return NextResponse.json(
         {
           data: null,
-          message: "Market already exists",
+          message: "Training already exists",
         },
         { status: 409 }
       );
