@@ -7,7 +7,9 @@ import MarketList from "@/components/frontend/MarketList";
 import { getData } from "@/lib/getData";
 
 export default async function Home() {
-  const categories = await getData("categories");
+  const categoriesData = await getData("categories");
+  const categories = categoriesData.filter((item) => item.products.length >= 1);
+
   return (
     <div className="min-h-screen">
       <Hero />

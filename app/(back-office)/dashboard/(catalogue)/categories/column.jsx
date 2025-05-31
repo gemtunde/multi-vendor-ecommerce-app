@@ -1,6 +1,7 @@
 "use client";
 
 import DeleteBtn from "@/components/Actions/DeleteBtn";
+import EditBtn from "@/components/Actions/EditBtn";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -75,6 +76,7 @@ export const categoryColumns = [
     id: "actions",
     cell: ({ row }) => {
       const isActive = row.isActive;
+
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -97,7 +99,12 @@ export const categoryColumns = [
                 endpoint={`categories/${row.original.id}`}
               />
             </DropdownMenuItem>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
+            <DropdownMenuItem>
+              <EditBtn
+                title={row.original.title}
+                endpoint={`categories/update/${row.original.id}`}
+              />
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

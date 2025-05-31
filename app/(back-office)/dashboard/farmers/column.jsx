@@ -36,8 +36,8 @@ export const farmersColumns = [
     },
   },
   {
-    accessorKey: "code",
-    header: "Code",
+    accessorKey: "role",
+    header: "Role",
     // header: ({ column }) => {
     //   return (
     //     <Button
@@ -50,34 +50,34 @@ export const farmersColumns = [
     //   );
     // },
     cell: ({ row }) => {
-      const code = row.getValue("code");
-      return <p className="ml-4">{code}</p>;
+      const role = row.getValue("role");
+      return <p className="">{role}</p>;
     },
   },
-  {
-    accessorKey: "profileImageUrl",
-    header: "Profile Image",
-    cell: ({ row }) => {
-      const profileImageUrl = row.getValue("profileImageUrl");
-      return (
-        <Image
-          src={profileImageUrl ?? "/profile.jpeg"}
-          alt={row.name}
-          width={100}
-          height={100}
-          className="rounded-full w-14 h-14"
-        />
-      );
-    },
-  },
-  {
-    accessorKey: "contactPerson",
-    header: "Contact Person",
-    cell: ({ row }) => {
-      const contactPerson = row.getValue("contactPerson");
-      return <div className="line-clamp-1">{contactPerson}</div>;
-    },
-  },
+  // {
+  //   accessorKey: "profileImageUrl",
+  //   header: "Profile Image",
+  //   cell: ({ row }) => {
+  //     const profileImageUrl = row.getValue("profileImageUrl");
+  //     return (
+  //       <Image
+  //         src={profileImageUrl ?? "/profile.jpeg"}
+  //         alt={row.name}
+  //         width={100}
+  //         height={100}
+  //         className="rounded-full w-14 h-14"
+  //       />
+  //     );
+  //   },
+  // },
+  // {
+  //   accessorKey: "contactPerson",
+  //   header: "Contact Person",
+  //   cell: ({ row }) => {
+  //     const contactPerson = row.getValue("contactPerson");
+  //     return <div className="line-clamp-1">{contactPerson}</div>;
+  //   },
+  // },
   {
     accessorKey: "email",
     header: "Email",
@@ -86,10 +86,10 @@ export const farmersColumns = [
       return <div className="line-clamp-1">{email}</div>;
     },
   },
-  {
-    accessorKey: "isActive",
-    header: "IsActive",
-  },
+  // {
+  //   accessorKey: "isActive",
+  //   header: "IsActive",
+  // },
   {
     accessorKey: "createdAt",
     header: "Date Created",

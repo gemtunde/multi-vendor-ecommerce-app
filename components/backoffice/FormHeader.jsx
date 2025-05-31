@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Heading from "@/components/backoffice/Heading";
 import { Button } from "@/components/ui/button";

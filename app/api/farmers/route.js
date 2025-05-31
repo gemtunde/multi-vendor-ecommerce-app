@@ -39,21 +39,49 @@ export async function POST(request) {
 }
 export async function GET(request) {
   try {
-    const profiles = await db.farmerProfile.findMany({
+    const farmers = await db.user.findMany({
       orderBy: {
         createdAt: "desc",
       },
+      where: {
+        role: "FARMER",
+      },
+      include: {
+        farmerProfile: true,
+      },
     });
-    console.log("Categories", profiles);
-    return NextResponse.json(profiles);
+    console.log("Farmers", farmers);
+    return NextResponse.json(farmers);
   } catch (error) {
     console.log(error);
     return NextResponse.json(
       {
-        message: "Failed to fetch profiles",
+        message: "Failed to fetch farmers",
         error,
       },
       { status: 500 }
     );
   }
 }
+
+//FALLBACK 2 THIS
+// export async function GET(request) {
+//   try {
+//     const profiles = await db.farmerProfile.findMany({
+//       orderBy: {
+//         createdAt: "desc",
+//       },
+//     });
+//     console.log("Categories", profiles);
+//     return NextResponse.json(profiles);
+//   } catch (error) {
+//     console.log(error);
+//     return NextResponse.json(
+//       {
+//         message: "Failed to fetch profiles",
+//         error,
+//       },
+//       { status: 500 }
+//     );
+//   }
+// }
