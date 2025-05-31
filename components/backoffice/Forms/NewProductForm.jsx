@@ -8,7 +8,7 @@ import SubmitButton from "@/components/FormInputs/SubmitButton";
 import TextareaInput from "@/components/FormInputs/TextAreaInput";
 import { generateSlug } from "@/lib/generateSlug";
 import ImageUpload from "@/components/FormInputs/ImageUpload";
-import { makePostRequest } from "@/lib/apiRequest";
+import { makePostRequest, makePutRequest } from "@/lib/apiRequest";
 import SelectInput from "@/components/FormInputs/SelectInput";
 import { Plus, X } from "lucide-react";
 import ArrayItemInput from "@/components/FormInputs/ArrayItemInput";
@@ -16,13 +16,17 @@ import ToggleInput from "@/components/FormInputs/ToggleInput";
 import { generateUserCode } from "@/lib/generateCouponCode";
 import { useRouter } from "next/navigation";
 
-const NewProductForm = ({ categories, farmers }) => {
+const NewProductForm = ({ categories, farmers, updateProduct = {} }) => {
   //const router = useRouter();
-  const [imageUrl, setImageUrl] = useState("");
+  const id = updateProduct?.id ?? "";
+  const initialImageUrl = updateProduct?.imageUrl ?? "";
+  const initialTags = updateProduct?.tags ?? [];
+
+  const [imageUrl, setImageUrl] = useState(initialImageUrl);
   const [isLoading, setIsLoading] = useState(false);
 
   //tags
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState(initialTags);
 
   //end tags
   const measurement = [
@@ -39,34 +43,7 @@ const NewProductForm = ({ categories, farmers }) => {
       title: "liters",
     },
   ];
-  //   const categories = [
-  //     {
-  //       id: 1,
-  //       title: "Category 1",
-  //     },
-  //     {
-  //       id: 2,
-  //       title: "Category 2",
-  //     },
-  //     {
-  //       id: 3,
-  //       title: "Category 3",
-  //     },
-  //   ];
-  //   const farmers = [
-  //     {
-  //       id: 1,
-  //       title: "Farmer 1",
-  //     },
-  //     {
-  //       id: 2,
-  //       title: "Farmer 2",
-  //     },
-  //     {
-  //       id: 3,
-  //       title: "Farmer 3",
-  //     },
-  //   ];
+
   console.log("IMAGE URL========", imageUrl);
   const {
     register,
@@ -78,6 +55,8 @@ const NewProductForm = ({ categories, farmers }) => {
     defaultValues: {
       isActive: true,
       isWholesale: false,
+      farmerId: updateProduct?.userId,
+      ...updateProduct,
     },
     mode: "onChange",
   });
@@ -99,22 +78,32 @@ const NewProductForm = ({ categories, farmers }) => {
     data.imageUrl = imageUrl;
     console.log("DATA===>", data);
 
-    makePostRequest(
-      setIsLoading,
-      "api/products",
-      data,
-      "Products",
-      reset,
-      redirect
-    );
-    setImageUrl("");
-    setTags([]);
+    if (id) {
+      makePutRequest(
+        setIsLoading,
+        `api/products/${id}`,
+        data,
+        "Products",
+        redirect
+      );
+    } else {
+      makePostRequest(
+        setIsLoading,
+        "api/products",
+        data,
+        "Products",
+        reset,
+        redirect
+      );
+      setImageUrl("");
+      setTags([]);
+    }
   };
 
   return (
     <div>
       {/* header */}
-      <FormHeader title="New Product" />
+
       {/* form */}
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -251,8 +240,8 @@ const NewProductForm = ({ categories, farmers }) => {
         <SubmitButton
           disabled={!isValid}
           isLoading={isLoading}
-          buttonTitle="Create Product"
-          loadingButtonTitle="Creating product, please wait..."
+          buttonTitle={` ${id ? "Update" : "Create"} Product`}
+          loadingButtonTitle={` ${id ? "Updating" : "Creating"} product, please wait...`}
         />
       </form>
     </div>

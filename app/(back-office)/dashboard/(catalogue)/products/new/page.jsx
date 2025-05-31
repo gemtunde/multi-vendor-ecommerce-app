@@ -1,4 +1,5 @@
-import NewProductForm from "@/components/backoffice/NewProductForm";
+import FormHeader from "@/components/backoffice/FormHeader";
+import NewProductForm from "@/components/backoffice/Forms/NewProductForm";
 import { getData } from "@/lib/getData";
 import React from "react";
 
@@ -22,5 +23,10 @@ export default async function NewProduct() {
 
   console.log("CATEGRY==->>", categories);
   console.log("FARMERS----===>", farmers);
-  return <NewProductForm categories={categories} farmers={farmers} />;
+  return (
+    <div className="">
+      <FormHeader title="New Product" />
+      <NewProductForm categories={categories} farmers={farmers} />;
+    </div>
+  );
 }

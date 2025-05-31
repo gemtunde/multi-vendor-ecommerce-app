@@ -2,64 +2,56 @@
 import React, { useState } from "react";
 import FormHeader from "@/components/backoffice/FormHeader";
 import TextInput from "@/components/FormInputs/TextInput";
-//import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import SubmitButton from "@/components/FormInputs/SubmitButton";
 import TextareaInput from "@/components/FormInputs/TextAreaInput";
-import { generateSlug } from "@/lib/generateSlug";
 import ImageUpload from "@/components/FormInputs/ImageUpload";
 import { makePostRequest, makePutRequest } from "@/lib/apiRequest";
-import ToggleInput from "@/components/FormInputs/ToggleInput";
 import { useRouter } from "next/navigation";
-//import SelectInput from "@/components/FormInputs/SelectInput";
+import ToggleInput from "@/components/FormInputs/ToggleInput";
 
-const NewCategoryForm = ({ updateData = {} }) => {
+const NewBannerForm = ({ updateBanner = {} }) => {
+  const id = updateBanner?.id ?? "";
+  const initialImageUrl = updateBanner?.imageUrl ?? "";
   //const router = useRouter();
-  const categoryId = updateData?.id ?? "";
-  const initialImageUrl = updateData?.imageUrl ?? "";
   const [imageUrl, setImageUrl] = useState(initialImageUrl);
   const [isLoading, setIsLoading] = useState(false);
-  // console.log("UPDATE tttt", updateData);
+
   const {
     register,
     handleSubmit,
-    reset,
     watch,
+    reset,
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
       isActive: true,
-      ...updateData,
+      ...updateBanner,
     },
   });
-  const isActive = watch("isActive");
   const router = useRouter();
   function redirect() {
-    router.push("/dashboard/categories");
+    router.push("/dashboard/banners");
   }
+  const isActive = watch("isActive");
   const onSubmit = async (data) => {
-    const slug = generateSlug(data.title);
-    data.slug = slug;
-    data.imageUrl = imageUrl ?? data.imageUrl;
-    // console.log("DATA===>", data);
+    data.imageUrl = imageUrl;
+    console.log("DATA===>", data);
 
-    if (categoryId) {
-      /// make put request
+    if (id) {
       makePutRequest(
         setIsLoading,
-        `api/categories/${categoryId}`,
+        `api/banners/${id}`,
         data,
-        "Categories",
+        "Banners",
         redirect
       );
-      //console.log("MAKE PUT REQUEST", data);
     } else {
-      //make post request
       makePostRequest(
         setIsLoading,
-        "api/categories",
+        "api/banners",
         data,
-        "Categories",
+        "Banners",
         reset,
         redirect
       );
@@ -69,41 +61,31 @@ const NewCategoryForm = ({ updateData = {} }) => {
 
   return (
     <div>
-      {/* form */}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-slate-600 dark:border-gray-700 mx-auto my-3"
       >
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-          {updateData.title}
           <TextInput
-            label="Category Title"
+            label="Banner Title"
             name="title"
             register={register}
             errors={errors}
           />
-          {/* <SelectInput
-            label="Select Market"
-            name="marketIds"
-            register={register}
-            errors={errors}
-            options={markets}
-            multiple={false}
-          /> */}
           <TextareaInput
-            label="Category Description"
-            name="description"
+            label="Banner Link"
+            name="link"
             register={register}
             errors={errors}
           />
 
           <ImageUpload
-            imageUploader="imageUploader"
+            imageUploader="bannerImageUploader"
             value={imageUrl}
             onChange={(url) => setImageUrl(url)}
           />
           <ToggleInput
-            label="Publish your category"
+            label="Publish your Banner"
             name="isActive"
             trueTitle="Active"
             falseTitle="Draft"
@@ -113,12 +95,12 @@ const NewCategoryForm = ({ updateData = {} }) => {
         <SubmitButton
           disabled={!isValid}
           isLoading={isLoading}
-          buttonTitle={`${categoryId ? "Update Category" : "Create Category"} `}
-          loadingButtonTitle={`${categoryId ? "Updating Category" : "Creating Category"}`}
+          buttonTitle="Create Banner"
+          loadingButtonTitle="Creating banner, please wait..."
         />
       </form>
     </div>
   );
 };
 
-export default NewCategoryForm;
+export default NewBannerForm;
