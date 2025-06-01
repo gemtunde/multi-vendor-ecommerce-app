@@ -62,3 +62,59 @@ export async function DELETE(request, { params: { id } }) {
     );
   }
 }
+
+export async function PUT(request, { params: { id } }) {
+  try {
+    const {
+      title,
+      categoryId,
+      description,
+      content,
+      isActive,
+      slug,
+      imageUrl,
+    } = await request.json();
+    const existingTraining = await db.training.findUnique({
+      where: { id },
+    });
+    if (!existingTraining) {
+      return NextResponse.json(
+        {
+          data: null,
+          message: "Training not found",
+        },
+        { status: 409 }
+      );
+    }
+    const updatedTraining = await db.training.update({
+      where: { id },
+      data: {
+        title,
+        categoryId,
+        description,
+        content,
+        isActive,
+        slug,
+        imageUrl,
+      },
+    });
+
+    console.log("UPDATE Training--===----<<", updatedTraining);
+    return NextResponse.json(
+      {
+        message: `${title} Training updated successfully`,
+        data: updatedTraining,
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      {
+        message: "Failed to update Training",
+        error,
+      },
+      { status: 500 }
+    );
+  }
+}

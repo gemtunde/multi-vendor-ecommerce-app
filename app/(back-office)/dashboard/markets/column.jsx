@@ -1,6 +1,7 @@
 "use client";
 
 import DeleteBtn from "@/components/Actions/DeleteBtn";
+import EditBtn from "@/components/Actions/EditBtn";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -115,7 +116,12 @@ export const marketColumns = [
                 endpoint={`markets/${row.original.id}`}
               />
             </DropdownMenuItem>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
+            <DropdownMenuItem>
+              <EditBtn
+                title={row.original.title}
+                endpoint={`markets/update/${row.original.id}`}
+              />
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

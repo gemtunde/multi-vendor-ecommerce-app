@@ -8,7 +8,7 @@ import SubmitButton from "@/components/FormInputs/SubmitButton";
 import TextareaInput from "@/components/FormInputs/TextAreaInput";
 import { generateSlug } from "@/lib/generateSlug";
 import ImageUpload from "@/components/FormInputs/ImageUpload";
-import { makePostRequest } from "@/lib/apiRequest";
+import { makePostRequest, makePutRequest } from "@/lib/apiRequest";
 import SelectInput from "@/components/FormInputs/SelectInput";
 import ToggleInput from "@/components/FormInputs/ToggleInput";
 import dynamic from "next/dynamic";
@@ -21,10 +21,14 @@ const QuillEditor = dynamic(
     ssr: false,
   }
 );
-const NewCommunityTrainingForm = ({ categories }) => {
+const NewCommunityTrainingForm = ({ categories, updateTraining = {} }) => {
   //const router = useRouter();
-  const [imageUrl, setImageUrl] = useState("");
+  const id = updateTraining?.id ?? "";
+  const initialImageUrl = updateTraining?.imageUrl ?? "";
+  const initialContent = updateTraining?.content ?? "";
+  const [imageUrl, setImageUrl] = useState(initialImageUrl);
   const [isLoading, setIsLoading] = useState(false);
+  const [content, setContent] = useState(initialContent);
 
   //   const category = [
   //     {
@@ -50,6 +54,7 @@ const NewCommunityTrainingForm = ({ categories }) => {
   } = useForm({
     defaultValues: {
       isActive: true,
+      ...updateTraining,
     },
     mode: "onChange",
   });
@@ -59,8 +64,6 @@ const NewCommunityTrainingForm = ({ categories }) => {
   }
   const isActive = watch("isActive");
 
-  const [content, setContent] = useState("");
-
   const onSubmit = async (data) => {
     const slug = generateSlug(data.title);
     data.slug = slug;
@@ -68,22 +71,32 @@ const NewCommunityTrainingForm = ({ categories }) => {
     data.imageUrl = imageUrl;
     console.log("DATA===>", data);
 
-    makePostRequest(
-      setIsLoading,
-      "api/trainings",
-      data,
-      "CommunityTrainings",
-      reset,
-      redirect
-    );
-    setImageUrl("");
-    setContent("");
+    if (id) {
+      makePutRequest(
+        setIsLoading,
+        `api/trainings/${id}`,
+        data,
+        "CommunityTrainings",
+        redirect
+      );
+    } else {
+      makePostRequest(
+        setIsLoading,
+        "api/trainings",
+        data,
+        "CommunityTrainings",
+        reset,
+        redirect
+      );
+      setImageUrl("");
+      setContent("");
+    }
   };
 
   return (
     <div>
       {/* header */}
-      <FormHeader title="New Community Training" />
+
       {/* form */}
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -134,8 +147,8 @@ const NewCommunityTrainingForm = ({ categories }) => {
         <SubmitButton
           disabled={!isValid}
           isLoading={isLoading}
-          buttonTitle="Create Training"
-          loadingButtonTitle="Creating Training, please wait..."
+          buttonTitle={` ${id ? "Update" : "Create"} Training`}
+          loadingButtonTitle={` ${id ? "Updating" : "Creating"} training, please wait...`}
         />
       </form>
     </div>

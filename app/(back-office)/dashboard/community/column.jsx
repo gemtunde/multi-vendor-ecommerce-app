@@ -1,6 +1,7 @@
 "use client";
 
 import DeleteBtn from "@/components/Actions/DeleteBtn";
+import EditBtn from "@/components/Actions/EditBtn";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -105,7 +106,12 @@ export const trainingColumns = [
                 endpoint={`trainings/${row.original.id}`}
               />
             </DropdownMenuItem>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
+            <DropdownMenuItem>
+              <EditBtn
+                title={row.original.title}
+                endpoint={`community/update/${row.original.id}`}
+              />
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

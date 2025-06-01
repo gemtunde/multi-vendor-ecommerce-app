@@ -1,4 +1,5 @@
-import NewMarketForm from "@/components/backoffice/NewMarketForm";
+import FormHeader from "@/components/backoffice/FormHeader";
+import NewMarketForm from "@/components/backoffice/Forms/NewMarketForm";
 import { getData } from "@/lib/getData";
 import React from "react";
 
@@ -10,5 +11,10 @@ export default async function NewMarket() {
       title: category.title,
     };
   });
-  return <NewMarketForm categories={categories} />;
+  return (
+    <div>
+      <FormHeader title="New Market" />
+      <NewMarketForm categories={categories} />;
+    </div>
+  );
 }

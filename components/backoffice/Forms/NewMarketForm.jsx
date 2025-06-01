@@ -8,30 +8,16 @@ import SubmitButton from "@/components/FormInputs/SubmitButton";
 import TextareaInput from "@/components/FormInputs/TextAreaInput";
 import { generateSlug } from "@/lib/generateSlug";
 import ImageUpload from "@/components/FormInputs/ImageUpload";
-import { makePostRequest } from "@/lib/apiRequest";
+import { makePostRequest, makePutRequest } from "@/lib/apiRequest";
 import SelectInput from "@/components/FormInputs/SelectInput";
 import ToggleInput from "@/components/FormInputs/ToggleInput";
 import { useRouter } from "next/navigation";
 
-const NewMarketForm = ({ categories }) => {
-  //const router = useRouter();
-  const [logoUrl, setLogoUrl] = useState("");
+const NewMarketForm = ({ categories, updateMarket = {} }) => {
+  const id = updateMarket?.id ?? "";
+  const initialImageUrl = updateMarket?.logoUrl ?? "";
+  const [logoUrl, setLogoUrl] = useState(initialImageUrl);
   const [isLoading, setIsLoading] = useState(false);
-  //   const categories = [
-  //     {
-  //       id: 1,
-  //       title: "Category 1",
-  //     },
-  //     {
-  //       id: 2,
-  //       title: "Category 2",
-  //     },
-  //     {
-  //       id: 3,
-  //       title: "Category 3",
-  //     },
-  //   ];
-  console.log("IMAGE URL========", logoUrl);
   const {
     register,
     handleSubmit,
@@ -41,6 +27,7 @@ const NewMarketForm = ({ categories }) => {
   } = useForm({
     defaultValues: {
       isActive: true,
+      ...updateMarket,
     },
   });
   const isActive = watch("isActive");
@@ -52,24 +39,30 @@ const NewMarketForm = ({ categories }) => {
     const slug = generateSlug(data.title);
     data.slug = slug;
     data.logoUrl = logoUrl;
-    console.log("DATA===>", data);
 
-    makePostRequest(
-      setIsLoading,
-      "api/markets",
-      data,
-      "Markets",
-      reset,
-      redirect
-    );
-    setLogoUrl("");
+    if (id) {
+      makePutRequest(
+        setIsLoading,
+        `api/markets/${id}`,
+        data,
+        "Markets",
+        redirect
+      );
+    } else {
+      makePostRequest(
+        setIsLoading,
+        "api/markets",
+        data,
+        "Markets",
+        reset,
+        redirect
+      );
+      setLogoUrl("");
+    }
   };
 
   return (
     <div>
-      {/* header */}
-      <FormHeader title="New Market" />
-      {/* form */}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-slate-600 dark:border-gray-700 mx-auto my-3"
@@ -112,8 +105,8 @@ const NewMarketForm = ({ categories }) => {
         <SubmitButton
           disabled={!isValid}
           isLoading={isLoading}
-          buttonTitle="Create Market"
-          loadingButtonTitle="Creating market, please wait..."
+          buttonTitle={` ${id ? "Update" : "Create"} Market`}
+          loadingButtonTitle={` ${id ? "Updating" : "Creating"} market, please wait...`}
         />
       </form>
     </div>
