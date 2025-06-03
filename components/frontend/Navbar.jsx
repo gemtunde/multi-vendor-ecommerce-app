@@ -3,7 +3,7 @@ import SearchForm from "./SearchForm";
 import logo from "../../public/logo.png";
 import Link from "next/link";
 import Image from "next/image";
-import { HelpCircle, ShoppingCart, User, X } from "lucide-react";
+import { User, X } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,6 +14,7 @@ import {
 } from "../ui/dropdown-menu";
 import { ThemeSwitcher } from "../ThemeSwitcherBtn";
 import HelpModal from "./HelpModal";
+import CartCount from "./CartCount";
 const Navbar = () => {
   return (
     <div className=" bg-slate-100 dark:bg-slate-800 ">
@@ -36,16 +37,7 @@ const Navbar = () => {
           <HelpModal />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button
-                type="button"
-                className="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-transparent rounded-lg "
-              >
-                <ShoppingCart className="text-lime-700 dark:text-lime-500" />
-                <span className="sr-only">Cart</span>
-                <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500  rounded-full -top-0 end-6 dark:border-gray-900">
-                  20
-                </div>
-              </button>
+              <CartCount />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="py-2 px-4 pr-8 bg-slate-100 dark:bg-slate-800">
               <DropdownMenuLabel>Cart Items</DropdownMenuLabel>

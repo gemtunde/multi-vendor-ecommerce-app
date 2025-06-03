@@ -1,6 +1,7 @@
 "use client";
 
 import DeleteBtn from "@/components/Actions/DeleteBtn";
+import EditBtn from "@/components/Actions/EditBtn";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -38,46 +39,13 @@ export const farmersColumns = [
   {
     accessorKey: "role",
     header: "Role",
-    // header: ({ column }) => {
-    //   return (
-    //     <Button
-    //       variant="ghost"
-    //       onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-    //     >
-    //       Name
-    //       <ArrowUpDown className="ml-2 h-4 w-4" />
-    //     </Button>
-    //   );
-    // },
+
     cell: ({ row }) => {
       const role = row.getValue("role");
       return <p className="">{role}</p>;
     },
   },
-  // {
-  //   accessorKey: "profileImageUrl",
-  //   header: "Profile Image",
-  //   cell: ({ row }) => {
-  //     const profileImageUrl = row.getValue("profileImageUrl");
-  //     return (
-  //       <Image
-  //         src={profileImageUrl ?? "/profile.jpeg"}
-  //         alt={row.name}
-  //         width={100}
-  //         height={100}
-  //         className="rounded-full w-14 h-14"
-  //       />
-  //     );
-  //   },
-  // },
-  // {
-  //   accessorKey: "contactPerson",
-  //   header: "Contact Person",
-  //   cell: ({ row }) => {
-  //     const contactPerson = row.getValue("contactPerson");
-  //     return <div className="line-clamp-1">{contactPerson}</div>;
-  //   },
-  // },
+
   {
     accessorKey: "email",
     header: "Email",
@@ -86,10 +54,7 @@ export const farmersColumns = [
       return <div className="line-clamp-1">{email}</div>;
     },
   },
-  // {
-  //   accessorKey: "isActive",
-  //   header: "IsActive",
-  // },
+
   {
     accessorKey: "createdAt",
     header: "Date Created",
@@ -102,6 +67,7 @@ export const farmersColumns = [
     id: "actions",
     cell: ({ row }) => {
       const isActive = row.isActive;
+      console.log("RoW00--->>", row);
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -124,7 +90,12 @@ export const farmersColumns = [
                 endpoint={`farmers/${row.original.id}`}
               />
             </DropdownMenuItem>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
+            <DropdownMenuItem>
+              <EditBtn
+                title={row.original.name}
+                endpoint={`farmers/update/${row.original.farmerProfile?.id}`}
+              />
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

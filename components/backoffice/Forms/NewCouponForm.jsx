@@ -6,12 +6,17 @@ import { useForm } from "react-hook-form";
 import SubmitButton from "@/components/FormInputs/SubmitButton";
 import { makePostRequest, makePutRequest } from "@/lib/apiRequest";
 import { generateCouponCode } from "@/lib/generateCouponCode";
-import { generateIsoFormattedDate } from "@/lib/generateIsoFormattedDate";
+import {
+  formatIsoDate,
+  generateIsoFormattedDate,
+} from "@/lib/generateIsoFormattedDate";
 import { useRouter } from "next/navigation";
 import ToggleInput from "@/components/FormInputs/ToggleInput";
 
 const NewCouponForm = ({ updateCoupon = {} }) => {
+  const expiryDateNormal = formatIsoDate(updateCoupon.expiryDate);
   const id = updateCoupon?.id ?? "";
+  updateCoupon.expiryDate = expiryDateNormal;
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,

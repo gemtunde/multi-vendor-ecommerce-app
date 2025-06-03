@@ -1,9 +1,8 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
 import FormHeader from "@/components/backoffice/FormHeader";
-import NewFarmerOnboardForm from "@/components/backoffice/NewFarmerOnboard";
+import NewFarmerOnboardForm from "@/components/backoffice/Forms/NewFarmerOnboard";
 
-const NewFarmer = () => {
+export default async function NewFarmer() {
   return (
     <div>
       {/* header */}
@@ -12,6 +11,4 @@ const NewFarmer = () => {
       <NewFarmerOnboardForm />
     </div>
   );
-};
-
-export default NewFarmer;
+}

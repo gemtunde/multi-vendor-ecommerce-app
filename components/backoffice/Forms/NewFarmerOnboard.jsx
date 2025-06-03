@@ -10,9 +10,10 @@ import TextareaInput from "@/components/FormInputs/TextAreaInput";
 import { useRouter } from "next/navigation";
 import ToggleInput from "@/components/FormInputs/ToggleInput";
 import ImageUpload from "@/components/FormInputs/ImageUpload";
-import ArrayItemInput from "../FormInputs/ArrayItemInput";
+import ArrayItemInput from "@/components/FormInputs/ArrayItemInput";
+//import ArrayItemInput from "../FormInputs/ArrayItemInput";
 
-const NewFarmerOnboardForm = ({ user }) => {
+const NewFarmerOnboardForm = ({ user = {} }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const [products, setProducts] = useState([]);

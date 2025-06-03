@@ -19,8 +19,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import { ThemeSwitcher } from "../ThemeSwitcherBtn";
+import { useSelector } from "react-redux";
 
 const Navbar = ({ showSidebar, setShowSidebar }) => {
+  const cartItems = useSelector((state) => state.cart);
   return (
     <div className="flex mr-48 items-center justify-between bg-slate-50 dark:bg-slate-700 text-green-600 h-20 px-8 sm:pr-[16rem]  py-4 fixed top-0 w-full ">
       <button onClick={() => setShowSidebar(!showSidebar)}>
@@ -38,7 +40,7 @@ const Navbar = ({ showSidebar, setShowSidebar }) => {
               <Bell />
               <span className="sr-only">Notifications</span>
               <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 rounded-full -top-0 end-6 dark:border-gray-900">
-                20
+                {cartItems.length ?? 0}
               </div>
             </button>
           </DropdownMenuTrigger>
