@@ -18,18 +18,24 @@ export default function RegisterForm({ role = "USER" }) {
     reset,
     formState: { errors, isValid },
   } = useForm();
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [emailErr, setEmailErr] = useState("");
 
   const router = useRouter();
   function redirect() {
-    router.push("/login");
+    // router.push("/login");
+    if (role === "USER") {
+      router.push("/login");
+    } else {
+      router.push(`/verify-email`);
+      //  router.push(`/onboarding/${response.data.id}`);
+    }
   }
   async function onSubmit(data) {
     console.log("USER", data);
-    // makePostRequest(setIsLoading, "api/users", data, "User", reset, redirect);
+    makePostRequest(setIsLoading, "api/users", data, "User", reset, redirect);
     try {
-      setLoading(true);
+      setIsLoading(true);
       const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
       const response = await fetch(`${baseUrl}/api/users`, {
         method: "POST",
@@ -40,18 +46,16 @@ export default function RegisterForm({ role = "USER" }) {
       });
 
       const responseData = await response.json();
+      console.log("resp", response);
+      console.log("responseData---->><>>>>", responseData);
 
       if (response.ok) {
-        setLoading(false);
+        setIsLoading(false);
         toast.success("User Created Successfully");
         reset();
-        if (role === "USER") {
-          router.push("/");
-        } else {
-          router.push(`/onboarding/${responseData.data.id}`);
-        }
+        role === "USER" ? router.push("/login") : router.push("/verify-email");
       } else {
-        setLoading(false);
+        setIsLoading(false);
         if (response.status === 409) {
           setEmailErr("User with this Email already exists");
           toast.error("User with this Email already exists");
@@ -62,7 +66,7 @@ export default function RegisterForm({ role = "USER" }) {
         }
       }
     } catch (error) {
-      setLoading(false);
+      setIsLoading(false);
       console.error("Network Error:", error);
       toast.error("Something Went wrong, Please Try Again");
     }
@@ -173,15 +177,28 @@ export default function RegisterForm({ role = "USER" }) {
           Sign up with Github
         </button>
       </div> */}
-      <p className="text-sm mt-4 font-light text-gray-500 dark:text-gray-400">
-        Already have an account?{" "}
-        <Link
-          href="/login"
-          className="font-medium text-purple-600 hover:underline dark:text-purple-500"
-        >
-          Login
-        </Link>
-      </p>
+      <div className="">
+        <p className="text-sm mt-2 font-light text-gray-500 dark:text-gray-400">
+          Already have an account?{" "}
+          <Link
+            href="/login"
+            className="font-medium text-purple-600 hover:underline dark:text-purple-500"
+          >
+            Login
+          </Link>
+        </p>
+        {role === "USER" && (
+          <p className="text-sm mt-2 font-light text-gray-500 dark:text-gray-400">
+            Are you a farmer?{" "}
+            <Link
+              href="/register-farmer"
+              className="font-medium text-purple-600 hover:underline dark:text-purple-500"
+            >
+              Register as Farmer
+            </Link>
+          </p>
+        )}
+      </div>
     </form>
   );
 }

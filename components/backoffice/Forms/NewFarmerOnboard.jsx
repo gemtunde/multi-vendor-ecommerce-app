@@ -33,7 +33,7 @@ const NewFarmerOnboardForm = ({ user = {} }) => {
 
   const router = useRouter();
   function redirect() {
-    router.push("/dashboard/farmers");
+    router.push("/login");
   }
   const isActive = watch("isActive");
 
