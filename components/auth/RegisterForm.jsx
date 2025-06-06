@@ -8,7 +8,8 @@ import toast from "react-hot-toast";
 import SubmitButton from "../FormInputs/SubmitButton";
 import TextInput from "../FormInputs/TextInput";
 import { makePostRequest } from "@/lib/apiRequest";
-//import { FaGithub, FaGoogle } from "react-icons/fa";
+import { signIn } from "next-auth/react";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 export default function RegisterForm({ role = "USER" }) {
   //const router = useRouter();
@@ -175,6 +176,18 @@ export default function RegisterForm({ role = "USER" }) {
          
           <FaGithub className="mr-2 w-4 h-4" />
           Sign up with Github
+        </button>
+      </div> */}
+
+      {/* <div className="mt-4">
+        <button
+          type="button"
+          onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+          // onClick={() => signIn("google")}
+          className="w-full text-slate-950 bg-white hover:bg-slate-50 focus:ring-4 focus:outline-none focus:ring-slate-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center justify-center flex items-center dark:focus:ring-slate-100 me-2 mb-4 border border-slate-200"
+        >
+          <FaGoogle className="mr-2 text-red-600 w-4 h-4" />
+          Sign up with Google
         </button>
       </div> */}
       <div className="">
