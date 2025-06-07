@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
 import { getInitials } from "@/lib/getInitials";
 import { Avatar, AvatarFallback } from "../ui/avatar";
+import Link from "next/link";
 
 export default function UserAvatar({ user }) {
   const { name, image } = user;
@@ -55,10 +56,13 @@ export default function UserAvatar({ user }) {
           </button>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <button className="flex items-center space-x-2 ">
+          <Link
+            href="/dashboard/profile"
+            className="flex items-center space-x-2 "
+          >
             <Edit className="w-4 h-4 mr-2 " />
             <span>Edit Profile</span>
-          </button>
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <button
