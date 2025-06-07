@@ -25,13 +25,13 @@ const LargeCards = () => {
       sales: 703.89,
       color: "bg-orange-600",
     },
-    {
-      id: 4,
-      icon: Layers,
-      period: " Last Month",
-      sales: 503.89,
-      color: "bg-purple-600",
-    },
+    // {
+    //   id: 4,
+    //   icon: Layers,
+    //   period: " Last Month",
+    //   sales: 503.89,
+    //   color: "bg-purple-600",
+    // },
     {
       id: 5,
       icon: Layers,
@@ -41,7 +41,7 @@ const LargeCards = () => {
     },
   ];
   return (
-    <div className="py-8 gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 ">
+    <div className="py-8 gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
       {orderStats.map((item) => (
         <LargeCard key={item.id} item={item} />
       ))}

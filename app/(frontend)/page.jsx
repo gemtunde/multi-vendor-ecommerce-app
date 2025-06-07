@@ -11,7 +11,7 @@ import { authOptions } from "../api/auth/[...nextauth]/route";
 export default async function Home() {
   const categoriesData = await getData("categories");
   const categories = categoriesData.filter((item) => item.products.length >= 1);
-
+  console.log("Categories in home page", categories);
   const session = await getServerSession(authOptions);
   console.log("Session in home page", session?.user);
   return (

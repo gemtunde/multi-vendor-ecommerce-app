@@ -32,11 +32,22 @@ import {
 
 import { Button } from "../ui/button";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { handleLogout } from "../Actions/handleLogout";
 
 const Sidebar = ({ showSidebar, setShowSidebar }) => {
   const pathname = usePathname();
   const [openMenu, setOpenMenu] = useState(false);
   const { theme } = useTheme();
+
+  const { data: session, status } = useSession();
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+  let userLinks;
+  const role = session?.user?.role;
+  console.log("User role in sidebar", role);
+
   const sidebarLinks = [
     {
       title: "Customers",
@@ -54,7 +65,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
       href: "/dashboard/farmers",
     },
     {
-      title: "orders",
+      title: "Orders",
       icon: Truck,
       href: "/dashboard/orders",
     },
@@ -84,7 +95,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
       href: "/dashboard/store",
     },
   ];
-  const catalogueLinks = [
+  let catalogueLinks = [
     {
       title: "Products",
       icon: User2,
@@ -111,6 +122,25 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
       href: "/dashboard/banners",
     },
   ];
+
+  if (role === "ADMIN") {
+    userLinks = sidebarLinks;
+  } else if (role === "FARMER") {
+    userLinks = sidebarLinks.filter(
+      (item) => item.title !== "Staff" && item.title !== "Farmers"
+    );
+  } else {
+    userLinks = sidebarLinks.filter(
+      (item) =>
+        item.title !== "Wallet" &&
+        item.title !== "Customers" &&
+        item.title !== "Settings" &&
+        item.title !== "Markets" &&
+        item.title !== "Farmers" &&
+        item.title !== "Community"
+    );
+    catalogueLinks = [];
+  }
   return (
     <div
       className={
@@ -139,37 +169,40 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
           <LayoutGrid />
           <span>Dashboard</span>
         </Link>
-        <Collapsible className="px-6 py-2">
-          <CollapsibleTrigger asChild onClick={() => setOpenMenu(!openMenu)}>
-            <button
-              className={`flex items-center space-x-6  py-2  ${pathname === "/dashboard/catalogue" ? "border-l-8 border-green-600" : ""}`}
-            >
-              <div className="flex items-center space-x-3">
-                <Building />
-                <span>Catalogue</span>
-              </div>
-              {openMenu ? <ChevronDown /> : <ChevronRight />}
-            </button>
-          </CollapsibleTrigger>
-          <CollapsibleContent className="px-4 pl-8 bg-slate-50 text-slate-900  dark:bg-slate-800 dark:text-slate-50 rounded-lg">
-            {catalogueLinks.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <Link
-                  key={index}
-                  onClick={() => setShowSidebar(false)}
-                  className={`${pathname === item.href ? " text-green-600" : ""} flex items-center text-sm space-x-3 py-2 `}
-                  href={item.href}
-                >
-                  <Icon className="h-4 w-4" />
-                  <span>{item.title}</span>
-                </Link>
-              );
-            })}
-          </CollapsibleContent>
-        </Collapsible>
+        {catalogueLinks.length > 0 && (
+          <Collapsible className="px-6 py-2">
+            <CollapsibleTrigger asChild onClick={() => setOpenMenu(!openMenu)}>
+              <button
+                className={`flex items-center space-x-6  py-2  ${pathname === "/dashboard/catalogue" ? "border-l-8 border-green-600" : ""}`}
+              >
+                <div className="flex items-center space-x-3">
+                  <Building />
+                  <span>Catalogue</span>
+                </div>
+                {openMenu ? <ChevronDown /> : <ChevronRight />}
+              </button>
+            </CollapsibleTrigger>
 
-        {sidebarLinks.map((Item, index) => {
+            <CollapsibleContent className="px-4 pl-8 bg-slate-50 text-slate-900  dark:bg-slate-800 dark:text-slate-50 rounded-lg">
+              {catalogueLinks.map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={index}
+                    onClick={() => setShowSidebar(false)}
+                    className={`${pathname === item.href ? " text-green-600" : ""} flex items-center text-sm space-x-3 py-2 `}
+                    href={item.href}
+                  >
+                    <Icon className="h-4 w-4" />
+                    <span>{item.title}</span>
+                  </Link>
+                );
+              })}
+            </CollapsibleContent>
+          </Collapsible>
+        )}
+
+        {userLinks.map((Item, index) => {
           const Icon = Item.icon;
           return (
             <Link
@@ -185,6 +218,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
         })}
         <div className="px-8 py-2">
           <Button
+            onClick={handleLogout}
             variant="default"
             className="flex items-center space-x-3 px-8 py-2  bg-green-600 w-full"
           >
