@@ -12,8 +12,11 @@ import { Edit, LayoutDashboard, LogOut, User } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
+import { getInitials } from "@/lib/getInitials";
+import { Avatar, AvatarFallback } from "../ui/avatar";
 
 export default function UserAvatar({ user }) {
+  const { name, image } = user;
   const router = useRouter();
   const handleLogout = async () => {
     await signOut();
@@ -24,17 +27,23 @@ export default function UserAvatar({ user }) {
       <DropdownMenuTrigger className="w-full">
         {/* <User className="border-none" /> */}
         <button>
-          <Image
-            src="/profile.jpeg"
-            alt="User Profile"
-            width={200}
-            height={200}
-            className="w-8 h-8 rounded-full"
-          />
+          {image ? (
+            <Image
+              src={image}
+              alt="User Profile"
+              width={200}
+              height={200}
+              className="w-8 h-8 rounded-full"
+            />
+          ) : (
+            <Avatar>
+              <AvatarFallback>{getInitials(name)}</AvatarFallback>
+            </Avatar>
+          )}
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56  text-slate-900 dark:text-slate-50 dark:bg-slate-600 bg-slate-50 border-none p-2">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuLabel>{name || " N/A"}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           <button

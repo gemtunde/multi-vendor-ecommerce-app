@@ -49,18 +49,10 @@ export async function POST(request) {
       const userId = newUser.id;
       // const linkText = "Verify Account";
       const redirectUrl = `onboarding/${userId}?token=${token}`;
-
-      // const sendMail = await resend.emails.send({
-      //   from: "GEM-TUNDE<you@onboarding.resend.dev>",
-      //   to: email,
-      //   subject: "Account Verification From Multi-Ecommerce",
-      //   react: EmailTemplate({ name, redirectUrl, linkText }),
-      // });
       await sendEmail({
         to: newUser.email,
         ...verifyEmailTemplate(redirectUrl),
       });
-      //console.log("sendmail", sendMail);
     }
     return NextResponse.json(
       {
