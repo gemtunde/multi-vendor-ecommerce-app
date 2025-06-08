@@ -4,7 +4,7 @@ import React from "react";
 export default function CartSubtotalCard({ subTotal }) {
   const shipping = 15;
   const tax = 25;
-  const totalPrice = subTotal + tax + shipping;
+  const totalPrice = subTotal > 0 ? subTotal + tax + shipping : 0;
   return (
     <div className="col-span-4 p-6 bg-white border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-700 text-slate-800 dark:text-slate-100 overflow-hidden">
       <h2 className="py-3 text-2xl">Cart total</h2>
@@ -23,15 +23,15 @@ export default function CartSubtotalCard({ subTotal }) {
       <p className=" pb-4 border-b border-slate-500">
         We only charge for shipping when you have over 2kg items
       </p>
-      <div className="flex items-center justify-between  py-4 ">
+      <div className="flex mb-8 items-center justify-between  py-4 ">
         <span>Total</span>
         <span>${totalPrice.toFixed(2)}</span>
       </div>
       <Link
-        href=""
-        className="bg-slate-200 text-slate-800 py-2 px-4 rounded-lg"
+        href="/checkout"
+        className="bg-lime-600 text-slate-50 dark:text-slate-50  py-3 px-6 rounded-lg"
       >
-        Continue to Payment
+        Continue to Checkout
       </Link>
     </div>
   );
