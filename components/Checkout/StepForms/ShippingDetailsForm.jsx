@@ -2,17 +2,41 @@ import { Circle, Truck } from "lucide-react";
 import { useForm } from "react-hook-form";
 import NavButtons from "../NavButtons";
 import TextInput from "@/components/FormInputs/TextInput";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setCurrentStep,
+  updateCheckoutFormData,
+} from "@/redux/slices/checkoutSlice";
 
 export default function ShippingDetailsForm() {
+  const currentStep = useSelector((store) => store.checkout.currentStep);
+  const dispatch = useDispatch();
+
+  const existingFormData = useSelector(
+    (store) => store.checkout.checkoutFormData
+  );
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      streetAddress: existingFormData.streetAddress || "",
+      city: existingFormData.city || "",
+      country: existingFormData.country || "",
+      zipCode: existingFormData.zipCode || "",
+      shippingCost: existingFormData.shippingCost || "",
+    },
+  });
 
-  function processData(data) {
+  async function processData(data) {
+    // Dispatch the action to update the checkout form data
+    dispatch(updateCheckoutFormData(data));
+    // Move the form to the next step after submission
+    dispatch(setCurrentStep(currentStep + 1));
     console.log(data);
-    // ➜ { streetAddress: "...", city: "...", ..., shippingCost: "8" }
   }
 
   return (

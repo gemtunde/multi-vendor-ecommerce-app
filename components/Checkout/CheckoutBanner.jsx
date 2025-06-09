@@ -1,8 +1,13 @@
 import { ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import { useSelector } from "react-redux";
 
 export default function CheckoutBanner() {
+  const cartItems = useSelector((store) => store.cart);
+  const subTotal =
+    cartItems.reduce((acc, item) => acc + item.salePrice * item.qty, 0) ?? 0;
+
   return (
     <div className="bg-gray-100 rounded-xl">
       <div className="p-4">
@@ -12,8 +17,8 @@ export default function CheckoutBanner() {
               <ShoppingBag className="w-6 h-6" />
             </div>
             <p className="ml-3 text-base font-normal text-gray-900">
-              You have 4 items in cart. Sub total is{" "}
-              <span className="font-bold">$699</span>
+              You have {cartItems.length} items in cart. Sub Total is{" "}
+              <span className="font-bold">${subTotal}</span>
             </p>
           </div>
 

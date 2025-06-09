@@ -4,16 +4,39 @@ import TextInput from "@/components/FormInputs/TextInput";
 import React from "react";
 import { useForm } from "react-hook-form";
 import NavButtons from "../NavButtons";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setCurrentStep,
+  updateCheckoutFormData,
+} from "@/redux/slices/checkoutSlice";
 
 export default function PersonalDetailsForm() {
+  const currentStep = useSelector((store) => store.checkout.currentStep);
+  const dispatch = useDispatch();
+
+  const existingFormData = useSelector(
+    (store) => store.checkout.checkoutFormData
+  );
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      firstName: existingFormData.firstName || "",
+      lastName: existingFormData.lastName || "",
+      email: existingFormData.email || "",
+      phone: existingFormData.phone || "",
+    },
+  });
 
   async function processData(data) {
+    // Dispatch the action to update the checkout form data
+    dispatch(updateCheckoutFormData(data));
+    // Move the form to the next step after submission
+    dispatch(setCurrentStep(currentStep + 1));
     console.log(data);
   }
   return (

@@ -9,22 +9,22 @@ import { useForm } from "react-hook-form";
 export default function Checkout() {
   const steps = [
     {
-      id: "step 1",
+      id: 1,
       name: "Personal Information",
       fields: ["firstName", "lastName", "email"],
     },
     {
-      id: "step 2",
+      id: 2,
       name: "Shipping Address",
       fields: ["firstName", "lastName", "email"],
     },
     {
-      id: "step 3",
+      id: 3,
       name: "Payment Method",
       fields: ["firstName", "lastName", "email"],
     },
     {
-      id: "step 4",
+      id: 4,
       name: "Confirmation",
     },
   ];
@@ -71,12 +71,20 @@ export default function Checkout() {
       );
     } else {
       return (
-        <div className="">
+        <div className="flex items-center gap-4 mt-6">
+          {/* <button
+            disabled={!isValid}
+            onClick={handlePrevStep}
+            type="button"
+            className="inline-flex items-center justify-center w-full px-6 py-4 text-sm font-bold text-white transition-all duration-200 bg-red-900 border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 hover:bg-gray-700 disabled:bg-gray-500"
+          >
+            Prev Step
+          </button> */}
           <button
             disabled={!isValid}
             onClick={handleNextStep}
             type="button"
-            className="inline-flex items-center justify-center w-full px-6 py-4 text-sm font-bold text-white transition-all duration-200 bg-gray-900 border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 hover:bg-gray-700 disabled:bg-gray-500"
+            className="inline-flex items-center justify-center w-full px-6 py-4 text-sm font-bold text-white transition-all duration-200 bg-green-900 border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 hover:bg-gray-700 disabled:bg-gray-500"
           >
             Next Step
           </button>

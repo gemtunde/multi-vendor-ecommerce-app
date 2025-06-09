@@ -2,17 +2,37 @@ import React from "react";
 import { Circle, CreditCard, HeartHandshake, Truck } from "lucide-react";
 import { useForm } from "react-hook-form";
 import NavButtons from "../NavButtons";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setCurrentStep,
+  updateCheckoutFormData,
+} from "@/redux/slices/checkoutSlice";
 
 export default function PaymentMethodForm() {
+  const currentStep = useSelector((store) => store.checkout.currentStep);
+  const dispatch = useDispatch();
+
+  const existingFormData = useSelector(
+    (store) => store.checkout.checkoutFormData
+  );
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      paymentMethod: existingFormData.paymentMethod || "",
+    },
+  });
 
-  function processData(data) {
+  async function processData(data) {
+    // Dispatch the action to update the checkout form data
+    dispatch(updateCheckoutFormData(data));
+    // Move the form to the next step after submission
+    dispatch(setCurrentStep(currentStep + 1));
     console.log(data);
-    // ➜ { streetAddress: "...", city: "...", ..., shippingCost: "8" }
   }
   return (
     <form onSubmit={handleSubmit(processData)}>
