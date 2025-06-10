@@ -1,9 +1,13 @@
-import { ChevronRight } from "lucide-react";
+import { makePostRequest } from "@/lib/apiRequest";
+import { setCurrentStep } from "@/redux/slices/checkoutSlice";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import React from "react";
-import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function SummaryDetails() {
+  const [isLoading, setIsLoading] = useState(false);
   const existingFormData = useSelector(
     (store) => store.checkout.checkoutFormData
   );
@@ -13,8 +17,26 @@ export default function SummaryDetails() {
     cartItems.reduce((acc, item) => acc + item.salePrice * item.qty, 0) ?? 0;
   console.log("OrderSummary cartItems", cartItems);
 
+  const router = useRouter();
+  function redirect() {
+    router.push("/order-confirmation");
+  }
   const SubmitData = async () => {
     console.log("Proceed to payment with data:", existingFormData);
+
+    const data = {
+      orderItems: cartItems,
+      existingFormData,
+    };
+    console.log("Combined Data:", data);
+    makePostRequest(setIsLoading, "api/orders", data, "orders", redirect);
+    redirect();
+  };
+  const currentStep = useSelector((store) => store.checkout.currentStep);
+  const dispatch = useDispatch();
+
+  const handlePreviousStep = () => {
+    dispatch(setCurrentStep(currentStep - 1));
   };
   return (
     <>
@@ -55,13 +77,27 @@ export default function SummaryDetails() {
           ${subTotal.toFixed(2)}
         </span>
       </div>
-      <div>
+      <div className="flex items-center justify-between gap-4 mt-4">
         <button
+          className="flex items-center  px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+          onClick={handlePreviousStep}
+        >
+          <ChevronLeft className="w-5 h-5 mr-2" />
+          <span>Previous</span>
+        </button>
+        <button
+          disabled={isLoading}
           className="flex items-center justify-center px-4 py-2 bg-lime-600 text-white rounded hover:bg-lime-800"
           onClick={SubmitData}
         >
-          <span>Proceed to payment</span>
-          <ChevronRight className="w-5 h-5 " />
+          {isLoading ? (
+            <p>Processing orders, please wait</p>
+          ) : (
+            <>
+              <span>Proceed to payment</span>
+              <ChevronRight className="w-5 h-5 " />
+            </>
+          )}
         </button>
       </div>
     </>

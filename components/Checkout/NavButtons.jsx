@@ -13,7 +13,7 @@ export default function NavButtons() {
   };
 
   return (
-    <div className="flex justify-between items-center mt-6">
+    <div className="flex justify-between items-center w-full mt-6">
       {currentStep > 1 && (
         <button
           className="flex items-center  px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"

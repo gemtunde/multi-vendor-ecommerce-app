@@ -9,8 +9,12 @@ import {
   setCurrentStep,
   updateCheckoutFormData,
 } from "@/redux/slices/checkoutSlice";
+import { useSession } from "next-auth/react";
 
 export default function PersonalDetailsForm() {
+  const { data: session } = useSession();
+  const userId = session?.user?.id;
+
   const currentStep = useSelector((store) => store.checkout.currentStep);
   const dispatch = useDispatch();
 
@@ -33,6 +37,7 @@ export default function PersonalDetailsForm() {
   });
 
   async function processData(data) {
+    data.userId = userId;
     // Dispatch the action to update the checkout form data
     dispatch(updateCheckoutFormData(data));
     // Move the form to the next step after submission
