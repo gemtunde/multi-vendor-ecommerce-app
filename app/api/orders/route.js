@@ -38,6 +38,7 @@ export async function POST(request) {
         firstName,
         lastName,
         paymentMethod,
+        orderNumber: generateOrderNumber(8),
         phone,
         shippingCost: parseFloat(shippingCost),
         streetAddress,
@@ -54,7 +55,6 @@ export async function POST(request) {
       price: parseFloat(item.salePrice),
       title: item.title,
       imageUrl: item.imageUrl,
-      orderNumber: generateOrderNumber(8),
     }));
     const newOrderItems = await db.orderItem.createMany({
       data: orderItemsData,

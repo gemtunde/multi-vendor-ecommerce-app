@@ -196,6 +196,7 @@ model Order {
   city          String
   country       String
   zipCode       String
+  orderNumber   String?
   shippingCost  Float
   paymentMethod String
   orderItems    OrderItem[]
@@ -206,16 +207,15 @@ model Order {
 }
 
 model OrderItem {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  orderId     String   @db.ObjectId
-  productId   String   @db.ObjectId
-  title       String?
-  imageUrl    String?
-  quantity    Int
-  orderNumber String?
-  price       Float
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  order       Order    @relation(fields: [orderId], references: [id])
-  product     Product  @relation(fields: [productId], references: [id])
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  orderId   String   @db.ObjectId
+  productId String   @db.ObjectId
+  title     String?
+  imageUrl  String?
+  quantity  Int
+  price     Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  order     Order    @relation(fields: [orderId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
 }

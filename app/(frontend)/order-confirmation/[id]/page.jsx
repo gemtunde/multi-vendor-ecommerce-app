@@ -99,7 +99,7 @@ export default async function OrderConfirmation({ params: { id } }) {
                                     {item.title}
                                   </p>
                                   <p className="mt-1.5 text-sm font-medium text-gray-500">
-                                    order Number - {item.orderNumber}
+                                    Category
                                   </p>
                                 </div>
                               </div>

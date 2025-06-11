@@ -11579,6 +11579,7 @@ export namespace Prisma {
     city: string | null
     country: string | null
     zipCode: string | null
+    orderNumber: string | null
     shippingCost: number | null
     paymentMethod: string | null
     orderStatus: $Enums.OrderStatus | null
@@ -11597,6 +11598,7 @@ export namespace Prisma {
     city: string | null
     country: string | null
     zipCode: string | null
+    orderNumber: string | null
     shippingCost: number | null
     paymentMethod: string | null
     orderStatus: $Enums.OrderStatus | null
@@ -11615,6 +11617,7 @@ export namespace Prisma {
     city: number
     country: number
     zipCode: number
+    orderNumber: number
     shippingCost: number
     paymentMethod: number
     orderStatus: number
@@ -11643,6 +11646,7 @@ export namespace Prisma {
     city?: true
     country?: true
     zipCode?: true
+    orderNumber?: true
     shippingCost?: true
     paymentMethod?: true
     orderStatus?: true
@@ -11661,6 +11665,7 @@ export namespace Prisma {
     city?: true
     country?: true
     zipCode?: true
+    orderNumber?: true
     shippingCost?: true
     paymentMethod?: true
     orderStatus?: true
@@ -11679,6 +11684,7 @@ export namespace Prisma {
     city?: true
     country?: true
     zipCode?: true
+    orderNumber?: true
     shippingCost?: true
     paymentMethod?: true
     orderStatus?: true
@@ -11784,6 +11790,7 @@ export namespace Prisma {
     city: string
     country: string
     zipCode: string
+    orderNumber: string | null
     shippingCost: number
     paymentMethod: string
     orderStatus: $Enums.OrderStatus
@@ -11821,6 +11828,7 @@ export namespace Prisma {
     city?: boolean
     country?: boolean
     zipCode?: boolean
+    orderNumber?: boolean
     shippingCost?: boolean
     paymentMethod?: boolean
     orderStatus?: boolean
@@ -11844,6 +11852,7 @@ export namespace Prisma {
     city?: boolean
     country?: boolean
     zipCode?: boolean
+    orderNumber?: boolean
     shippingCost?: boolean
     paymentMethod?: boolean
     orderStatus?: boolean
@@ -11851,7 +11860,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "firstName" | "lastName" | "email" | "phone" | "streetAddress" | "city" | "country" | "zipCode" | "shippingCost" | "paymentMethod" | "orderStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["order"]>
+  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "firstName" | "lastName" | "email" | "phone" | "streetAddress" | "city" | "country" | "zipCode" | "orderNumber" | "shippingCost" | "paymentMethod" | "orderStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["order"]>
   export type OrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     orderItems?: boolean | Order$orderItemsArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -11875,6 +11884,7 @@ export namespace Prisma {
       city: string
       country: string
       zipCode: string
+      orderNumber: string | null
       shippingCost: number
       paymentMethod: string
       orderStatus: $Enums.OrderStatus
@@ -12284,6 +12294,7 @@ export namespace Prisma {
     readonly city: FieldRef<"Order", 'String'>
     readonly country: FieldRef<"Order", 'String'>
     readonly zipCode: FieldRef<"Order", 'String'>
+    readonly orderNumber: FieldRef<"Order", 'String'>
     readonly shippingCost: FieldRef<"Order", 'Float'>
     readonly paymentMethod: FieldRef<"Order", 'String'>
     readonly orderStatus: FieldRef<"Order", 'OrderStatus'>
@@ -12730,7 +12741,6 @@ export namespace Prisma {
     title: string | null
     imageUrl: string | null
     quantity: number | null
-    orderNumber: string | null
     price: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -12743,7 +12753,6 @@ export namespace Prisma {
     title: string | null
     imageUrl: string | null
     quantity: number | null
-    orderNumber: string | null
     price: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -12756,7 +12765,6 @@ export namespace Prisma {
     title: number
     imageUrl: number
     quantity: number
-    orderNumber: number
     price: number
     createdAt: number
     updatedAt: number
@@ -12781,7 +12789,6 @@ export namespace Prisma {
     title?: true
     imageUrl?: true
     quantity?: true
-    orderNumber?: true
     price?: true
     createdAt?: true
     updatedAt?: true
@@ -12794,7 +12801,6 @@ export namespace Prisma {
     title?: true
     imageUrl?: true
     quantity?: true
-    orderNumber?: true
     price?: true
     createdAt?: true
     updatedAt?: true
@@ -12807,7 +12813,6 @@ export namespace Prisma {
     title?: true
     imageUrl?: true
     quantity?: true
-    orderNumber?: true
     price?: true
     createdAt?: true
     updatedAt?: true
@@ -12907,7 +12912,6 @@ export namespace Prisma {
     title: string | null
     imageUrl: string | null
     quantity: number
-    orderNumber: string | null
     price: number
     createdAt: Date
     updatedAt: Date
@@ -12939,7 +12943,6 @@ export namespace Prisma {
     title?: boolean
     imageUrl?: boolean
     quantity?: boolean
-    orderNumber?: boolean
     price?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -12956,13 +12959,12 @@ export namespace Prisma {
     title?: boolean
     imageUrl?: boolean
     quantity?: boolean
-    orderNumber?: boolean
     price?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type OrderItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orderId" | "productId" | "title" | "imageUrl" | "quantity" | "orderNumber" | "price" | "createdAt" | "updatedAt", ExtArgs["result"]["orderItem"]>
+  export type OrderItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orderId" | "productId" | "title" | "imageUrl" | "quantity" | "price" | "createdAt" | "updatedAt", ExtArgs["result"]["orderItem"]>
   export type OrderItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     order?: boolean | OrderDefaultArgs<ExtArgs>
     product?: boolean | ProductDefaultArgs<ExtArgs>
@@ -12981,7 +12983,6 @@ export namespace Prisma {
       title: string | null
       imageUrl: string | null
       quantity: number
-      orderNumber: string | null
       price: number
       createdAt: Date
       updatedAt: Date
@@ -13385,7 +13386,6 @@ export namespace Prisma {
     readonly title: FieldRef<"OrderItem", 'String'>
     readonly imageUrl: FieldRef<"OrderItem", 'String'>
     readonly quantity: FieldRef<"OrderItem", 'Int'>
-    readonly orderNumber: FieldRef<"OrderItem", 'String'>
     readonly price: FieldRef<"OrderItem", 'Float'>
     readonly createdAt: FieldRef<"OrderItem", 'DateTime'>
     readonly updatedAt: FieldRef<"OrderItem", 'DateTime'>
@@ -13941,6 +13941,7 @@ export namespace Prisma {
     city: 'city',
     country: 'country',
     zipCode: 'zipCode',
+    orderNumber: 'orderNumber',
     shippingCost: 'shippingCost',
     paymentMethod: 'paymentMethod',
     orderStatus: 'orderStatus',
@@ -13958,7 +13959,6 @@ export namespace Prisma {
     title: 'title',
     imageUrl: 'imageUrl',
     quantity: 'quantity',
-    orderNumber: 'orderNumber',
     price: 'price',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -14860,6 +14860,7 @@ export namespace Prisma {
     city?: StringFilter<"Order"> | string
     country?: StringFilter<"Order"> | string
     zipCode?: StringFilter<"Order"> | string
+    orderNumber?: StringNullableFilter<"Order"> | string | null
     shippingCost?: FloatFilter<"Order"> | number
     paymentMethod?: StringFilter<"Order"> | string
     orderStatus?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
@@ -14880,6 +14881,7 @@ export namespace Prisma {
     city?: SortOrder
     country?: SortOrder
     zipCode?: SortOrder
+    orderNumber?: SortOrder
     shippingCost?: SortOrder
     paymentMethod?: SortOrder
     orderStatus?: SortOrder
@@ -14903,6 +14905,7 @@ export namespace Prisma {
     city?: StringFilter<"Order"> | string
     country?: StringFilter<"Order"> | string
     zipCode?: StringFilter<"Order"> | string
+    orderNumber?: StringNullableFilter<"Order"> | string | null
     shippingCost?: FloatFilter<"Order"> | number
     paymentMethod?: StringFilter<"Order"> | string
     orderStatus?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
@@ -14923,6 +14926,7 @@ export namespace Prisma {
     city?: SortOrder
     country?: SortOrder
     zipCode?: SortOrder
+    orderNumber?: SortOrder
     shippingCost?: SortOrder
     paymentMethod?: SortOrder
     orderStatus?: SortOrder
@@ -14949,6 +14953,7 @@ export namespace Prisma {
     city?: StringWithAggregatesFilter<"Order"> | string
     country?: StringWithAggregatesFilter<"Order"> | string
     zipCode?: StringWithAggregatesFilter<"Order"> | string
+    orderNumber?: StringNullableWithAggregatesFilter<"Order"> | string | null
     shippingCost?: FloatWithAggregatesFilter<"Order"> | number
     paymentMethod?: StringWithAggregatesFilter<"Order"> | string
     orderStatus?: EnumOrderStatusWithAggregatesFilter<"Order"> | $Enums.OrderStatus
@@ -14966,7 +14971,6 @@ export namespace Prisma {
     title?: StringNullableFilter<"OrderItem"> | string | null
     imageUrl?: StringNullableFilter<"OrderItem"> | string | null
     quantity?: IntFilter<"OrderItem"> | number
-    orderNumber?: StringNullableFilter<"OrderItem"> | string | null
     price?: FloatFilter<"OrderItem"> | number
     createdAt?: DateTimeFilter<"OrderItem"> | Date | string
     updatedAt?: DateTimeFilter<"OrderItem"> | Date | string
@@ -14981,7 +14985,6 @@ export namespace Prisma {
     title?: SortOrder
     imageUrl?: SortOrder
     quantity?: SortOrder
-    orderNumber?: SortOrder
     price?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -14999,7 +15002,6 @@ export namespace Prisma {
     title?: StringNullableFilter<"OrderItem"> | string | null
     imageUrl?: StringNullableFilter<"OrderItem"> | string | null
     quantity?: IntFilter<"OrderItem"> | number
-    orderNumber?: StringNullableFilter<"OrderItem"> | string | null
     price?: FloatFilter<"OrderItem"> | number
     createdAt?: DateTimeFilter<"OrderItem"> | Date | string
     updatedAt?: DateTimeFilter<"OrderItem"> | Date | string
@@ -15014,7 +15016,6 @@ export namespace Prisma {
     title?: SortOrder
     imageUrl?: SortOrder
     quantity?: SortOrder
-    orderNumber?: SortOrder
     price?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -15035,7 +15036,6 @@ export namespace Prisma {
     title?: StringNullableWithAggregatesFilter<"OrderItem"> | string | null
     imageUrl?: StringNullableWithAggregatesFilter<"OrderItem"> | string | null
     quantity?: IntWithAggregatesFilter<"OrderItem"> | number
-    orderNumber?: StringNullableWithAggregatesFilter<"OrderItem"> | string | null
     price?: FloatWithAggregatesFilter<"OrderItem"> | number
     createdAt?: DateTimeWithAggregatesFilter<"OrderItem"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"OrderItem"> | Date | string
@@ -15894,6 +15894,7 @@ export namespace Prisma {
     city: string
     country: string
     zipCode: string
+    orderNumber?: string | null
     shippingCost: number
     paymentMethod: string
     orderStatus?: $Enums.OrderStatus
@@ -15914,6 +15915,7 @@ export namespace Prisma {
     city: string
     country: string
     zipCode: string
+    orderNumber?: string | null
     shippingCost: number
     paymentMethod: string
     orderStatus?: $Enums.OrderStatus
@@ -15931,6 +15933,7 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     zipCode?: StringFieldUpdateOperationsInput | string
+    orderNumber?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCost?: FloatFieldUpdateOperationsInput | number
     paymentMethod?: StringFieldUpdateOperationsInput | string
     orderStatus?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
@@ -15950,6 +15953,7 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     zipCode?: StringFieldUpdateOperationsInput | string
+    orderNumber?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCost?: FloatFieldUpdateOperationsInput | number
     paymentMethod?: StringFieldUpdateOperationsInput | string
     orderStatus?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
@@ -15969,6 +15973,7 @@ export namespace Prisma {
     city: string
     country: string
     zipCode: string
+    orderNumber?: string | null
     shippingCost: number
     paymentMethod: string
     orderStatus?: $Enums.OrderStatus
@@ -15985,6 +15990,7 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     zipCode?: StringFieldUpdateOperationsInput | string
+    orderNumber?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCost?: FloatFieldUpdateOperationsInput | number
     paymentMethod?: StringFieldUpdateOperationsInput | string
     orderStatus?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
@@ -16002,6 +16008,7 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     zipCode?: StringFieldUpdateOperationsInput | string
+    orderNumber?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCost?: FloatFieldUpdateOperationsInput | number
     paymentMethod?: StringFieldUpdateOperationsInput | string
     orderStatus?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
@@ -16014,7 +16021,6 @@ export namespace Prisma {
     title?: string | null
     imageUrl?: string | null
     quantity: number
-    orderNumber?: string | null
     price: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16029,7 +16035,6 @@ export namespace Prisma {
     title?: string | null
     imageUrl?: string | null
     quantity: number
-    orderNumber?: string | null
     price: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16039,7 +16044,6 @@ export namespace Prisma {
     title?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     quantity?: IntFieldUpdateOperationsInput | number
-    orderNumber?: NullableStringFieldUpdateOperationsInput | string | null
     price?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16053,7 +16057,6 @@ export namespace Prisma {
     title?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     quantity?: IntFieldUpdateOperationsInput | number
-    orderNumber?: NullableStringFieldUpdateOperationsInput | string | null
     price?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16066,7 +16069,6 @@ export namespace Prisma {
     title?: string | null
     imageUrl?: string | null
     quantity: number
-    orderNumber?: string | null
     price: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16076,7 +16078,6 @@ export namespace Prisma {
     title?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     quantity?: IntFieldUpdateOperationsInput | number
-    orderNumber?: NullableStringFieldUpdateOperationsInput | string | null
     price?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16088,7 +16089,6 @@ export namespace Prisma {
     title?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     quantity?: IntFieldUpdateOperationsInput | number
-    orderNumber?: NullableStringFieldUpdateOperationsInput | string | null
     price?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16824,6 +16824,7 @@ export namespace Prisma {
     city?: SortOrder
     country?: SortOrder
     zipCode?: SortOrder
+    orderNumber?: SortOrder
     shippingCost?: SortOrder
     paymentMethod?: SortOrder
     orderStatus?: SortOrder
@@ -16846,6 +16847,7 @@ export namespace Prisma {
     city?: SortOrder
     country?: SortOrder
     zipCode?: SortOrder
+    orderNumber?: SortOrder
     shippingCost?: SortOrder
     paymentMethod?: SortOrder
     orderStatus?: SortOrder
@@ -16864,6 +16866,7 @@ export namespace Prisma {
     city?: SortOrder
     country?: SortOrder
     zipCode?: SortOrder
+    orderNumber?: SortOrder
     shippingCost?: SortOrder
     paymentMethod?: SortOrder
     orderStatus?: SortOrder
@@ -16913,7 +16916,6 @@ export namespace Prisma {
     title?: SortOrder
     imageUrl?: SortOrder
     quantity?: SortOrder
-    orderNumber?: SortOrder
     price?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -16931,7 +16933,6 @@ export namespace Prisma {
     title?: SortOrder
     imageUrl?: SortOrder
     quantity?: SortOrder
-    orderNumber?: SortOrder
     price?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -16944,7 +16945,6 @@ export namespace Prisma {
     title?: SortOrder
     imageUrl?: SortOrder
     quantity?: SortOrder
-    orderNumber?: SortOrder
     price?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -18147,7 +18147,6 @@ export namespace Prisma {
     title?: string | null
     imageUrl?: string | null
     quantity: number
-    orderNumber?: string | null
     price: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -18160,7 +18159,6 @@ export namespace Prisma {
     title?: string | null
     imageUrl?: string | null
     quantity: number
-    orderNumber?: string | null
     price: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -18268,7 +18266,6 @@ export namespace Prisma {
     title?: StringNullableFilter<"OrderItem"> | string | null
     imageUrl?: StringNullableFilter<"OrderItem"> | string | null
     quantity?: IntFilter<"OrderItem"> | number
-    orderNumber?: StringNullableFilter<"OrderItem"> | string | null
     price?: FloatFilter<"OrderItem"> | number
     createdAt?: DateTimeFilter<"OrderItem"> | Date | string
     updatedAt?: DateTimeFilter<"OrderItem"> | Date | string
@@ -18577,6 +18574,7 @@ export namespace Prisma {
     city: string
     country: string
     zipCode: string
+    orderNumber?: string | null
     shippingCost: number
     paymentMethod: string
     orderStatus?: $Enums.OrderStatus
@@ -18595,6 +18593,7 @@ export namespace Prisma {
     city: string
     country: string
     zipCode: string
+    orderNumber?: string | null
     shippingCost: number
     paymentMethod: string
     orderStatus?: $Enums.OrderStatus
@@ -18724,6 +18723,7 @@ export namespace Prisma {
     city?: StringFilter<"Order"> | string
     country?: StringFilter<"Order"> | string
     zipCode?: StringFilter<"Order"> | string
+    orderNumber?: StringNullableFilter<"Order"> | string | null
     shippingCost?: FloatFilter<"Order"> | number
     paymentMethod?: StringFilter<"Order"> | string
     orderStatus?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
@@ -18859,7 +18859,6 @@ export namespace Prisma {
     title?: string | null
     imageUrl?: string | null
     quantity: number
-    orderNumber?: string | null
     price: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -18872,7 +18871,6 @@ export namespace Prisma {
     title?: string | null
     imageUrl?: string | null
     quantity: number
-    orderNumber?: string | null
     price: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -18987,6 +18985,7 @@ export namespace Prisma {
     city: string
     country: string
     zipCode: string
+    orderNumber?: string | null
     shippingCost: number
     paymentMethod: string
     orderStatus?: $Enums.OrderStatus
@@ -19006,6 +19005,7 @@ export namespace Prisma {
     city: string
     country: string
     zipCode: string
+    orderNumber?: string | null
     shippingCost: number
     paymentMethod: string
     orderStatus?: $Enums.OrderStatus
@@ -19093,6 +19093,7 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     zipCode?: StringFieldUpdateOperationsInput | string
+    orderNumber?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCost?: FloatFieldUpdateOperationsInput | number
     paymentMethod?: StringFieldUpdateOperationsInput | string
     orderStatus?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
@@ -19111,6 +19112,7 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     zipCode?: StringFieldUpdateOperationsInput | string
+    orderNumber?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCost?: FloatFieldUpdateOperationsInput | number
     paymentMethod?: StringFieldUpdateOperationsInput | string
     orderStatus?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
@@ -19391,7 +19393,6 @@ export namespace Prisma {
     title?: string | null
     imageUrl?: string | null
     quantity: number
-    orderNumber?: string | null
     price: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -19401,7 +19402,6 @@ export namespace Prisma {
     title?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     quantity?: IntFieldUpdateOperationsInput | number
-    orderNumber?: NullableStringFieldUpdateOperationsInput | string | null
     price?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19413,7 +19413,6 @@ export namespace Prisma {
     title?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     quantity?: IntFieldUpdateOperationsInput | number
-    orderNumber?: NullableStringFieldUpdateOperationsInput | string | null
     price?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19424,7 +19423,6 @@ export namespace Prisma {
     title?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     quantity?: IntFieldUpdateOperationsInput | number
-    orderNumber?: NullableStringFieldUpdateOperationsInput | string | null
     price?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19464,6 +19462,7 @@ export namespace Prisma {
     city: string
     country: string
     zipCode: string
+    orderNumber?: string | null
     shippingCost: number
     paymentMethod: string
     orderStatus?: $Enums.OrderStatus
@@ -19551,6 +19550,7 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     zipCode?: StringFieldUpdateOperationsInput | string
+    orderNumber?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCost?: FloatFieldUpdateOperationsInput | number
     paymentMethod?: StringFieldUpdateOperationsInput | string
     orderStatus?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
@@ -19568,6 +19568,7 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     zipCode?: StringFieldUpdateOperationsInput | string
+    orderNumber?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCost?: FloatFieldUpdateOperationsInput | number
     paymentMethod?: StringFieldUpdateOperationsInput | string
     orderStatus?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
@@ -19585,6 +19586,7 @@ export namespace Prisma {
     city?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     zipCode?: StringFieldUpdateOperationsInput | string
+    orderNumber?: NullableStringFieldUpdateOperationsInput | string | null
     shippingCost?: FloatFieldUpdateOperationsInput | number
     paymentMethod?: StringFieldUpdateOperationsInput | string
     orderStatus?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
@@ -19598,7 +19600,6 @@ export namespace Prisma {
     title?: string | null
     imageUrl?: string | null
     quantity: number
-    orderNumber?: string | null
     price: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -19608,7 +19609,6 @@ export namespace Prisma {
     title?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     quantity?: IntFieldUpdateOperationsInput | number
-    orderNumber?: NullableStringFieldUpdateOperationsInput | string | null
     price?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19620,7 +19620,6 @@ export namespace Prisma {
     title?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     quantity?: IntFieldUpdateOperationsInput | number
-    orderNumber?: NullableStringFieldUpdateOperationsInput | string | null
     price?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19631,7 +19630,6 @@ export namespace Prisma {
     title?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     quantity?: IntFieldUpdateOperationsInput | number
-    orderNumber?: NullableStringFieldUpdateOperationsInput | string | null
     price?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

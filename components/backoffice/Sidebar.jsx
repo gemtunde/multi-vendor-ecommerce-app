@@ -70,6 +70,11 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
       href: "/dashboard/orders",
     },
     {
+      title: "Sales",
+      icon: Truck,
+      href: "/dashboard/sales",
+    },
+    {
       title: "Staff",
       icon: User,
       href: "/dashboard/staff",
@@ -137,7 +142,8 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
         item.title !== "Settings" &&
         item.title !== "Markets" &&
         item.title !== "Farmers" &&
-        item.title !== "Community"
+        item.title !== "Community" &&
+        item.title !== "Sales"
     );
     catalogueLinks = [];
   }

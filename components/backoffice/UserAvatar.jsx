@@ -68,7 +68,7 @@ export default function UserAvatar({ user }) {
         {role === "USER" && (
           <DropdownMenuItem asChild>
             <Link
-              href="/dashboard/order-confirmation"
+              href="/dashboard/orders"
               className="flex items-center space-x-2 "
             >
               <Edit className="w-4 h-4 mr-2 " />
