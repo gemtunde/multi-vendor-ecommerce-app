@@ -1,6 +1,17 @@
 import db from "@/lib/db";
 import { NextResponse } from "next/server";
 
+function generateOrderNumber(length) {
+  const characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let orderNumber = "";
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    orderNumber += characters.charAt(randomIndex);
+  }
+
+  return orderNumber;
+}
 export async function POST(request) {
   try {
     const { existingFormData, orderItems } = await request.json();
@@ -41,6 +52,9 @@ export async function POST(request) {
       productId: item.id,
       quantity: parseInt(item.qty),
       price: parseFloat(item.salePrice),
+      title: item.title,
+      imageUrl: item.imageUrl,
+      orderNumber: generateOrderNumber(8),
     }));
     const newOrderItems = await db.orderItem.createMany({
       data: orderItemsData,
@@ -71,6 +85,9 @@ export async function GET(request) {
     const orders = await db.order.findMany({
       orderBy: {
         createdAt: "desc",
+      },
+      include: {
+        orderItems: true,
       },
     });
     console.log("trainings", orders);

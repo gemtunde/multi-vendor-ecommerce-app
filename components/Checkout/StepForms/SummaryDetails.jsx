@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function SummaryDetails() {
@@ -18,9 +19,9 @@ export default function SummaryDetails() {
   console.log("OrderSummary cartItems", cartItems);
 
   const router = useRouter();
-  function redirect() {
-    router.push("/order-confirmation");
-  }
+  // function redirect() {
+  //   router.push("/order-confirmation");
+  // }
   const SubmitData = async () => {
     console.log("Proceed to payment with data:", existingFormData);
 
@@ -29,8 +30,46 @@ export default function SummaryDetails() {
       existingFormData,
     };
     console.log("Combined Data:", data);
-    makePostRequest(setIsLoading, "api/orders", data, "orders", redirect);
-    redirect();
+    // start request
+    try {
+      setIsLoading(true);
+      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+      const response = await fetch(`${baseUrl}/api/orders`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const responseData = await response.json();
+      if (response.ok) {
+        setIsLoading(false);
+        console.log("resp--==>,", responseData);
+        toast.success(`New order Created Successfully`);
+        //reset();
+        router.push(`/order-confirmation/${responseData?.data.id}`);
+      } else {
+        setIsLoading(false);
+        console.log("Error Response", response);
+        if (response.status === 409) {
+          toast.error(
+            responseData?.message || "The Giving Warehouse Stock is NOT Enough"
+          );
+          //toast.error("The Giving Warehouse Stock is NOT Enough");
+        } else {
+          console.log("Error Response2", response);
+          toast.error(responseData.message || "Something Went wrong");
+          //toast.error("Something Went wrong");
+        }
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error.message || "Internal server error");
+    }
+
+    //end request
+    //makePostRequest(setIsLoading, "api/orders", data, "orders", redirect);
+    //redirect();
   };
   const currentStep = useSelector((store) => store.checkout.currentStep);
   const dispatch = useDispatch();

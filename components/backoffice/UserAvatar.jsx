@@ -19,6 +19,7 @@ import Link from "next/link";
 export default function UserAvatar({ user }) {
   const { name, image } = user;
   const router = useRouter();
+  const role = user?.role;
   const handleLogout = async () => {
     await signOut();
     router.push("/login");
@@ -64,6 +65,18 @@ export default function UserAvatar({ user }) {
             <span>Edit Profile</span>
           </Link>
         </DropdownMenuItem>
+        {role === "USER" && (
+          <DropdownMenuItem asChild>
+            <Link
+              href="/dashboard/order-confirmation"
+              className="flex items-center space-x-2 "
+            >
+              <Edit className="w-4 h-4 mr-2 " />
+              <span>My Orders</span>
+            </Link>
+          </DropdownMenuItem>
+        )}
+
         <DropdownMenuItem asChild>
           <button
             onClick={handleLogout}
