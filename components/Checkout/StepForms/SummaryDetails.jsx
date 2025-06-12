@@ -47,7 +47,7 @@ export default function SummaryDetails() {
         console.log("resp--==>,", responseData);
         toast.success(`New order Created Successfully`);
         //reset();
-        router.push(`/order-confirmation/${responseData?.data.id}`);
+        router.push(`/order-confirmation/${responseData?.id}`);
       } else {
         setIsLoading(false);
         console.log("Error Response", response);

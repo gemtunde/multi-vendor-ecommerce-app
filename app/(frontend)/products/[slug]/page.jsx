@@ -7,7 +7,9 @@ import Link from "next/link";
 import React from "react";
 
 export default async function ProductDetailsPage({ params: { slug } }) {
-  const category = await getData(`/categories/68360a1e669869a524ef8e08`);
+  const product = await getData(`/products/product/${slug}`);
+  console.log("product", product);
+  const category = await getData(`/categories/${product.categoryId}`);
   console.log("CATEGRY", category);
   return (
     <div>
@@ -15,8 +17,8 @@ export default async function ProductDetailsPage({ params: { slug } }) {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="">
           <Image
-            src="/apple.jpg"
-            alt="apple"
+            src={product.imageUrl}
+            alt={product.title}
             width={556}
             height={556}
             className="w-full"
@@ -24,27 +26,32 @@ export default async function ProductDetailsPage({ params: { slug } }) {
         </div>
         <div className="">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl lg:text-2xl font-semibold">Bread Pizza</h2>
+            <h2 className="text-xl lg:text-2xl font-semibold">
+              {product.title ?? "N/A"}
+            </h2>
             <button>
               <Share2 />
             </button>
           </div>
           <div className="text-[16px] border-b border-gray-600">
             <p className="py-2 ">
-              Never from Concentrate | 100% recyclable packaging | Low calorie
-              and no fat, we’ll drink to that!
+              {product.description ??
+                "No description available for this product."}
             </p>
             <div className="flex items-center gap-8 py-4">
-              <p className="">SKU: 90998773</p>
+              <p className="">SKU: {}</p>
               <p className="bg-lime-200 text-slate-800 py-2 px-4 rounded-full">
-                <b>Stock:</b> 109
+                <b>Stock:</b>{" "}
+                {product.qty > 0 ? `${product.qty} in stock` : "Out of Stock"}
               </p>
             </div>
           </div>
 
           <div className="flex items-center pt-3 gap-4 border-b border-gray-600 pb-4">
-            <h4 className="text-2xl">NGN4500.00</h4>
-            <del className="text-slate-400 text-sm">2000.00</del>
+            <h4 className="text-2xl">NGN{product.salePrice ?? 0}</h4>
+            <del className="text-slate-400 text-sm">
+              NGN{product.productPrice ?? 0}
+            </del>
           </div>
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center border gap-4 rounded-xl">
