@@ -132,7 +132,10 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
     userLinks = sidebarLinks;
   } else if (role === "FARMER") {
     userLinks = sidebarLinks.filter(
-      (item) => item.title !== "Staff" && item.title !== "Farmers"
+      (item) =>
+        item.title !== "Staff" &&
+        item.title !== "Farmers" &&
+        item.title !== "Customers"
     );
   } else {
     userLinks = sidebarLinks.filter(

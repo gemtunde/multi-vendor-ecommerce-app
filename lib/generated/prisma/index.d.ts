@@ -10767,22 +10767,46 @@ export namespace Prisma {
   export type UserProfileMinAggregateOutputType = {
     id: string | null
     userId: string | null
+    name: string | null
+    userName: string | null
+    email: string | null
+    phone: string | null
+    streetAddress: string | null
+    city: string | null
+    country: string | null
+    zipCode: string | null
     dateOfBirth: Date | null
-    address: string | null
+    imageUrl: string | null
   }
 
   export type UserProfileMaxAggregateOutputType = {
     id: string | null
     userId: string | null
+    name: string | null
+    userName: string | null
+    email: string | null
+    phone: string | null
+    streetAddress: string | null
+    city: string | null
+    country: string | null
+    zipCode: string | null
     dateOfBirth: Date | null
-    address: string | null
+    imageUrl: string | null
   }
 
   export type UserProfileCountAggregateOutputType = {
     id: number
     userId: number
+    name: number
+    userName: number
+    email: number
+    phone: number
+    streetAddress: number
+    city: number
+    country: number
+    zipCode: number
     dateOfBirth: number
-    address: number
+    imageUrl: number
     _all: number
   }
 
@@ -10790,22 +10814,46 @@ export namespace Prisma {
   export type UserProfileMinAggregateInputType = {
     id?: true
     userId?: true
+    name?: true
+    userName?: true
+    email?: true
+    phone?: true
+    streetAddress?: true
+    city?: true
+    country?: true
+    zipCode?: true
     dateOfBirth?: true
-    address?: true
+    imageUrl?: true
   }
 
   export type UserProfileMaxAggregateInputType = {
     id?: true
     userId?: true
+    name?: true
+    userName?: true
+    email?: true
+    phone?: true
+    streetAddress?: true
+    city?: true
+    country?: true
+    zipCode?: true
     dateOfBirth?: true
-    address?: true
+    imageUrl?: true
   }
 
   export type UserProfileCountAggregateInputType = {
     id?: true
     userId?: true
+    name?: true
+    userName?: true
+    email?: true
+    phone?: true
+    streetAddress?: true
+    city?: true
+    country?: true
+    zipCode?: true
     dateOfBirth?: true
-    address?: true
+    imageUrl?: true
     _all?: true
   }
 
@@ -10884,8 +10932,16 @@ export namespace Prisma {
   export type UserProfileGroupByOutputType = {
     id: string
     userId: string
+    name: string | null
+    userName: string | null
+    email: string | null
+    phone: string | null
+    streetAddress: string | null
+    city: string | null
+    country: string | null
+    zipCode: string | null
     dateOfBirth: Date | null
-    address: string | null
+    imageUrl: string | null
     _count: UserProfileCountAggregateOutputType | null
     _min: UserProfileMinAggregateOutputType | null
     _max: UserProfileMaxAggregateOutputType | null
@@ -10908,8 +10964,16 @@ export namespace Prisma {
   export type UserProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    name?: boolean
+    userName?: boolean
+    email?: boolean
+    phone?: boolean
+    streetAddress?: boolean
+    city?: boolean
+    country?: boolean
+    zipCode?: boolean
     dateOfBirth?: boolean
-    address?: boolean
+    imageUrl?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userProfile"]>
 
@@ -10918,11 +10982,19 @@ export namespace Prisma {
   export type UserProfileSelectScalar = {
     id?: boolean
     userId?: boolean
+    name?: boolean
+    userName?: boolean
+    email?: boolean
+    phone?: boolean
+    streetAddress?: boolean
+    city?: boolean
+    country?: boolean
+    zipCode?: boolean
     dateOfBirth?: boolean
-    address?: boolean
+    imageUrl?: boolean
   }
 
-  export type UserProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "dateOfBirth" | "address", ExtArgs["result"]["userProfile"]>
+  export type UserProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "userName" | "email" | "phone" | "streetAddress" | "city" | "country" | "zipCode" | "dateOfBirth" | "imageUrl", ExtArgs["result"]["userProfile"]>
   export type UserProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -10935,8 +11007,16 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
+      name: string | null
+      userName: string | null
+      email: string | null
+      phone: string | null
+      streetAddress: string | null
+      city: string | null
+      country: string | null
+      zipCode: string | null
       dateOfBirth: Date | null
-      address: string | null
+      imageUrl: string | null
     }, ExtArgs["result"]["userProfile"]>
     composites: {}
   }
@@ -11332,8 +11412,16 @@ export namespace Prisma {
   interface UserProfileFieldRefs {
     readonly id: FieldRef<"UserProfile", 'String'>
     readonly userId: FieldRef<"UserProfile", 'String'>
+    readonly name: FieldRef<"UserProfile", 'String'>
+    readonly userName: FieldRef<"UserProfile", 'String'>
+    readonly email: FieldRef<"UserProfile", 'String'>
+    readonly phone: FieldRef<"UserProfile", 'String'>
+    readonly streetAddress: FieldRef<"UserProfile", 'String'>
+    readonly city: FieldRef<"UserProfile", 'String'>
+    readonly country: FieldRef<"UserProfile", 'String'>
+    readonly zipCode: FieldRef<"UserProfile", 'String'>
     readonly dateOfBirth: FieldRef<"UserProfile", 'DateTime'>
-    readonly address: FieldRef<"UserProfile", 'String'>
+    readonly imageUrl: FieldRef<"UserProfile", 'String'>
   }
     
 
@@ -15231,8 +15319,16 @@ export namespace Prisma {
   export const UserProfileScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
+    name: 'name',
+    userName: 'userName',
+    email: 'email',
+    phone: 'phone',
+    streetAddress: 'streetAddress',
+    city: 'city',
+    country: 'country',
+    zipCode: 'zipCode',
     dateOfBirth: 'dateOfBirth',
-    address: 'address'
+    imageUrl: 'imageUrl'
   };
 
   export type UserProfileScalarFieldEnum = (typeof UserProfileScalarFieldEnum)[keyof typeof UserProfileScalarFieldEnum]
@@ -16134,16 +16230,32 @@ export namespace Prisma {
     NOT?: UserProfileWhereInput | UserProfileWhereInput[]
     id?: StringFilter<"UserProfile"> | string
     userId?: StringFilter<"UserProfile"> | string
+    name?: StringNullableFilter<"UserProfile"> | string | null
+    userName?: StringNullableFilter<"UserProfile"> | string | null
+    email?: StringNullableFilter<"UserProfile"> | string | null
+    phone?: StringNullableFilter<"UserProfile"> | string | null
+    streetAddress?: StringNullableFilter<"UserProfile"> | string | null
+    city?: StringNullableFilter<"UserProfile"> | string | null
+    country?: StringNullableFilter<"UserProfile"> | string | null
+    zipCode?: StringNullableFilter<"UserProfile"> | string | null
     dateOfBirth?: DateTimeNullableFilter<"UserProfile"> | Date | string | null
-    address?: StringNullableFilter<"UserProfile"> | string | null
+    imageUrl?: StringNullableFilter<"UserProfile"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type UserProfileOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
+    name?: SortOrder
+    userName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    streetAddress?: SortOrder
+    city?: SortOrder
+    country?: SortOrder
+    zipCode?: SortOrder
     dateOfBirth?: SortOrder
-    address?: SortOrder
+    imageUrl?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -16153,16 +16265,32 @@ export namespace Prisma {
     AND?: UserProfileWhereInput | UserProfileWhereInput[]
     OR?: UserProfileWhereInput[]
     NOT?: UserProfileWhereInput | UserProfileWhereInput[]
+    name?: StringNullableFilter<"UserProfile"> | string | null
+    userName?: StringNullableFilter<"UserProfile"> | string | null
+    email?: StringNullableFilter<"UserProfile"> | string | null
+    phone?: StringNullableFilter<"UserProfile"> | string | null
+    streetAddress?: StringNullableFilter<"UserProfile"> | string | null
+    city?: StringNullableFilter<"UserProfile"> | string | null
+    country?: StringNullableFilter<"UserProfile"> | string | null
+    zipCode?: StringNullableFilter<"UserProfile"> | string | null
     dateOfBirth?: DateTimeNullableFilter<"UserProfile"> | Date | string | null
-    address?: StringNullableFilter<"UserProfile"> | string | null
+    imageUrl?: StringNullableFilter<"UserProfile"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId">
 
   export type UserProfileOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
+    name?: SortOrder
+    userName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    streetAddress?: SortOrder
+    city?: SortOrder
+    country?: SortOrder
+    zipCode?: SortOrder
     dateOfBirth?: SortOrder
-    address?: SortOrder
+    imageUrl?: SortOrder
     _count?: UserProfileCountOrderByAggregateInput
     _max?: UserProfileMaxOrderByAggregateInput
     _min?: UserProfileMinOrderByAggregateInput
@@ -16174,8 +16302,16 @@ export namespace Prisma {
     NOT?: UserProfileScalarWhereWithAggregatesInput | UserProfileScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"UserProfile"> | string
     userId?: StringWithAggregatesFilter<"UserProfile"> | string
+    name?: StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+    userName?: StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+    email?: StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+    phone?: StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+    streetAddress?: StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+    city?: StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+    country?: StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+    zipCode?: StringNullableWithAggregatesFilter<"UserProfile"> | string | null
     dateOfBirth?: DateTimeNullableWithAggregatesFilter<"UserProfile"> | Date | string | null
-    address?: StringNullableWithAggregatesFilter<"UserProfile"> | string | null
+    imageUrl?: StringNullableWithAggregatesFilter<"UserProfile"> | string | null
   }
 
   export type OrderWhereInput = {
@@ -17283,46 +17419,102 @@ export namespace Prisma {
 
   export type UserProfileCreateInput = {
     id?: string
+    name?: string | null
+    userName?: string | null
+    email?: string | null
+    phone?: string | null
+    streetAddress?: string | null
+    city?: string | null
+    country?: string | null
+    zipCode?: string | null
     dateOfBirth?: Date | string | null
-    address?: string | null
+    imageUrl?: string | null
     user: UserCreateNestedOneWithoutProfileInput
   }
 
   export type UserProfileUncheckedCreateInput = {
     id?: string
     userId: string
+    name?: string | null
+    userName?: string | null
+    email?: string | null
+    phone?: string | null
+    streetAddress?: string | null
+    city?: string | null
+    country?: string | null
+    zipCode?: string | null
     dateOfBirth?: Date | string | null
-    address?: string | null
+    imageUrl?: string | null
   }
 
   export type UserProfileUpdateInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    streetAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutProfileNestedInput
   }
 
   export type UserProfileUncheckedUpdateInput = {
     userId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    streetAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserProfileCreateManyInput = {
     id?: string
     userId: string
+    name?: string | null
+    userName?: string | null
+    email?: string | null
+    phone?: string | null
+    streetAddress?: string | null
+    city?: string | null
+    country?: string | null
+    zipCode?: string | null
     dateOfBirth?: Date | string | null
-    address?: string | null
+    imageUrl?: string | null
   }
 
   export type UserProfileUpdateManyMutationInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    streetAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserProfileUncheckedUpdateManyInput = {
     userId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    streetAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrderCreateInput = {
@@ -18341,22 +18533,46 @@ export namespace Prisma {
   export type UserProfileCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    name?: SortOrder
+    userName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    streetAddress?: SortOrder
+    city?: SortOrder
+    country?: SortOrder
+    zipCode?: SortOrder
     dateOfBirth?: SortOrder
-    address?: SortOrder
+    imageUrl?: SortOrder
   }
 
   export type UserProfileMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    name?: SortOrder
+    userName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    streetAddress?: SortOrder
+    city?: SortOrder
+    country?: SortOrder
+    zipCode?: SortOrder
     dateOfBirth?: SortOrder
-    address?: SortOrder
+    imageUrl?: SortOrder
   }
 
   export type UserProfileMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    name?: SortOrder
+    userName?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    streetAddress?: SortOrder
+    city?: SortOrder
+    country?: SortOrder
+    zipCode?: SortOrder
     dateOfBirth?: SortOrder
-    address?: SortOrder
+    imageUrl?: SortOrder
   }
 
   export type EnumOrderStatusFilter<$PrismaModel = never> = {
@@ -20410,14 +20626,30 @@ export namespace Prisma {
 
   export type UserProfileCreateWithoutUserInput = {
     id?: string
+    name?: string | null
+    userName?: string | null
+    email?: string | null
+    phone?: string | null
+    streetAddress?: string | null
+    city?: string | null
+    country?: string | null
+    zipCode?: string | null
     dateOfBirth?: Date | string | null
-    address?: string | null
+    imageUrl?: string | null
   }
 
   export type UserProfileUncheckedCreateWithoutUserInput = {
     id?: string
+    name?: string | null
+    userName?: string | null
+    email?: string | null
+    phone?: string | null
+    streetAddress?: string | null
+    city?: string | null
+    country?: string | null
+    zipCode?: string | null
     dateOfBirth?: Date | string | null
-    address?: string | null
+    imageUrl?: string | null
   }
 
   export type UserProfileCreateOrConnectWithoutUserInput = {
@@ -20582,13 +20814,29 @@ export namespace Prisma {
   }
 
   export type UserProfileUpdateWithoutUserInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    streetAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserProfileUncheckedUpdateWithoutUserInput = {
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    userName?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    streetAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    zipCode?: NullableStringFieldUpdateOperationsInput | string | null
     dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OrderUpsertWithWhereUniqueWithoutUserInput = {

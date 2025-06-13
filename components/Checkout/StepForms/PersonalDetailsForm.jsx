@@ -46,8 +46,10 @@ export default function PersonalDetailsForm() {
   }
   return (
     <form onSubmit={handleSubmit(processData)}>
-      <h2 className="text-xl font-semibold my-4">Personal Details</h2>
-      <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
+      <h2 className="text-xl text-green-500 font-semibold my-4">
+        Personal Details
+      </h2>
+      <div className="grid gap-4 max-w-3xl  sm:grid-cols-2 sm:gap-6">
         <TextInput
           label="First Name"
           name="firstName"

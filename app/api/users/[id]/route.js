@@ -7,9 +7,26 @@ export async function GET(request, { params: { id } }) {
       where: {
         id,
       },
+      // select: {
+      //   id: true,
+      //   name: true,
+      //   email: true,
+      //   emailVerified: true,
+      //   role: true,
+      //   createdAt: true,
+      //   updatedAt: true,
+      //   profile: true,
+      //   // Add other safe fields here, but NOT password
+      // },
+      include: {
+        profile: true,
+      },
     });
-    console.log("User", user);
-    return NextResponse.json(user);
+    // return NextResponse.json(user);
+    const { password, ...safeUser } = user;
+
+    console.log("safe SAFE User", safeUser);
+    return NextResponse.json(safeUser);
   } catch (error) {
     console.log(error);
     return NextResponse.json(

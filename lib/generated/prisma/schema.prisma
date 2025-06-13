@@ -177,12 +177,19 @@ model User {
 
 // Model for normal user profile
 model UserProfile {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  userId      String    @unique @db.ObjectId
-  // Add other fields for user onboarding information
-  // For example:
-  dateOfBirth DateTime?
-  address     String?
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @unique @db.ObjectId
+
+  name          String?
+  userName      String?
+  email         String?
+  phone         String?
+  streetAddress String?
+  city          String?
+  country       String?
+  zipCode       String?
+  dateOfBirth   DateTime?
+  imageUrl      String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
