@@ -75,7 +75,7 @@ model Product {
   title          String
   slug           String      @unique
   isActive       Boolean
-  imageUrl       String?
+  imageUrl       String[]
   description    String?
   sku            String?
   barcode        String?

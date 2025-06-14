@@ -6,16 +6,16 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export default async function ProductDetailsPage({ params: { slug } }) {
-  const product = await getData(`/products/product/${slug}`);
-  console.log("product", product);
-  const category = await getData(`/categories/${product.categoryId}`);
-  console.log("CATEGRY", category);
+export default async function CategoryDetailsPage({ params: { slug } }) {
+  //const product = await getData(`/products/product/${slug}`);
+  //console.log("product", product);
+  //const category = await getData(`/categories/${product.categoryId}`);
+  //console.log("CATEGRY", category);
 
   return (
     <div>
       <BreadCrumb />
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+      {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
         <div className="">
           <Image
             src={product.imageUrl[0]}
@@ -138,7 +138,7 @@ export default async function ProductDetailsPage({ params: { slug } }) {
         ) : (
           "loading"
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

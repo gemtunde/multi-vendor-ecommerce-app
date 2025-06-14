@@ -15,6 +15,7 @@ import ArrayItemInput from "@/components/FormInputs/ArrayItemInput";
 import ToggleInput from "@/components/FormInputs/ToggleInput";
 import { generateUserCode } from "@/lib/generateCouponCode";
 import { useRouter } from "next/navigation";
+import MultipleImageUpload from "@/components/FormInputs/MultipleImageUpload";
 
 const NewProductForm = ({ categories, farmers, updateProduct = {} }) => {
   //const router = useRouter();
@@ -22,7 +23,14 @@ const NewProductForm = ({ categories, farmers, updateProduct = {} }) => {
   const initialImageUrl = updateProduct?.imageUrl ?? "";
   const initialTags = updateProduct?.tags ?? [];
 
-  const [imageUrl, setImageUrl] = useState(initialImageUrl);
+  //const [imageUrl, setImageUrl] = useState(initialImageUrl);
+  const [imageUrls, setImageUrls] = useState(
+    Array.isArray(initialImageUrl)
+      ? initialImageUrl
+      : initialImageUrl
+        ? [initialImageUrl]
+        : []
+  );
   const [isLoading, setIsLoading] = useState(false);
 
   //tags
@@ -44,7 +52,7 @@ const NewProductForm = ({ categories, farmers, updateProduct = {} }) => {
     },
   ];
 
-  console.log("IMAGE URL========", imageUrl);
+  console.log("IMAGE URL========", imageUrls);
   const {
     register,
     watch,
@@ -74,8 +82,8 @@ const NewProductForm = ({ categories, farmers, updateProduct = {} }) => {
     data.slug = slug;
     data.productCode = productCode;
     data.tags = tags;
-    data.qty = 1;
-    data.imageUrl = imageUrl;
+    //data.qty = 1;
+    data.imageUrl = imageUrls;
     console.log("DATA===>", data);
 
     if (id) {
@@ -95,7 +103,7 @@ const NewProductForm = ({ categories, farmers, updateProduct = {} }) => {
         reset,
         redirect
       );
-      setImageUrl("");
+      setImageUrls([]);
       setTags([]);
     }
   };
@@ -216,10 +224,15 @@ const NewProductForm = ({ categories, farmers, updateProduct = {} }) => {
             </>
           )}
 
-          <ImageUpload
+          {/* <ImageUpload
             imageUploader="productImageUploader"
             value={imageUrl}
             onChange={(url) => setImageUrl(url)}
+          /> */}
+          <MultipleImageUpload
+            imageUploader="productImageUploader"
+            value={imageUrls}
+            onChange={(urls) => setImageUrls(urls)}
           />
           {/* Tags */}
           <ArrayItemInput itemTitle="Tag" setItems={setTags} items={tags} />

@@ -44,7 +44,7 @@ export const productColumns = [
       const imageUrl = row.getValue("imageUrl");
       return (
         <Image
-          src={imageUrl}
+          src={imageUrl[0]}
           alt={row.title}
           width={100}
           height={100}

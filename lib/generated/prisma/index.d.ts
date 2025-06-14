@@ -6155,7 +6155,6 @@ export namespace Prisma {
     title: string | null
     slug: string | null
     isActive: boolean | null
-    imageUrl: string | null
     description: string | null
     sku: string | null
     barcode: string | null
@@ -6179,7 +6178,6 @@ export namespace Prisma {
     title: string | null
     slug: string | null
     isActive: boolean | null
-    imageUrl: string | null
     description: string | null
     sku: string | null
     barcode: string | null
@@ -6248,7 +6246,6 @@ export namespace Prisma {
     title?: true
     slug?: true
     isActive?: true
-    imageUrl?: true
     description?: true
     sku?: true
     barcode?: true
@@ -6272,7 +6269,6 @@ export namespace Prisma {
     title?: true
     slug?: true
     isActive?: true
-    imageUrl?: true
     description?: true
     sku?: true
     barcode?: true
@@ -6408,7 +6404,7 @@ export namespace Prisma {
     title: string
     slug: string
     isActive: boolean
-    imageUrl: string | null
+    imageUrl: string[]
     description: string | null
     sku: string | null
     barcode: string | null
@@ -6526,7 +6522,7 @@ export namespace Prisma {
       title: string
       slug: string
       isActive: boolean
-      imageUrl: string | null
+      imageUrl: string[]
       description: string | null
       sku: string | null
       barcode: string | null
@@ -6944,7 +6940,7 @@ export namespace Prisma {
     readonly title: FieldRef<"Product", 'String'>
     readonly slug: FieldRef<"Product", 'String'>
     readonly isActive: FieldRef<"Product", 'Boolean'>
-    readonly imageUrl: FieldRef<"Product", 'String'>
+    readonly imageUrl: FieldRef<"Product", 'String[]'>
     readonly description: FieldRef<"Product", 'String'>
     readonly sku: FieldRef<"Product", 'String'>
     readonly barcode: FieldRef<"Product", 'String'>
@@ -15792,7 +15788,7 @@ export namespace Prisma {
     title?: StringFilter<"Product"> | string
     slug?: StringFilter<"Product"> | string
     isActive?: BoolFilter<"Product"> | boolean
-    imageUrl?: StringNullableFilter<"Product"> | string | null
+    imageUrl?: StringNullableListFilter<"Product">
     description?: StringNullableFilter<"Product"> | string | null
     sku?: StringNullableFilter<"Product"> | string | null
     barcode?: StringNullableFilter<"Product"> | string | null
@@ -15853,7 +15849,7 @@ export namespace Prisma {
     NOT?: ProductWhereInput | ProductWhereInput[]
     title?: StringFilter<"Product"> | string
     isActive?: BoolFilter<"Product"> | boolean
-    imageUrl?: StringNullableFilter<"Product"> | string | null
+    imageUrl?: StringNullableListFilter<"Product">
     description?: StringNullableFilter<"Product"> | string | null
     sku?: StringNullableFilter<"Product"> | string | null
     barcode?: StringNullableFilter<"Product"> | string | null
@@ -15915,7 +15911,7 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"Product"> | string
     slug?: StringWithAggregatesFilter<"Product"> | string
     isActive?: BoolWithAggregatesFilter<"Product"> | boolean
-    imageUrl?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    imageUrl?: StringNullableListFilter<"Product">
     description?: StringNullableWithAggregatesFilter<"Product"> | string | null
     sku?: StringNullableWithAggregatesFilter<"Product"> | string | null
     barcode?: StringNullableWithAggregatesFilter<"Product"> | string | null
@@ -16917,7 +16913,7 @@ export namespace Prisma {
     title: string
     slug: string
     isActive: boolean
-    imageUrl?: string | null
+    imageUrl?: ProductCreateimageUrlInput | string[]
     description?: string | null
     sku?: string | null
     barcode?: string | null
@@ -16944,7 +16940,7 @@ export namespace Prisma {
     title: string
     slug: string
     isActive: boolean
-    imageUrl?: string | null
+    imageUrl?: ProductCreateimageUrlInput | string[]
     description?: string | null
     sku?: string | null
     barcode?: string | null
@@ -16970,7 +16966,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: ProductUpdateimageUrlInput | string[]
     description?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: NullableStringFieldUpdateOperationsInput | string | null
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16996,7 +16992,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: ProductUpdateimageUrlInput | string[]
     description?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: NullableStringFieldUpdateOperationsInput | string | null
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17023,7 +17019,7 @@ export namespace Prisma {
     title: string
     slug: string
     isActive: boolean
-    imageUrl?: string | null
+    imageUrl?: ProductCreateimageUrlInput | string[]
     description?: string | null
     sku?: string | null
     barcode?: string | null
@@ -17047,7 +17043,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: ProductUpdateimageUrlInput | string[]
     description?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: NullableStringFieldUpdateOperationsInput | string | null
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17069,7 +17065,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: ProductUpdateimageUrlInput | string[]
     description?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: NullableStringFieldUpdateOperationsInput | string | null
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18242,7 +18238,6 @@ export namespace Prisma {
     title?: SortOrder
     slug?: SortOrder
     isActive?: SortOrder
-    imageUrl?: SortOrder
     description?: SortOrder
     sku?: SortOrder
     barcode?: SortOrder
@@ -18266,7 +18261,6 @@ export namespace Prisma {
     title?: SortOrder
     slug?: SortOrder
     isActive?: SortOrder
-    imageUrl?: SortOrder
     description?: SortOrder
     sku?: SortOrder
     barcode?: SortOrder
@@ -18997,6 +18991,10 @@ export namespace Prisma {
     deleteMany?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
   }
 
+  export type ProductCreateimageUrlInput = {
+    set: string[]
+  }
+
   export type ProductCreatetagsInput = {
     set: string[]
   }
@@ -19039,6 +19037,11 @@ export namespace Prisma {
     connectOrCreate?: SaleCreateOrConnectWithoutProductInput | SaleCreateOrConnectWithoutProductInput[]
     createMany?: SaleCreateManyProductInputEnvelope
     connect?: SaleWhereUniqueInput | SaleWhereUniqueInput[]
+  }
+
+  export type ProductUpdateimageUrlInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -19851,7 +19854,7 @@ export namespace Prisma {
     title: string
     slug: string
     isActive: boolean
-    imageUrl?: string | null
+    imageUrl?: ProductCreateimageUrlInput | string[]
     description?: string | null
     sku?: string | null
     barcode?: string | null
@@ -19877,7 +19880,7 @@ export namespace Prisma {
     title: string
     slug: string
     isActive: boolean
-    imageUrl?: string | null
+    imageUrl?: ProductCreateimageUrlInput | string[]
     description?: string | null
     sku?: string | null
     barcode?: string | null
@@ -19992,7 +19995,7 @@ export namespace Prisma {
     title?: StringFilter<"Product"> | string
     slug?: StringFilter<"Product"> | string
     isActive?: BoolFilter<"Product"> | boolean
-    imageUrl?: StringNullableFilter<"Product"> | string | null
+    imageUrl?: StringNullableListFilter<"Product">
     description?: StringNullableFilter<"Product"> | string | null
     sku?: StringNullableFilter<"Product"> | string | null
     barcode?: StringNullableFilter<"Product"> | string | null
@@ -20568,7 +20571,7 @@ export namespace Prisma {
     title: string
     slug: string
     isActive: boolean
-    imageUrl?: string | null
+    imageUrl?: ProductCreateimageUrlInput | string[]
     description?: string | null
     sku?: string | null
     barcode?: string | null
@@ -20594,7 +20597,7 @@ export namespace Prisma {
     title: string
     slug: string
     isActive: boolean
-    imageUrl?: string | null
+    imageUrl?: ProductCreateimageUrlInput | string[]
     description?: string | null
     sku?: string | null
     barcode?: string | null
@@ -21248,7 +21251,7 @@ export namespace Prisma {
     title: string
     slug: string
     isActive: boolean
-    imageUrl?: string | null
+    imageUrl?: ProductCreateimageUrlInput | string[]
     description?: string | null
     sku?: string | null
     barcode?: string | null
@@ -21274,7 +21277,7 @@ export namespace Prisma {
     title: string
     slug: string
     isActive: boolean
-    imageUrl?: string | null
+    imageUrl?: ProductCreateimageUrlInput | string[]
     description?: string | null
     sku?: string | null
     barcode?: string | null
@@ -21364,7 +21367,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: ProductUpdateimageUrlInput | string[]
     description?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: NullableStringFieldUpdateOperationsInput | string | null
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21389,7 +21392,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: ProductUpdateimageUrlInput | string[]
     description?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: NullableStringFieldUpdateOperationsInput | string | null
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21460,7 +21463,7 @@ export namespace Prisma {
     title: string
     slug: string
     isActive: boolean
-    imageUrl?: string | null
+    imageUrl?: ProductCreateimageUrlInput | string[]
     description?: string | null
     sku?: string | null
     barcode?: string | null
@@ -21486,7 +21489,7 @@ export namespace Prisma {
     title: string
     slug: string
     isActive: boolean
-    imageUrl?: string | null
+    imageUrl?: ProductCreateimageUrlInput | string[]
     description?: string | null
     sku?: string | null
     barcode?: string | null
@@ -21613,7 +21616,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: ProductUpdateimageUrlInput | string[]
     description?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: NullableStringFieldUpdateOperationsInput | string | null
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21638,7 +21641,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: ProductUpdateimageUrlInput | string[]
     description?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: NullableStringFieldUpdateOperationsInput | string | null
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21705,7 +21708,7 @@ export namespace Prisma {
     title: string
     slug: string
     isActive: boolean
-    imageUrl?: string | null
+    imageUrl?: ProductCreateimageUrlInput | string[]
     description?: string | null
     sku?: string | null
     barcode?: string | null
@@ -21740,7 +21743,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: ProductUpdateimageUrlInput | string[]
     description?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: NullableStringFieldUpdateOperationsInput | string | null
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21765,7 +21768,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: ProductUpdateimageUrlInput | string[]
     description?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: NullableStringFieldUpdateOperationsInput | string | null
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21790,7 +21793,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: ProductUpdateimageUrlInput | string[]
     description?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: NullableStringFieldUpdateOperationsInput | string | null
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22009,7 +22012,7 @@ export namespace Prisma {
     title: string
     slug: string
     isActive: boolean
-    imageUrl?: string | null
+    imageUrl?: ProductCreateimageUrlInput | string[]
     description?: string | null
     sku?: string | null
     barcode?: string | null
@@ -22063,7 +22066,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: ProductUpdateimageUrlInput | string[]
     description?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: NullableStringFieldUpdateOperationsInput | string | null
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22088,7 +22091,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: ProductUpdateimageUrlInput | string[]
     description?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: NullableStringFieldUpdateOperationsInput | string | null
     barcode?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22113,7 +22116,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: ProductUpdateimageUrlInput | string[]
     description?: NullableStringFieldUpdateOperationsInput | string | null
     sku?: NullableStringFieldUpdateOperationsInput | string | null
     barcode?: NullableStringFieldUpdateOperationsInput | string | null

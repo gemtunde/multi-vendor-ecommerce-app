@@ -26,7 +26,7 @@ export default function Product({ product }) {
           height={556}
           className="w-full"
           // className="w-12 h-12 rounded-full object-cover border border-lime-300"
-          src={product.imageUrl}
+          src={product.imageUrl[0]}
           alt={product.title}
         />
         <h2 className="bg-slate-200 rounded-b-lg dark:bg-slate-600 text-slate-600 dark:text-slate-100 p-2 text-center">
