@@ -1,9 +1,10 @@
+import FilterComponent from "@/components/frontend/Filter/FilterComponent";
 import React from "react";
 
 export default function MarketDetailsPage({ params: { slug } }) {
   return (
     <div>
-      <h2>Market</h2>
+      <FilterComponent />
     </div>
   );
 }
