@@ -1,10 +1,11 @@
 import Link from "next/link";
 import React from "react";
 
-export default function Sorting() {
+export default function Sorting({ title }) {
   return (
     <div className="flex items-center justify-between">
-      <h2 className="text-2xl font-semibold">Search Results - Electronics</h2>
+      {/* <h2 className="text-2xl font-semibold">Search Results - </h2> */}
+      <h2 className="text-2xl font-semibold"> - {title}</h2>
       <div className="flex text-small items-center space-x-4">
         <p>Sort By:</p>
         <div className="flex">
